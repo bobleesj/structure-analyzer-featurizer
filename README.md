@@ -38,11 +38,12 @@ files containing the following elements: `Si` `Sc` `Fe` `Co` `Ni` `Ga` `Ge` `Y`
 `Ru` `Rh` `Pd` `In` `Sn` `Sb` `La` `Ce` `Pr` `Nd` `Sm` `Eu` `Gd` `Tb` `Dy` `Ho`
 `Er` `Tm` `Yb` `Lu` `Os` `Ir` `Pt` `Th` `U` `Al` `Mo` `Hf` `Ta`. `Ag` `As` `Au`
 `B` `Ba` `Be` `Bi` `C` `Ca` `Cd` `Cr` `Cs` `Cu` `Hg` `K` `Li` `Mg` `Mn` `Na`
-`Nb` `P` `Pb` `Rb` `Re` `S` `Se` `Sr` `Te` `Ti` `Tl` `V` `W` `Zn` `Zr`
+`Nb` `P` `Pb` `Rb` `Re` `S` `Se` `Sr` `Te` `Ti` `Tl` `V` `W` `Zn` `Zr` `Tc` `N`
+`O` `F` `Cl` `Br` `I` `Sm`
 
-:warning: You may use CIF Cleaner (https://github.com/bobleesj/cif-cleaner) to
-interactively filter `.cif` files based on composition type (binary, ternary)
-and elements without programming.
+:Note: The Pauling CN 12 radii values for some gases [N, O, F, Cl, Br and I] as well as Tc and Sm were interpolated using 
+Gaussian Process Regression. The CIF radii for the aforementioned gases were compiled averages of low-temperature structures 
+from PCD.
 
 ### Adding more elements
 
