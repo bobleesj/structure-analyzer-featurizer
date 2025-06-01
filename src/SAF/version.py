@@ -20,6 +20,6 @@
 # obtain version information
 from importlib.metadata import version
 
-__version__ = version("SAF")
+__version__ = version("structure-analyzer-featurizer")
 
 # End of file

@@ -1,6 +1,6 @@
 import itertools
-from core.config import get_binary_AB_labels
-from core.config import get_ternary_RMX_labels
+from SAF.config import get_binary_AB_labels
+from SAF.config import get_ternary_RMX_labels
 
 
 def get_binary_AB_elements(

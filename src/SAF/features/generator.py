@@ -1,5 +1,5 @@
 # Given a binary cif, generate all the features
-from core.features import (
+from SAF.features import (
     coordination_handler,
     binary_wyc,
     binary_env_handler,

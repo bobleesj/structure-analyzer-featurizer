@@ -1,8 +1,8 @@
-from core.optimize import radius as radius_opt
+from SAF.optimize import radius as radius_opt
 from cifkit import Cif
-from core.utils import log, packing, bond_distance
-from core.utils import element_parser
-from core.data.radius_handler import (
+from SAF.utils import log, packing, bond_distance
+from SAF.utils import element_parser
+from SAF.data.radius_handler import (
     get_radius_values_per_element,
 )
 

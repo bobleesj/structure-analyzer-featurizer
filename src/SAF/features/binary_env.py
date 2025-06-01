@@ -1,5 +1,5 @@
 from cifkit.utils import string_parser
-from core.utils.bond_count import (
+from SAF.utils.bond_count import (
     get_site_labels_per_element,
     compute_count_first_second_min_dist,
     extract_best_labels,

@@ -1,12 +1,12 @@
-from core.utils.bond_count import (
+from SAF.utils.bond_count import (
     compute_count_first_second_min_dist,
     extract_best_labels,
     extract_shortest_dist_with_tol,
     extract_avg_shortest_dist_with_tol,
     get_avg_second_by_first_shortest_dist_ratio,
 )
-from core.utils.element_parser import get_ternary_RMX_elements
-from core.features.ternary_env import (
+from SAF.utils.element_parser import get_ternary_RMX_elements
+from SAF.features.ternary_env import (
     compute_homoatomic_dist_by_site_shortest_dist,
     compute_avg_homoatomic_dist_by_site_shortest_dist,
     get_R_and_M_and_X_count_in_best_label_per_element,

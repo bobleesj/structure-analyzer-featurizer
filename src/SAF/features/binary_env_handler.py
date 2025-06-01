@@ -1,6 +1,6 @@
 from cifkit import Cif
 
-from core.utils.bond_count import (
+from SAF.utils.bond_count import (
     compute_count_first_second_min_dist,
     extract_best_labels,
     extract_shortest_dist_with_tol,
@@ -8,14 +8,14 @@ from core.utils.bond_count import (
     get_avg_second_by_first_shortest_dist_ratio,
 )
 
-from core.features.binary_env import (
+from SAF.features.binary_env import (
     compute_homoatomic_dist_by_site_shortest_dist,
     compute_avg_homoatomic_dist_by_site_shortest_dist,
     get_A_and_B_count_in_best_label_per_element,
     get_avg_A_and_B_count_in_per_element,
 )
-from core.utils import element_parser
-from core.utils import log
+from SAF.utils import element_parser
+from SAF.utils import log
 
 
 def compute_binary_env_features(cif: Cif):

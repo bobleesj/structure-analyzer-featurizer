@@ -1,5 +1,5 @@
 import numpy as np
-from core.data.radius import get_radius_data
+from SAF.data.radius import get_radius_data
 from cifkit.data.radius_optimization import get_refined_CIF_radius
 
 
