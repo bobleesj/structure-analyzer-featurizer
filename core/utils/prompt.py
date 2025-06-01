@@ -32,10 +32,13 @@ def get_user_input_folder_processing(dir_names, file_type):
 def get_folder_indices(dir_names_with_cif):
     while True:
         folder_numbers_str = click.prompt(
-            "Enter the numbers corresponding to the folders listed above," " separated by spaces. Ex) 1 2 3"
+            "Enter the numbers corresponding to the folders listed above,"
+            " separated by spaces. Ex) 1 2 3"
         )
         try:
-            folder_indices = list(set(int(number) for number in folder_numbers_str.split()))
+            folder_indices = list(
+                set(int(number) for number in folder_numbers_str.split())
+            )
 
             # Check if all entered indices are valid
             if not all(1 <= idx <= len(dir_names_with_cif) for idx in folder_indices):
@@ -46,7 +49,9 @@ def get_folder_indices(dir_names_with_cif):
             return selected_dirs
 
         except ValueError:
-            click.echo("Please enter only valid numbers within the range, separated by spaces.")
+            click.echo(
+                "Please enter only valid numbers within the range, separated by spaces."
+            )
 
 
 def prompt_folder_progress(i, dir_name, dirs_total_count):
@@ -68,7 +73,8 @@ def prompt_progress_current(i, filename, supercell_atom_count, file_count):
     """
     echo(
         style(
-            f"Processing {filename} with " f"{supercell_atom_count} atoms ({i}/{file_count})",
+            f"Processing {filename} with "
+            f"{supercell_atom_count} atoms ({i}/{file_count})",
             fg="yellow",
         )
     )
@@ -85,7 +91,8 @@ def prompt_progress_finished(
     """
     echo(
         style(
-            f"Processed {filename} with {supercell_atom_count} atoms in " f"{round(elapsed_time, 2)} s\n",
+            f"Processed {filename} with {supercell_atom_count} atoms in "
+            f"{round(elapsed_time, 2)} s\n",
             fg="blue",
         )
     )

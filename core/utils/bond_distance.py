@@ -25,7 +25,9 @@ def get_shortest_bond_distances_by_AB(
     return shortest_distances_pair
 
 
-def get_AA_BB_AB_dists(shortest_distances_pair: dict[str, float]) -> tuple[float, float, float]:
+def get_AA_BB_AB_dists(
+    shortest_distances_pair: dict[str, float]
+) -> tuple[float, float, float]:
     distAA = shortest_distances_pair["AA"]
     distBB = shortest_distances_pair["BB"]
     distAB = shortest_distances_pair["AB"]
@@ -69,7 +71,9 @@ def get_shortest_bond_distances_by_RMX(
     return shortest_distances_pair
 
 
-def get_RR_MM_XX_RM_RX_MX_dists(shortest_distances_pair: dict[str, float]) -> tuple[float, float, float]:
+def get_RR_MM_XX_RM_RX_MX_dists(
+    shortest_distances_pair: dict[str, float]
+) -> tuple[float, float, float]:
     distRR = shortest_distances_pair["RR"]
     distBB = shortest_distances_pair["MM"]
     distXX = shortest_distances_pair["XX"]

@@ -12,7 +12,9 @@ def compute_ternary_interatomic_features(cif: Cif):
     R, M, X = element_parser.get_ternary_RMX_elements(elements)
 
     # Get Asize_ref, Bsize_ref
-    combined_radii = get_radius_values_per_element(elements, cif.shortest_bond_pair_distance)
+    combined_radii = get_radius_values_per_element(
+        elements, cif.shortest_bond_pair_distance
+    )
     R_CIF_rad = combined_radii[R]["CIF_radius"]
     M_CIF_rad = combined_radii[M]["CIF_radius"]
     X_CIF_rad = combined_radii[X]["CIF_radius"]
@@ -21,8 +23,8 @@ def compute_ternary_interatomic_features(cif: Cif):
         cif.shortest_bond_pair_distance, R, M, X
     )
 
-    distRR, distMM, distXX, distRM, distRX, distMX = bond_distance.get_RR_MM_XX_RM_RX_MX_dists(
-        shortest_distances_pair_sorted
+    distRR, distMM, distXX, distRM, distRX, distMX = (
+        bond_distance.get_RR_MM_XX_RM_RX_MX_dists(shortest_distances_pair_sorted)
     )
 
     radii, obj_value = radius_opt.optimize_CIF_rad_ternary(
@@ -88,8 +90,12 @@ def compute_ternary_interatomic_features(cif: Cif):
     )
 
     # Get the shortest homo/hetroatomic distance
-    homoatomic_distances = {key: shortest_distances_pair_sorted[key] for key in ["RR", "MM", "XX"]}
-    heteroatomic_distances = {key: shortest_distances_pair_sorted[key] for key in ["RM", "MX", "RX"]}
+    homoatomic_distances = {
+        key: shortest_distances_pair_sorted[key] for key in ["RR", "MM", "XX"]
+    }
+    heteroatomic_distances = {
+        key: shortest_distances_pair_sorted[key] for key in ["RM", "MX", "RX"]
+    }
     shortest_homoatomic_distance = min(homoatomic_distances.values())
     shortest_heteroatomic_distance = min(heteroatomic_distances.values())
 
@@ -114,19 +120,27 @@ def compute_ternary_interatomic_features(cif: Cif):
 
     percent_diffs = [percent_diff_R, percent_diff_M, percent_diff_X]
 
-    shortest_homo_key = [k for k, v in shortest_distances_pair_sorted.items() if v == shortest_homoatomic_distance][0]
-    shortest_hetero_key = [k for k, v in shortest_distances_pair_sorted.items() if v == shortest_heteroatomic_distance][
-        0
-    ]
+    shortest_homo_key = [
+        k
+        for k, v in shortest_distances_pair_sorted.items()
+        if v == shortest_homoatomic_distance
+    ][0]
+    shortest_hetero_key = [
+        k
+        for k, v in shortest_distances_pair_sorted.items()
+        if v == shortest_heteroatomic_distance
+    ][0]
 
     # Extract 9 universal features for Ternary
-    shortest_homoatomic_distance_by_2_by_atom_size = (shortest_homoatomic_distance / 2) / cif_radii[shortest_homo_key]
+    shortest_homoatomic_distance_by_2_by_atom_size = (
+        shortest_homoatomic_distance / 2
+    ) / cif_radii[shortest_homo_key]
     shortest_heteroatomic_distance_by_sum_of_atom_sizes = (
         shortest_heteroatomic_distance / cif_radii[shortest_hetero_key]
     )
-    shortest_homoatomic_distance_by_2_by_refined_atom_sizes = (shortest_homoatomic_distance / 2) / refined_radii[
-        shortest_homo_key
-    ]
+    shortest_homoatomic_distance_by_2_by_refined_atom_sizes = (
+        shortest_homoatomic_distance / 2
+    ) / refined_radii[shortest_homo_key]
     shortest_heteroatomic_distance_by_refined_atom_sizes = (
         shortest_heteroatomic_distance / refined_radii[shortest_hetero_key]
     )

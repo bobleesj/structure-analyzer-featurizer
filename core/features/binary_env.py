@@ -6,7 +6,9 @@ from core.utils.bond_count import (
 )
 
 
-def compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_best_label):
+def compute_homoatomic_dist_by_site_shortest_dist(
+    connections, A_best_label, B_best_label
+):
     """
     Computes the shortest homoatomic distances normalized by the shortest distance
     encountered at the best site for each element.
@@ -28,12 +30,16 @@ def compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_b
         if site_label == A_best_label:
             A_min_dist = current_min_dist
             # Find the shortest homoatomic distance for A
-            A_homoatomic_shortest_dist = min([dist for label, dist, _, _ in site_connections if label.startswith(A)])
+            A_homoatomic_shortest_dist = min(
+                [dist for label, dist, _, _ in site_connections if label.startswith(A)]
+            )
 
         if site_label == B_best_label:
             B_min_dist = current_min_dist
             # Find the shortest homoatomic distance for B
-            B_homoatomic_shortest_dist = min([dist for label, dist, _, _ in site_connections if label.startswith(B)])
+            B_homoatomic_shortest_dist = min(
+                [dist for label, dist, _, _ in site_connections if label.startswith(B)]
+            )
 
     # Normalize the shortest distances by the shortest distances at the best sites
     A_homoatomic_dist_by_shortest_dist = A_homoatomic_shortest_dist / A_min_dist
@@ -71,8 +77,12 @@ def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, A, B):
     # Average of (A-A distance / shortest distance for each site label)
     # Average of (B-B distance / (shortest distance for each site label)
 
-    A_avg_homoatomic_dist_by_shortest_dist = A_total_homoatomic_dist_by_shortest_dist / len(element_to_site_labels[A])
-    B_avg_homoatomic_dist_by_shortest_dist = B_total_homoatomic_dist_by_shortest_dist / len(element_to_site_labels[B])
+    A_avg_homoatomic_dist_by_shortest_dist = (
+        A_total_homoatomic_dist_by_shortest_dist / len(element_to_site_labels[A])
+    )
+    B_avg_homoatomic_dist_by_shortest_dist = (
+        B_total_homoatomic_dist_by_shortest_dist / len(element_to_site_labels[B])
+    )
     return (
         A_avg_homoatomic_dist_by_shortest_dist,
         B_avg_homoatomic_dist_by_shortest_dist,
@@ -165,10 +175,18 @@ def get_avg_A_and_B_count_in_per_element(connections, A, B):
                     if other_label.startswith(B):
                         B_total_count_at_B_shortest_dist += 1
 
-    A_avg_count_at_A_shortest_dist = A_total_count_at_A_shortest_dist / A_site_label_count
-    A_avg_count_at_B_shortest_dist = A_total_count_at_B_shortest_dist / B_site_label_count
-    B_avg_count_at_A_shortest_dist = B_total_count_at_A_shortest_dist / A_site_label_count
-    B_avg_count_at_B_shortest_dist = B_total_count_at_B_shortest_dist / B_site_label_count
+    A_avg_count_at_A_shortest_dist = (
+        A_total_count_at_A_shortest_dist / A_site_label_count
+    )
+    A_avg_count_at_B_shortest_dist = (
+        A_total_count_at_B_shortest_dist / B_site_label_count
+    )
+    B_avg_count_at_A_shortest_dist = (
+        B_total_count_at_A_shortest_dist / A_site_label_count
+    )
+    B_avg_count_at_B_shortest_dist = (
+        B_total_count_at_B_shortest_dist / B_site_label_count
+    )
     return (
         A_avg_count_at_A_shortest_dist,
         A_avg_count_at_B_shortest_dist,

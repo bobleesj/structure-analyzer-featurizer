@@ -16,14 +16,18 @@ def compute_binary_interatomic_features(cif: Cif):
     A, B = element_parser.get_binary_AB_elements(elements)
 
     # Get Asize_ref, Bsize_ref
-    combined_radii = get_radius_values_per_element(elements, cif.shortest_bond_pair_distance)
+    combined_radii = get_radius_values_per_element(
+        elements, cif.shortest_bond_pair_distance
+    )
     A_CIF_rad = combined_radii[A]["CIF_radius"]
     B_CIF_rad = combined_radii[B]["CIF_radius"]
 
     shortest_distances_pair_sorted = bond_distance.get_shortest_bond_distances_by_AB(
         cif.shortest_bond_pair_distance, A, B
     )
-    distAA, distBB, distAB = bond_distance.get_AA_BB_AB_dists(shortest_distances_pair_sorted)
+    distAA, distBB, distAB = bond_distance.get_AA_BB_AB_dists(
+        shortest_distances_pair_sorted
+    )
 
     radii_refined, obj_value = radius_opt.optimize_CIF_rad_binary(
         A_CIF_rad,
@@ -70,7 +74,9 @@ def compute_binary_interatomic_features(cif: Cif):
         cif.unitcell_angles,
     )
 
-    homoatomic_distances = {key: shortest_distances_pair_sorted[key] for key in ["AA", "BB"]}
+    homoatomic_distances = {
+        key: shortest_distances_pair_sorted[key] for key in ["AA", "BB"]
+    }
     heteroatomic_distance = shortest_distances_pair_sorted["AB"]
     shortest_homoatomic_distance = min(homoatomic_distances.values())
     shortest_heteroatomic_distance = heteroatomic_distance
@@ -89,14 +95,24 @@ def compute_binary_interatomic_features(cif: Cif):
     percent_diffs = [percent_diff_A, percent_diff_B]
 
     # Find key of shortest_homoatomic_distance in distances
-    shortest_homo_key = [k for k, v in shortest_distances_pair_sorted.items() if v == shortest_homoatomic_distance][0]
+    shortest_homo_key = [
+        k
+        for k, v in shortest_distances_pair_sorted.items()
+        if v == shortest_homoatomic_distance
+    ][0]
 
-    shortest_homoatomic_distance_by_2_by_atom_size = (shortest_homoatomic_distance / 2) / cif_radii[shortest_homo_key]
-    shortest_heteroatomic_distance_by_sum_of_atom_sizes = shortest_heteroatomic_distance / cif_radii["AB"]
-    shortest_homoatomic_distance_by_2_by_refined_atom_sizes = (shortest_homoatomic_distance / 2) / refined_radii[
-        shortest_homo_key
-    ]
-    shortest_heteroatomic_distance_by_refined_atom_sizes = shortest_heteroatomic_distance / refined_radii["AB"]
+    shortest_homoatomic_distance_by_2_by_atom_size = (
+        shortest_homoatomic_distance / 2
+    ) / cif_radii[shortest_homo_key]
+    shortest_heteroatomic_distance_by_sum_of_atom_sizes = (
+        shortest_heteroatomic_distance / cif_radii["AB"]
+    )
+    shortest_homoatomic_distance_by_2_by_refined_atom_sizes = (
+        shortest_homoatomic_distance / 2
+    ) / refined_radii[shortest_homo_key]
+    shortest_heteroatomic_distance_by_refined_atom_sizes = (
+        shortest_heteroatomic_distance / refined_radii["AB"]
+    )
     highest_refined_percent_diff = max([abs(p) for p in percent_diffs])
     lowest_refined_percent_diff = min([abs(p) for p in percent_diffs])
 

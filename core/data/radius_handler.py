@@ -79,15 +79,18 @@ def compute_radius_sum(radius_values, is_radius_data_available: bool):
 
             # Sum radii for each radius type
             pair_distances["CIF_radius_sum"][pair_label] = round(
-                radius_values[elem_i]["CIF_radius"] + radius_values[elem_j]["CIF_radius"],
+                radius_values[elem_i]["CIF_radius"]
+                + radius_values[elem_j]["CIF_radius"],
                 3,
             )
             pair_distances["CIF_radius_refined_sum"][pair_label] = round(
-                radius_values[elem_i]["CIF_radius_refined"] + radius_values[elem_j]["CIF_radius_refined"],
+                radius_values[elem_i]["CIF_radius_refined"]
+                + radius_values[elem_j]["CIF_radius_refined"],
                 3,
             )
             pair_distances["Pauling_radius_sum"][pair_label] = round(
-                radius_values[elem_i]["Pauling_radius_CN12"] + radius_values[elem_j]["Pauling_radius_CN12"],
+                radius_values[elem_i]["Pauling_radius_CN12"]
+                + radius_values[elem_j]["Pauling_radius_CN12"],
                 3,
             )
 

@@ -61,9 +61,15 @@ def compute_ternary_env_features(cif: Cif):
     X_shortest_dist_count_within_tol = tol_results[X]["shortest_dist_count_within_tol"]
 
     avg_tol_results = extract_avg_shortest_dist_with_tol(connections)
-    R_avg_shortest_dist_within_tol_count = avg_tol_results[R]["avg_shortest_dist_within_tol_count"]
-    M_avg_shortest_dist_within_tol_count = avg_tol_results[M]["avg_shortest_dist_within_tol_count"]
-    X_avg_shortest_dist_within_tol_count = avg_tol_results[X]["avg_shortest_dist_within_tol_count"]
+    R_avg_shortest_dist_within_tol_count = avg_tol_results[R][
+        "avg_shortest_dist_within_tol_count"
+    ]
+    M_avg_shortest_dist_within_tol_count = avg_tol_results[M][
+        "avg_shortest_dist_within_tol_count"
+    ]
+    X_avg_shortest_dist_within_tol_count = avg_tol_results[X][
+        "avg_shortest_dist_within_tol_count"
+    ]
 
     R_best_label = best_site_data[R]["best_label"]
     M_best_label = best_site_data[M]["best_label"]
@@ -73,7 +79,9 @@ def compute_ternary_env_features(cif: Cif):
         R_homoatomic_dist_by_shortest_dist,
         M_homoatomic_dist_by_shortest_dist,
         X_homoatomic_dist_by_shortest_dist,
-    ) = compute_homoatomic_dist_by_site_shortest_dist(connections, R_best_label, M_best_label, X_best_label)
+    ) = compute_homoatomic_dist_by_site_shortest_dist(
+        connections, R_best_label, M_best_label, X_best_label
+    )
 
     # First shortest distance
     R_shortest_dist = best_site_data[R]["details"]["shortest_dist"]
@@ -91,9 +99,15 @@ def compute_ternary_env_features(cif: Cif):
     X_shortest_dist_count = best_site_data[X]["details"]["counts"][X_shortest_dist]
 
     # Second shorest distance count
-    R_second_shortest_dist_count = best_site_data[R]["details"]["counts"][R_second_shortest_dist]
-    M_second_shortest_dist_count = best_site_data[M]["details"]["counts"][M_second_shortest_dist]
-    X_second_shortest_dist_count = best_site_data[X]["details"]["counts"][X_second_shortest_dist]
+    R_second_shortest_dist_count = best_site_data[R]["details"]["counts"][
+        R_second_shortest_dist
+    ]
+    M_second_shortest_dist_count = best_site_data[M]["details"]["counts"][
+        M_second_shortest_dist
+    ]
+    X_second_shortest_dist_count = best_site_data[X]["details"]["counts"][
+        X_second_shortest_dist
+    ]
 
     # Avg shortest distance count across site labels per element
     R_avg_shortest_dist_count = best_site_data[R]["avg_shortest_dist"]
@@ -101,17 +115,29 @@ def compute_ternary_env_features(cif: Cif):
     X_avg_shortest_dist_count = best_site_data[X]["avg_shortest_dist"]
 
     # Avg second shortest distance count across site labels per element
-    R_avg_second_shortest_dist_count = best_site_data[R]["avg_second_shortest_dist_count"]
-    M_avg_second_shortest_dist_count = best_site_data[M]["avg_second_shortest_dist_count"]
-    X_avg_second_shortest_dist_count = best_site_data[M]["avg_second_shortest_dist_count"]
+    R_avg_second_shortest_dist_count = best_site_data[R][
+        "avg_second_shortest_dist_count"
+    ]
+    M_avg_second_shortest_dist_count = best_site_data[M][
+        "avg_second_shortest_dist_count"
+    ]
+    X_avg_second_shortest_dist_count = best_site_data[M][
+        "avg_second_shortest_dist_count"
+    ]
 
     # Get avg second by first shortest distance ratio across site labels per element
     avg_second_by_first_dist = get_avg_second_by_first_shortest_dist_ratio(
         first_second_dist_per_label_data, connections
     )
-    R_avg_second_by_first_shortest_dist = avg_second_by_first_dist[R]["avg_second_by_first_shortest_dist"]
-    M_avg_second_by_first_shortest_dist = avg_second_by_first_dist[M]["avg_second_by_first_shortest_dist"]
-    X_avg_second_by_first_shortest_dist = avg_second_by_first_dist[X]["avg_second_by_first_shortest_dist"]
+    R_avg_second_by_first_shortest_dist = avg_second_by_first_dist[R][
+        "avg_second_by_first_shortest_dist"
+    ]
+    M_avg_second_by_first_shortest_dist = avg_second_by_first_dist[M][
+        "avg_second_by_first_shortest_dist"
+    ]
+    X_avg_second_by_first_shortest_dist = avg_second_by_first_dist[X][
+        "avg_second_by_first_shortest_dist"
+    ]
 
     results = {
         "ENV_R_shortest_dist_count": R_shortest_dist_count,

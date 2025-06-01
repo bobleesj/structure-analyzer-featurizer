@@ -40,7 +40,9 @@ def compute_count_first_second_min_dist(
                 first_second_dist_info[label]["shortest_dist"] = unique_distances[0]
                 first_second_dist_info[label]["counts"][unique_distances[0]] = counts[0]
             if len(unique_distances) > 1:
-                first_second_dist_info[label]["second_shortest_dist"] = unique_distances[1]
+                first_second_dist_info[label]["second_shortest_dist"] = (
+                    unique_distances[1]
+                )
                 first_second_dist_info[label]["counts"][unique_distances[1]] = counts[1]
 
     return dict(first_second_dist_info)
@@ -75,7 +77,9 @@ def extract_best_labels(data):
         label_counts[element] = label_counts.get(element, 0) + 1
 
         # Update total distance counts
-        total_distances[element]["shortest_counts"].append(details["counts"][details["shortest_dist"]])
+        total_distances[element]["shortest_counts"].append(
+            details["counts"][details["shortest_dist"]]
+        )
         if "second_shortest_dist" in details:
             total_distances[element]["second_shortest_counts"].append(
                 details["counts"].get(details["second_shortest_dist"], 0)
@@ -88,7 +92,8 @@ def extract_best_labels(data):
             current_best = best_labels[element][1]
             if (details["shortest_dist"] < current_best["shortest_dist"]) or (
                 details["shortest_dist"] == current_best["shortest_dist"]
-                and details["second_shortest_dist"] < current_best["second_shortest_dist"]
+                and details["second_shortest_dist"]
+                < current_best["second_shortest_dist"]
             ):
                 best_labels[element] = (label, details)
 
@@ -99,7 +104,9 @@ def extract_best_labels(data):
         total_second_shortest = sum(total_distances[element]["second_shortest_counts"])
         avg_shortest = total_shortest / label_counts[element]
         avg_second_shortest = (
-            total_second_shortest / label_counts[element] if total_distances[element]["second_shortest_counts"] else 0
+            total_second_shortest / label_counts[element]
+            if total_distances[element]["second_shortest_counts"]
+            else 0
         )
 
         output[element] = {
@@ -171,12 +178,16 @@ def extract_avg_shortest_dist_with_tol(connection_data, tol=0.05):
         element = string_parser.get_atom_type_from_label(site_label)
 
         if site_label in element_to_site_labels[element]:
-            avg_result[element]["total_shortest_dist_within_tol_count"] += result["shortest_dist_count_within_tol"]
+            avg_result[element]["total_shortest_dist_within_tol_count"] += result[
+                "shortest_dist_count_within_tol"
+            ]
 
     for element, result in avg_result.items():
         num_sites = len(element_to_site_labels[element])
         if num_sites > 0:
-            result["avg_shortest_dist_within_tol_count"] = result["total_shortest_dist_within_tol_count"] / num_sites
+            result["avg_shortest_dist_within_tol_count"] = (
+                result["total_shortest_dist_within_tol_count"] / num_sites
+            )
         else:
             result["avg_shortest_dist_within_tol_count"] = 0.0
     return avg_result
@@ -187,7 +198,9 @@ def get_avg_second_by_first_shortest_dist_ratio(site_dist_info, connection_data)
     Compute the ratio of the second shortest distance to the shortest distance
     for each site label
     """
-    ratio_total_result = defaultdict(lambda: {"total_second_by_first_shortest_dist": 0.0})
+    ratio_total_result = defaultdict(
+        lambda: {"total_second_by_first_shortest_dist": 0.0}
+    )
 
     for site_label, data in site_dist_info.items():
         element = string_parser.get_atom_type_from_label(site_label)

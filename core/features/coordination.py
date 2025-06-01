@@ -38,7 +38,9 @@ def get_CN_metrices_per_method(cif: Cif):
                 hull = ConvexHull(polyhedron_points)
 
             except Exception:
-                print(f"Error in determining polyhedron for {label} using {method} - skipped")
+                print(
+                    f"Error in determining polyhedron for {label} using {method} - skipped"
+                )
                 site_data[label][method] = None
                 continue  # Move to the next method
 
