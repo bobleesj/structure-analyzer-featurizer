@@ -1,6 +1,6 @@
-from SAF.utils import environment_parser
-from SAF.utils import element_parser
 from cifkit import Cif
+
+from SAF.utils import element_parser, environment_parser
 
 
 def compute_binary_wyc_features(cif: Cif):

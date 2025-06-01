@@ -1,6 +1,7 @@
 **Added:**
 
 * Support Level 5 ``scikit-package`` standards for maintenance.
+* Add Emil and Danila to the list of contributors.
 
 **Changed:**
 

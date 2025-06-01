@@ -1,5 +1,5 @@
-from cifkit import Cif
 import pytest
+from cifkit import Cif
 
 
 @pytest.fixture

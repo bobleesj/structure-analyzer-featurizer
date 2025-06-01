@@ -1,21 +1,19 @@
 from cifkit import Cif
 
-from SAF.utils.bond_count import (
-    compute_count_first_second_min_dist,
-    extract_best_labels,
-    extract_shortest_dist_with_tol,
-    extract_avg_shortest_dist_with_tol,
-    get_avg_second_by_first_shortest_dist_ratio,
-)
-
 from SAF.features.binary_env import (
-    compute_homoatomic_dist_by_site_shortest_dist,
     compute_avg_homoatomic_dist_by_site_shortest_dist,
+    compute_homoatomic_dist_by_site_shortest_dist,
     get_A_and_B_count_in_best_label_per_element,
     get_avg_A_and_B_count_in_per_element,
 )
-from SAF.utils import element_parser
-from SAF.utils import log
+from SAF.utils import element_parser, log
+from SAF.utils.bond_count import (
+    compute_count_first_second_min_dist,
+    extract_avg_shortest_dist_with_tol,
+    extract_best_labels,
+    extract_shortest_dist_with_tol,
+    get_avg_second_by_first_shortest_dist_ratio,
+)
 
 
 def compute_binary_env_features(cif: Cif):
@@ -39,14 +37,20 @@ def compute_binary_env_features(cif: Cif):
     ) = get_avg_A_and_B_count_in_per_element(connections, A, B)
 
     # Compute the first, second shortest distances and count
-    first_second_dist_per_label_data = compute_count_first_second_min_dist(connections)
+    first_second_dist_per_label_data = compute_count_first_second_min_dist(
+        connections
+    )
     # Compute the best site for each label, determined by the shortest distance
     best_site_data = extract_best_labels(first_second_dist_per_label_data)
 
     # Tol result
     tol_results = extract_shortest_dist_with_tol(best_site_data, connections)
-    A_shortest_dist_count_within_tol = tol_results[A]["shortest_dist_count_within_tol"]
-    B_shortest_dist_count_within_tol = tol_results[B]["shortest_dist_count_within_tol"]
+    A_shortest_dist_count_within_tol = tol_results[A][
+        "shortest_dist_count_within_tol"
+    ]
+    B_shortest_dist_count_within_tol = tol_results[B][
+        "shortest_dist_count_within_tol"
+    ]
 
     avg_tol_results = extract_avg_shortest_dist_with_tol(connections)
     A_avg_shortest_dist_within_tol_count = avg_tol_results[A][
@@ -71,12 +75,20 @@ def compute_binary_env_features(cif: Cif):
     B_shortest_dist = best_site_data[B]["details"]["shortest_dist"]
 
     # Second shortest distance
-    A_second_shortest_dist = best_site_data[A]["details"]["second_shortest_dist"]
-    B_second_shortest_dist = best_site_data[B]["details"]["second_shortest_dist"]
+    A_second_shortest_dist = best_site_data[A]["details"][
+        "second_shortest_dist"
+    ]
+    B_second_shortest_dist = best_site_data[B]["details"][
+        "second_shortest_dist"
+    ]
 
     # Shorest distance count from best site
-    A_shortest_dist_count = best_site_data[A]["details"]["counts"][A_shortest_dist]
-    B_shortest_dist_count = best_site_data[B]["details"]["counts"][B_shortest_dist]
+    A_shortest_dist_count = best_site_data[A]["details"]["counts"][
+        A_shortest_dist
+    ]
+    B_shortest_dist_count = best_site_data[B]["details"]["counts"][
+        B_shortest_dist
+    ]
 
     # Second shorest distance count from best site
     A_second_shortest_dist_count = best_site_data[A]["details"]["counts"][
@@ -118,8 +130,10 @@ def compute_binary_env_features(cif: Cif):
         "ENV_B_shortest_tol_dist_count": B_shortest_dist_count_within_tol,
         "ENV_A_avg_shortest_dist_within_tol_count": A_avg_shortest_dist_within_tol_count,
         "ENV_B_avg_shortest_dist_within_tol_count": B_avg_shortest_dist_within_tol_count,
-        "ENV_A_second_by_first_shortest_dist": A_second_shortest_dist / A_shortest_dist,
-        "ENV_B_second_by_first_shortest_dist": B_second_shortest_dist / B_shortest_dist,
+        "ENV_A_second_by_first_shortest_dist": A_second_shortest_dist
+        / A_shortest_dist,
+        "ENV_B_second_by_first_shortest_dist": B_second_shortest_dist
+        / B_shortest_dist,
         "ENV_A_avg_second_by_first_shortest_dist": A_avg_second_by_first_shortest_dist,
         "ENV_B_avg_second_by_first_shortest_dist": B_avg_second_by_first_shortest_dist,
         "ENV_A_second_shortest_dist_count": A_second_shortest_dist_count,

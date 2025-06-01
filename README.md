@@ -41,9 +41,10 @@ files containing the following elements: `Si` `Sc` `Fe` `Co` `Ni` `Ga` `Ge` `Y`
 `Nb` `P` `Pb` `Rb` `Re` `S` `Se` `Sr` `Te` `Ti` `Tl` `V` `W` `Zn` `Zr` `Tc` `N`
 `O` `F` `Cl` `Br` `I` `Sm`
 
-:Note: The Pauling CN 12 radii values for some gases [N, O, F, Cl, Br and I] as well as Tc and Sm were interpolated using
-Gaussian Process Regression. The CIF radii for the aforementioned gases were compiled averages of low-temperature structures
-from PCD.
+The Pauling CN 12 radius values for some gases [N, O, F, Cl, Br and I] as well
+as Tc and Sm were interpolated using Gaussian Process Regression. The CIF radii
+for the aforementioned gases were compiled averages of low-temperature
+structures from PCD.
 
 ### Adding more elements
 
@@ -115,7 +116,7 @@ Enter the number corresponding to the folder containing .cif files: 3
 ### Output
 
 After running the script using `python main.py` and selecting the folder
-contianing `.cif` files, `.csv` files are generated. For binary compounds,
+containing `.cif` files, `.csv` files are generated. For binary compounds,
 `binary_features.csv` with 124 features is generated. For ternary compounds,
 `ternary_features.csv` with 165 unique features is generated. For all types of
 compounds, `universal_featrues.csv` is generated.
@@ -128,13 +129,12 @@ unique coordination determination methods, as detailed in the manuscript
 a site. Once the code becomes more matured, we will further make a better
 documentation here.
 
-
-| # | CN method              | Central atom label | CN | R | M | X | Polyhedron volume | Dist from atom to center of mass | Edges | Faces |
-| --- | ------------------------ | -------------------- | ---- | --- | --- | --- | ------------------- | ---------------------------------- | ------- | ------- |
-| 1 | Shortest dist          | Er1                | 13 | 5 | 2 | 6 | 89.293            | 0.095                            | 33    | 22    |
-| 2 | CIF radius sum         | Er1                | 13 | 5 | 2 | 6 | 89.293            | 0.095                            | 33    | 22    |
-| 3 | CIF radius refined sum | Er1                | 13 | 5 | 2 | 6 | 89.293            | 0.095                            | 33    | 22    |
-| 4 | Pualing radius sum     | Er1                | 13 | 5 | 2 | 6 | 89.293            | 0.095                            | 33    | 22    |
+| #   | CN method              | Central atom label | CN  | R   | M   | X   | Polyhedron volume | Dist from atom to center of mass | Edges | Faces |
+| --- | ---------------------- | ------------------ | --- | --- | --- | --- | ----------------- | -------------------------------- | ----- | ----- |
+| 1   | Shortest dist          | Er1                | 13  | 5   | 2   | 6   | 89.293            | 0.095                            | 33    | 22    |
+| 2   | CIF radius sum         | Er1                | 13  | 5   | 2   | 6   | 89.293            | 0.095                            | 33    | 22    |
+| 3   | CIF radius refined sum | Er1                | 13  | 5   | 2   | 6   | 89.293            | 0.095                            | 33    | 22    |
+| 4   | Pualing radius sum     | Er1                | 13  | 5   | 2   | 6   | 89.293            | 0.095                            | 33    | 22    |
 
 The coordination number-based geometric information is calculated as the average
 based on the min, max, and avg of rows from each central label. As the project
@@ -147,24 +147,18 @@ Before running the script, make sure you have the following dependencies
 installed:
 
 ```bash
-pip install click gemmi matplotlib numpy openpyxl pandas scipy sympy cifkit
-cd structure-analyzer-featurizer
-python main.py
+pip structure-analyzer-featurizer
 ```
 
-The recommended way for installation is Conda
+To run the application:
 
 ```bash
-git clone https://github.com/bobleesj/structure-analyzer-featurizer.git
-cd structure-analyzer-featurizer
-conda create -n cif python=3.12
-conda activate cif
-pip install -r requirements.txt
-python main.py
+SAF
 ```
 
-If you are new to Conda (Python package manager), you may refer to
-[Intro to Python package manager for beginners (Ft. Conda with Cheatsheet](https://bobleesj.github.io/tutorial/2024/02/26/intro-to-python-package-manager.html).
+> If you are having a hard time, please learn how to use `conda` environment
+> provided in the Level 1 tutorial in
+> https://scikit-package.github.io/scikit-package.
 
 ## Contributors
 
@@ -174,6 +168,8 @@ If you are new to Conda (Python package manager), you may refer to
 - Nishant Yadav - IIT Kharagpur
 - Sangjoon Bob Lee - Columbia University
 - Siddha Sankalpa Sethi - IIT Kharagpur
+- Emil Jaffal - CUNY Hunter College
+- Danila Shiryaev - CUNY Hunter College
 
 ## Publications
 
@@ -190,113 +186,111 @@ Compounds_. **976**, 173241 (2024).
 
 #### Binary structural features
 
-
-| #  | Feature                                                         | Description                                                                                                                                              |
-| ---- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1  | Entry                                                           | Used to match with CAF data or any other data to merge in one single file                                                                                |
-| 2  | formula                                                         | Label                                                                                                                                                    |
-| 3  | A                                                               | Element A matched with the group                                                                                                                         |
-| 4  | B                                                               | Element B matched with the group                                                                                                                         |
-| 5  | INT_distAA                                                      | Interatomic distances from CIF                                                                                                                           |
-| 6  | INT_distBB                                                      | Interatomic distances from CIF                                                                                                                           |
-| 7  | INT_distAB                                                      | Interatomic distances from CIF                                                                                                                           |
-| 8  | INT_Asize                                                       | CIF radius for atom A                                                                                                                                    |
-| 9  | INT_Bsize                                                       | CIF radius for atom B                                                                                                                                    |
-| 10 | INT_Asize_by_Bsize                                              | Radius ratio (CIF radius)                                                                                                                                |
-| 11 | INT_distAA_by2_byAsize                                          | Default size scale fit                                                                                                                                   |
-| 12 | INT_distBB_by2_byBsize                                          | Default size scale fit                                                                                                                                   |
-| 13 | INT_distAB_by2_byAsizebyBsize                                   | Default size scale                                                                                                                                       |
-| 14 | INT_Asize_ref                                                   | Refined radius                                                                                                                                           |
-| 15 | INT_Bsize_ref                                                   | Refined radius                                                                                                                                           |
-| 16 | INT_percent_diff_A_by_100                                       | How much different from default scale                                                                                                                    |
-| 17 | INT_percent_diff_B_by_100                                       | How much different from default scale                                                                                                                    |
-| 18 | INT_distAA_minus_ref_diff                                       | Refined scale fitness (0 means the distance used for refinements)                                                                                        |
-| 19 | INT_distBB_minus_ref_diff                                       | Refined scale fitness (0 means the distance used for refinements)                                                                                        |
-| 20 | INT_distAB_minus_ref_diff                                       | Refined scale fitness (0 means the distance used for refinements)                                                                                        |
-| 21 | INT_R_factor                                                    | R factor for the refinement (least square difference)                                                                                                    |
-| 22 | INT_UNI_shortest_homoatomic_dist                                | Shortest homoatomic distance                                                                                                                             |
-| 23 | INT_UNI_shortest_heteroatomic_dist                              | Shortest heteroatomic distance                                                                                                                           |
-| 24 | INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size              | Shortest homoatomic distance by 2 by atom size                                                                                                           |
-| 25 | INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes         | Shortest heteroatomic distance by sum of atom sizes                                                                                                      |
-| 26 | INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size      | Shortest homoatomic distance by 2 by refined atom size                                                                                                   |
-| 27 | INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes | Shortest heteroatomic distance by sum of refined sizes                                                                                                   |
-| 28 | INT_UNI_highest_refined_percent_diff_abs                        | Highest refined percent difference by 100 (abs value)                                                                                                    |
-| 29 | INT_UNI_lowest_refined_percent_diff_abs                         | Lowest refined percent difference by 100 (abs value)                                                                                                     |
-| 30 | INT_UNI_packing_efficiency                                      | Packing efficiency in unit cell with refined radius                                                                                                      |
-| 31 | WYC_A_lowest_wyckoff_label                                      | Lowest Wyckoff number for element A                                                                                                                      |
-| 32 | WYC_B_lowest_wyckoff_label                                      | Lowest Wyckoff number for element B                                                                                                                      |
-| 33 | WYC_identical_lowest_wyckoff_count                              | Number of sites with the lowest Wyckoff number                                                                                                           |
-| 34 | WYC_A_sites_total                                               | Number of crystallographic sites for element A                                                                                                           |
-| 35 | WYC_B_sites_total                                               | Number of crystallographic sites for element B                                                                                                           |
-| 36 | WYC_A_multiplicity_total                                        | Sum of Wyckoff numbers for element A                                                                                                                     |
-| 37 | WYC_B_multiplicity_total                                        | Sum of Wyckoff numbers for element B                                                                                                                     |
-| 38 | ENV_A_shortest_dist_count                                       | Number of atoms that are at the shortest distance from atom A                                                                                            |
-| 39 | ENV_B_shortest_dist_count                                       | Number of atoms that are at the shortest distance from atom B                                                                                            |
-| 40 | ENV_A_avg_shortest_dist_count                                   | Average number of atoms that are at the shortest distance from atom A (case if multiple sites present)                                                   |
-| 41 | ENV_B_avg_shortest_dist_count                                   | Average number of atoms that are at the shortest distance from atom B (case if multiple sites present)                                                   |
-| 42 | ENV_A_shortest_tol_dist_count                                   | Number of atoms that are at the shortest distance from atom A (with some distance tolerance applied, default 5%)                                         |
-| 43 | ENV_B_shortest_tol_dist_count                                   | Number of atoms that are at the shortest distance from atom B (with some distance tolerance applied, default 5%)                                         |
-| 44 | ENV_A_avg_shortest_dist_within_tol_count                        | Average number of atoms that are at the shortest distance from atom A (case if multiple sites present, with some distance tolerance applied, default 5%) |
-| 45 | ENV_B_avg_shortest_dist_within_tol_count                        | Average number of atoms that are at the shortest distance from atom B (case if multiple sites present, with some distance tolerance applied, default 5%) |
-| 46 | ENV_A_second_by_first_shortest_dist                             | 2nd shortest distance/1st shorted distance for atom A, measures distortion of polyhedron                                                                 |
-| 47 | ENV_B_second_by_first_shortest_dist                             | 2nd shortest distance/1st shorted distance for atom B, measures distortion of polyhedron                                                                 |
-| 48 | ENV_A_avg_second_by_first_shortest_dist                         | 2nd shortest distance/1st shorted distance for atom A, measures distortion of polyhedron (case if multiple sites present)                                |
-| 49 | ENV_B_avg_second_by_first_shortest_dist                         | 2nd shortest distance/1st shorted distance for atom B, measures distortion of polyhedron (case if multiple sites present)                                |
-| 50 | ENV_A_second_shortest_dist_count                                | 2nd shortest distance count for atom A                                                                                                                   |
-| 51 | ENV_B_second_shortest_dist_count                                | 2nd shortest distance count for atom B                                                                                                                   |
-| 52 | ENV_A_avg_second_shortest_dist_count                            | Average 2nd shortest distance count for atom A                                                                                                           |
-| 53 | ENV_B_avg_second_shortest_dist_count                            | Average 2nd shortest distance count for atom B                                                                                                           |
-| 54 | ENV_A_homoatomic_dist_by_shortest_dist                          | A-A distance / shortest distance                                                                                                                         |
-| 55 | ENV_B_homoatomic_dist_by_shortest_dist                          | B-B distance / shortest distance                                                                                                                         |
-| 56 | ENV_A_avg_homoatomic_dist_by_shortest_dist                      | Average A-A distance / shortest distance                                                                                                                 |
-| 57 | ENV_B_avg_homoatomic_dist_by_shortest_dist                      | Average B-B distance / shortest distance                                                                                                                 |
-| 58 | ENV_A_count_at_A_shortest_dist                                  | Number of A atoms next to the A atoms at the shortest distance                                                                                           |
-| 59 | ENV_A_count_at_B_shortest_dist                                  | Number of A atoms next to the B atoms at the shortest distance                                                                                           |
-| 60 | ENV_A_avg_count_at_A_shortest_dist                              | Average number of A atoms next to the A atoms at the shortest distance                                                                                   |
-| 61 | ENV_A_avg_count_at_B_shortest_dist                              | Average number of A atoms next to the B atoms at the shortest distance                                                                                   |
-| 62 | ENV_B_count_at_A_shortest_dist                                  | Number of B atoms next to the A atoms at the shortest distance                                                                                           |
-| 63 | ENV_B_count_at_B_shortest_dist                                  | Number of B atoms next to the B atoms at the shortest distance                                                                                           |
-| 64 | ENV_B_avg_count_at_A_shortest_dist                              | Average number of B atoms next to the A atoms at the shortest distance                                                                                   |
-| 65 | ENV_B_avg_count_at_B_shortest_dist                              | Average number of B atoms next to the B atoms at the shortest distance                                                                                   |
-| 66 | CN_AVG_coordination_number                                      | Average coordination number                                                                                                                              |
-| 67 | CN_AVG_A_atom_count                                             | Average atom A number within CN                                                                                                                          |
-| 68 | CN_AVG_B_atom_count                                             | Average atom B number within CN                                                                                                                          |
-| 69 | CN_AVG_polyhedron_volume                                        | Average volume of polyhedra                                                                                                                              |
-| 70 | CN_AVG_central_atom_to_center_of_mass_dist                      | Average distance from the central atom to the center of mass of polyhedron                                                                               |
-| 71 | CN_AVG_number_of_edges                                          | Average number of edges of polyhedron                                                                                                                    |
-| 72 | CN_AVG_number_of_faces                                          | Average number of faces of polyhedron                                                                                                                    |
-| 73 | CN_AVG_shortest_distance_to_face                                | Average shortest distance from central atom to center of face of polyhedron                                                                              |
-| 74 | CN_AVG_shortest_distance_to_edge                                | Average shortest distance from central atom to middle edge of polyhedron                                                                                 |
-| 75 | CN_AVG_volume_of_inscribed_sphere                               | Average volume of inscribed sphere that could be fit in polyhedron                                                                                       |
-| 76 | CN_AVG_packing_efficiency                                       | Average packing efficiency of polyhedron                                                                                                                 |
-| 77 | CN_MIN_coordination_number                                      | Minimum coordination number                                                                                                                              |
-| 78 | CN_MIN_A_atom_count                                             | Minimum atom A number within CN                                                                                                                          |
-| 79 | CN_MIN_B_atom_count                                             | Minimum atom B number within CN                                                                                                                          |
-| 80 | CN_MIN_polyhedron_volume                                        | Minimum volume of polyhedra                                                                                                                              |
-| 81 | CN_MIN_central_atom_to_center_of_mass_dist                      | Minimum distance from the central atom to the center of mass of polyhedron                                                                               |
-| 82 | CN_MIN_number_of_edges                                          | Minimum number of edges of polyhedron                                                                                                                    |
-| 83 | CN_MIN_number_of_faces                                          | Minimum number of faces of polyhedron                                                                                                                    |
-| 84 | CN_MIN_shortest_distance_to_face                                | Minimum shortest distance from central atom to center of face of polyhedron                                                                              |
-| 85 | CN_MIN_shortest_distance_to_edge                                | Minimum shortest distance from central atom to middle edge of polyhedron                                                                                 |
-| 86 | CN_MIN_volume_of_inscribed_sphere                               | Minimum volume of inscribed sphere that could be fit in polyhedron                                                                                       |
-| 87 | CN_MIN_packing_efficiency                                       | Minimum packing efficiency of polyhedron                                                                                                                 |
-| 88 | CN_MAX_coordination_number                                      | Maximum coordination number                                                                                                                              |
-| 89 | CN_MAX_A_atom_count                                             | Maximum atom A number within CN                                                                                                                          |
-| 90 | CN_MAX_B_atom_count                                             | Maximum atom B number within CN                                                                                                                          |
-| 91 | CN_MAX_polyhedron_volume                                        | Maximum volume of polyhedra                                                                                                                              |
-| 92 | CN_MAX_central_atom_to_center_of_mass_dist                      | Maximum distance from the central atom to the center of mass of polyhedron                                                                               |
-| 93 | CN_MAX_number_of_edges                                          | Maximum number of edges of polyhedron                                                                                                                    |
-| 94 | CN_MAX_number_of_faces                                          | Maximum number of faces of polyhedron                                                                                                                    |
-| 95 | CN_MAX_shortest_distance_to_face                                | Maximum shortest distance from central atom to center of face of polyhedron                                                                              |
-| 96 | CN_MAX_shortest_distance_to_edge                                | Maximum shortest distance from central atom to middle edge of polyhedron                                                                                 |
-| 97 | CN_MAX_volume_of_inscribed_sphere                               | Maximum volume of inscribed sphere that could be fit in polyhedron                                                                                       |
-| 98 | CN_MAX_packing_efficiency                                       | Maximum packing efficiency of polyhedron                                                                                                                 |
+| #   | Feature                                                         | Description                                                                                                                                              |
+| --- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Entry                                                           | Used to match with CAF data or any other data to merge in one single file                                                                                |
+| 2   | formula                                                         | Label                                                                                                                                                    |
+| 3   | A                                                               | Element A matched with the group                                                                                                                         |
+| 4   | B                                                               | Element B matched with the group                                                                                                                         |
+| 5   | INT_distAA                                                      | Interatomic distances from CIF                                                                                                                           |
+| 6   | INT_distBB                                                      | Interatomic distances from CIF                                                                                                                           |
+| 7   | INT_distAB                                                      | Interatomic distances from CIF                                                                                                                           |
+| 8   | INT_Asize                                                       | CIF radius for atom A                                                                                                                                    |
+| 9   | INT_Bsize                                                       | CIF radius for atom B                                                                                                                                    |
+| 10  | INT_Asize_by_Bsize                                              | Radius ratio (CIF radius)                                                                                                                                |
+| 11  | INT_distAA_by2_byAsize                                          | Default size scale fit                                                                                                                                   |
+| 12  | INT_distBB_by2_byBsize                                          | Default size scale fit                                                                                                                                   |
+| 13  | INT_distAB_by2_byAsizebyBsize                                   | Default size scale                                                                                                                                       |
+| 14  | INT_Asize_ref                                                   | Refined radius                                                                                                                                           |
+| 15  | INT_Bsize_ref                                                   | Refined radius                                                                                                                                           |
+| 16  | INT_percent_diff_A_by_100                                       | How much different from default scale                                                                                                                    |
+| 17  | INT_percent_diff_B_by_100                                       | How much different from default scale                                                                                                                    |
+| 18  | INT_distAA_minus_ref_diff                                       | Refined scale fitness (0 means the distance used for refinements)                                                                                        |
+| 19  | INT_distBB_minus_ref_diff                                       | Refined scale fitness (0 means the distance used for refinements)                                                                                        |
+| 20  | INT_distAB_minus_ref_diff                                       | Refined scale fitness (0 means the distance used for refinements)                                                                                        |
+| 21  | INT_R_factor                                                    | R factor for the refinement (least square difference)                                                                                                    |
+| 22  | INT_UNI_shortest_homoatomic_dist                                | Shortest homoatomic distance                                                                                                                             |
+| 23  | INT_UNI_shortest_heteroatomic_dist                              | Shortest heteroatomic distance                                                                                                                           |
+| 24  | INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size              | Shortest homoatomic distance by 2 by atom size                                                                                                           |
+| 25  | INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes         | Shortest heteroatomic distance by sum of atom sizes                                                                                                      |
+| 26  | INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size      | Shortest homoatomic distance by 2 by refined atom size                                                                                                   |
+| 27  | INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes | Shortest heteroatomic distance by sum of refined sizes                                                                                                   |
+| 28  | INT_UNI_highest_refined_percent_diff_abs                        | Highest refined percent difference by 100 (abs value)                                                                                                    |
+| 29  | INT_UNI_lowest_refined_percent_diff_abs                         | Lowest refined percent difference by 100 (abs value)                                                                                                     |
+| 30  | INT_UNI_packing_efficiency                                      | Packing efficiency in unit cell with refined radius                                                                                                      |
+| 31  | WYC_A_lowest_wyckoff_label                                      | Lowest Wyckoff number for element A                                                                                                                      |
+| 32  | WYC_B_lowest_wyckoff_label                                      | Lowest Wyckoff number for element B                                                                                                                      |
+| 33  | WYC_identical_lowest_wyckoff_count                              | Number of sites with the lowest Wyckoff number                                                                                                           |
+| 34  | WYC_A_sites_total                                               | Number of crystallographic sites for element A                                                                                                           |
+| 35  | WYC_B_sites_total                                               | Number of crystallographic sites for element B                                                                                                           |
+| 36  | WYC_A_multiplicity_total                                        | Sum of Wyckoff numbers for element A                                                                                                                     |
+| 37  | WYC_B_multiplicity_total                                        | Sum of Wyckoff numbers for element B                                                                                                                     |
+| 38  | ENV_A_shortest_dist_count                                       | Number of atoms that are at the shortest distance from atom A                                                                                            |
+| 39  | ENV_B_shortest_dist_count                                       | Number of atoms that are at the shortest distance from atom B                                                                                            |
+| 40  | ENV_A_avg_shortest_dist_count                                   | Average number of atoms that are at the shortest distance from atom A (case if multiple sites present)                                                   |
+| 41  | ENV_B_avg_shortest_dist_count                                   | Average number of atoms that are at the shortest distance from atom B (case if multiple sites present)                                                   |
+| 42  | ENV_A_shortest_tol_dist_count                                   | Number of atoms that are at the shortest distance from atom A (with some distance tolerance applied, default 5%)                                         |
+| 43  | ENV_B_shortest_tol_dist_count                                   | Number of atoms that are at the shortest distance from atom B (with some distance tolerance applied, default 5%)                                         |
+| 44  | ENV_A_avg_shortest_dist_within_tol_count                        | Average number of atoms that are at the shortest distance from atom A (case if multiple sites present, with some distance tolerance applied, default 5%) |
+| 45  | ENV_B_avg_shortest_dist_within_tol_count                        | Average number of atoms that are at the shortest distance from atom B (case if multiple sites present, with some distance tolerance applied, default 5%) |
+| 46  | ENV_A_second_by_first_shortest_dist                             | 2nd shortest distance/1st shorted distance for atom A, measures distortion of polyhedron                                                                 |
+| 47  | ENV_B_second_by_first_shortest_dist                             | 2nd shortest distance/1st shorted distance for atom B, measures distortion of polyhedron                                                                 |
+| 48  | ENV_A_avg_second_by_first_shortest_dist                         | 2nd shortest distance/1st shorted distance for atom A, measures distortion of polyhedron (case if multiple sites present)                                |
+| 49  | ENV_B_avg_second_by_first_shortest_dist                         | 2nd shortest distance/1st shorted distance for atom B, measures distortion of polyhedron (case if multiple sites present)                                |
+| 50  | ENV_A_second_shortest_dist_count                                | 2nd shortest distance count for atom A                                                                                                                   |
+| 51  | ENV_B_second_shortest_dist_count                                | 2nd shortest distance count for atom B                                                                                                                   |
+| 52  | ENV_A_avg_second_shortest_dist_count                            | Average 2nd shortest distance count for atom A                                                                                                           |
+| 53  | ENV_B_avg_second_shortest_dist_count                            | Average 2nd shortest distance count for atom B                                                                                                           |
+| 54  | ENV_A_homoatomic_dist_by_shortest_dist                          | A-A distance / shortest distance                                                                                                                         |
+| 55  | ENV_B_homoatomic_dist_by_shortest_dist                          | B-B distance / shortest distance                                                                                                                         |
+| 56  | ENV_A_avg_homoatomic_dist_by_shortest_dist                      | Average A-A distance / shortest distance                                                                                                                 |
+| 57  | ENV_B_avg_homoatomic_dist_by_shortest_dist                      | Average B-B distance / shortest distance                                                                                                                 |
+| 58  | ENV_A_count_at_A_shortest_dist                                  | Number of A atoms next to the A atoms at the shortest distance                                                                                           |
+| 59  | ENV_A_count_at_B_shortest_dist                                  | Number of A atoms next to the B atoms at the shortest distance                                                                                           |
+| 60  | ENV_A_avg_count_at_A_shortest_dist                              | Average number of A atoms next to the A atoms at the shortest distance                                                                                   |
+| 61  | ENV_A_avg_count_at_B_shortest_dist                              | Average number of A atoms next to the B atoms at the shortest distance                                                                                   |
+| 62  | ENV_B_count_at_A_shortest_dist                                  | Number of B atoms next to the A atoms at the shortest distance                                                                                           |
+| 63  | ENV_B_count_at_B_shortest_dist                                  | Number of B atoms next to the B atoms at the shortest distance                                                                                           |
+| 64  | ENV_B_avg_count_at_A_shortest_dist                              | Average number of B atoms next to the A atoms at the shortest distance                                                                                   |
+| 65  | ENV_B_avg_count_at_B_shortest_dist                              | Average number of B atoms next to the B atoms at the shortest distance                                                                                   |
+| 66  | CN_AVG_coordination_number                                      | Average coordination number                                                                                                                              |
+| 67  | CN_AVG_A_atom_count                                             | Average atom A number within CN                                                                                                                          |
+| 68  | CN_AVG_B_atom_count                                             | Average atom B number within CN                                                                                                                          |
+| 69  | CN_AVG_polyhedron_volume                                        | Average volume of polyhedra                                                                                                                              |
+| 70  | CN_AVG_central_atom_to_center_of_mass_dist                      | Average distance from the central atom to the center of mass of polyhedron                                                                               |
+| 71  | CN_AVG_number_of_edges                                          | Average number of edges of polyhedron                                                                                                                    |
+| 72  | CN_AVG_number_of_faces                                          | Average number of faces of polyhedron                                                                                                                    |
+| 73  | CN_AVG_shortest_distance_to_face                                | Average shortest distance from central atom to center of face of polyhedron                                                                              |
+| 74  | CN_AVG_shortest_distance_to_edge                                | Average shortest distance from central atom to middle edge of polyhedron                                                                                 |
+| 75  | CN_AVG_volume_of_inscribed_sphere                               | Average volume of inscribed sphere that could be fit in polyhedron                                                                                       |
+| 76  | CN_AVG_packing_efficiency                                       | Average packing efficiency of polyhedron                                                                                                                 |
+| 77  | CN_MIN_coordination_number                                      | Minimum coordination number                                                                                                                              |
+| 78  | CN_MIN_A_atom_count                                             | Minimum atom A number within CN                                                                                                                          |
+| 79  | CN_MIN_B_atom_count                                             | Minimum atom B number within CN                                                                                                                          |
+| 80  | CN_MIN_polyhedron_volume                                        | Minimum volume of polyhedra                                                                                                                              |
+| 81  | CN_MIN_central_atom_to_center_of_mass_dist                      | Minimum distance from the central atom to the center of mass of polyhedron                                                                               |
+| 82  | CN_MIN_number_of_edges                                          | Minimum number of edges of polyhedron                                                                                                                    |
+| 83  | CN_MIN_number_of_faces                                          | Minimum number of faces of polyhedron                                                                                                                    |
+| 84  | CN_MIN_shortest_distance_to_face                                | Minimum shortest distance from central atom to center of face of polyhedron                                                                              |
+| 85  | CN_MIN_shortest_distance_to_edge                                | Minimum shortest distance from central atom to middle edge of polyhedron                                                                                 |
+| 86  | CN_MIN_volume_of_inscribed_sphere                               | Minimum volume of inscribed sphere that could be fit in polyhedron                                                                                       |
+| 87  | CN_MIN_packing_efficiency                                       | Minimum packing efficiency of polyhedron                                                                                                                 |
+| 88  | CN_MAX_coordination_number                                      | Maximum coordination number                                                                                                                              |
+| 89  | CN_MAX_A_atom_count                                             | Maximum atom A number within CN                                                                                                                          |
+| 90  | CN_MAX_B_atom_count                                             | Maximum atom B number within CN                                                                                                                          |
+| 91  | CN_MAX_polyhedron_volume                                        | Maximum volume of polyhedra                                                                                                                              |
+| 92  | CN_MAX_central_atom_to_center_of_mass_dist                      | Maximum distance from the central atom to the center of mass of polyhedron                                                                               |
+| 93  | CN_MAX_number_of_edges                                          | Maximum number of edges of polyhedron                                                                                                                    |
+| 94  | CN_MAX_number_of_faces                                          | Maximum number of faces of polyhedron                                                                                                                    |
+| 95  | CN_MAX_shortest_distance_to_face                                | Maximum shortest distance from central atom to center of face of polyhedron                                                                              |
+| 96  | CN_MAX_shortest_distance_to_edge                                | Maximum shortest distance from central atom to middle edge of polyhedron                                                                                 |
+| 97  | CN_MAX_volume_of_inscribed_sphere                               | Maximum volume of inscribed sphere that could be fit in polyhedron                                                                                       |
+| 98  | CN_MAX_packing_efficiency                                       | Maximum packing efficiency of polyhedron                                                                                                                 |
 
 #### Ternary structural features
 
-
 | #   | Feature                                                         |
-| ----- | ----------------------------------------------------------------- |
+| --- | --------------------------------------------------------------- |
 | 1   | Entry                                                           |
 | 2   | formula                                                         |
 | 3   | R                                                               |

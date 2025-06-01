@@ -1,11 +1,11 @@
 # Given a binary cif, generate all the features
 from SAF.features import (
-    coordination_handler,
-    binary_wyc,
     binary_env_handler,
     binary_interatomic,
-    ternary_interatomic,
+    binary_wyc,
+    coordination_handler,
     ternary_env_handler,
+    ternary_interatomic,
     ternary_wyc,
 )
 
@@ -40,7 +40,9 @@ def generate_ternary_features(cif):
     ternary_int_data, uni_int_data = (
         ternary_interatomic.compute_ternary_interatomic_features(cif)
     )
-    ternary_wyc_data, uni_wyc_data = ternary_wyc.compute_ternary_wyk_features(cif)
+    ternary_wyc_data, uni_wyc_data = ternary_wyc.compute_ternary_wyk_features(
+        cif
+    )
     ternary_env_data = ternary_env_handler.compute_ternary_env_features(cif)
     ternary_CN_data = coordination_handler.get_CN_ternary_features(cif)
 

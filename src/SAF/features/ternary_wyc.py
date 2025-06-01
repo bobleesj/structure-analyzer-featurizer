@@ -1,6 +1,6 @@
-from SAF.utils import environment_parser
-from SAF.utils import element_parser
 from cifkit import Cif
+
+from SAF.utils import element_parser, environment_parser
 
 
 def compute_ternary_wyk_features(cif: Cif):
@@ -8,8 +8,10 @@ def compute_ternary_wyk_features(cif: Cif):
     elements = list(cif.unique_elements)
     R, M, X = element_parser.get_ternary_RMX_elements(elements)
 
-    R_env, M_env, X_env = environment_parser.get_ternary_atomic_environment_info(
-        loop_values, R, M, X
+    R_env, M_env, X_env = (
+        environment_parser.get_ternary_atomic_environment_info(
+            loop_values, R, M, X
+        )
     )
     R_sites_total = R_env["sites"]
     R_multiplicity_total = R_env["multiplicity"]

@@ -1,10 +1,8 @@
-from SAF.optimize import radius as radius_opt
 from cifkit import Cif
-from SAF.utils import log, packing, bond_distance
-from SAF.utils import element_parser
-from SAF.data.radius_handler import (
-    get_radius_values_per_element,
-)
+
+from SAF.data.radius_handler import get_radius_values_per_element
+from SAF.optimize import radius as radius_opt
+from SAF.utils import bond_distance, element_parser, log, packing
 
 
 def compute_ternary_interatomic_features(cif: Cif):
@@ -19,12 +17,16 @@ def compute_ternary_interatomic_features(cif: Cif):
     M_CIF_rad = combined_radii[M]["CIF_radius"]
     X_CIF_rad = combined_radii[X]["CIF_radius"]
 
-    shortest_distances_pair_sorted = bond_distance.get_shortest_bond_distances_by_RMX(
-        cif.shortest_bond_pair_distance, R, M, X
+    shortest_distances_pair_sorted = (
+        bond_distance.get_shortest_bond_distances_by_RMX(
+            cif.shortest_bond_pair_distance, R, M, X
+        )
     )
 
     distRR, distMM, distXX, distRM, distRX, distMX = (
-        bond_distance.get_RR_MM_XX_RM_RX_MX_dists(shortest_distances_pair_sorted)
+        bond_distance.get_RR_MM_XX_RM_RX_MX_dists(
+            shortest_distances_pair_sorted
+        )
     )
 
     radii, obj_value = radius_opt.optimize_CIF_rad_ternary(
@@ -99,7 +101,7 @@ def compute_ternary_interatomic_features(cif: Cif):
     shortest_homoatomic_distance = min(homoatomic_distances.values())
     shortest_heteroatomic_distance = min(heteroatomic_distances.values())
 
-    # Parse the CIF radis based on the shortest homo/heteroatomic distance
+    # Parse the CIF radius based on the shortest homo/heteroatomic distance
     cif_radii = {
         "RR": R_CIF_rad,
         "MM": M_CIF_rad,

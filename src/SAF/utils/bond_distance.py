@@ -3,9 +3,7 @@ def get_shortest_bond_distances_by_AB(
     A: str,
     B: str,
 ) -> dict[str, float]:
-    """
-    Get sorted bond distances by AB pair
-    """
+    """Get sorted bond distances by AB pair."""
     for (
         elem1,
         elem2,
@@ -40,9 +38,7 @@ def get_shortest_bond_distances_by_RMX(
     M: str,
     X: str,
 ) -> dict[str, float]:
-    """
-    Get sorted bond distances by AB pair
-    """
+    """Get sorted bond distances by AB pair."""
     for (
         elem1,
         elem2,

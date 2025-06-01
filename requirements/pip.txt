@@ -3,3 +3,4 @@ cifkit
 matplotlib
 click
 scipy
+pandas

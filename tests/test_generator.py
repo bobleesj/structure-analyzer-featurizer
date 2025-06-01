@@ -1,5 +1,6 @@
-from SAF.features import generator
 import numpy as np
+
+from SAF.features import generator
 
 
 def test_generate_binary_features(cif_ThGe):
@@ -33,12 +34,18 @@ def test_generate_binary_features(cif_ThGe):
         "INT_UNI_shortest_heteroatomic_dist": 3.023,
         "INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size": 1.7448979591836735,
         "INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes": 1.0,
-        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": np.float64(1.0),
+        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": np.float64(
+            1.0
+        ),
         "INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": np.float64(
             1.0000000000000002
         ),
-        "INT_UNI_highest_refined_percent_diff_abs": np.float64(0.7448979591836735),
-        "INT_UNI_lowest_refined_percent_diff_abs": np.float64(0.5075083426028922),
+        "INT_UNI_highest_refined_percent_diff_abs": np.float64(
+            0.7448979591836735
+        ),
+        "INT_UNI_lowest_refined_percent_diff_abs": np.float64(
+            0.5075083426028922
+        ),
         "INT_UNI_refined_packing_efficiency": np.float64(0.79303),
         "WYK_A_lowest_wyckoff": 4,
         "WYK_B_lowest_wyckoff": 4,
@@ -57,8 +64,12 @@ def test_generate_binary_features(cif_ThGe):
         "ENV_B_avg_shortest_dist_within_tol_count": 6.0,
         "ENV_A_second_by_first_shortest_dist": np.float64(1.414158121071783),
         "ENV_B_second_by_first_shortest_dist": np.float64(1.414158121071783),
-        "ENV_A_avg_second_by_first_shortest_dist": np.float64(1.414158121071783),
-        "ENV_B_avg_second_by_first_shortest_dist": np.float64(1.414158121071783),
+        "ENV_A_avg_second_by_first_shortest_dist": np.float64(
+            1.414158121071783
+        ),
+        "ENV_B_avg_second_by_first_shortest_dist": np.float64(
+            1.414158121071783
+        ),
         "ENV_A_second_shortest_dist_count": np.int64(12),
         "ENV_B_second_shortest_dist_count": np.int64(12),
         "ENV_A_avg_second_shortest_dist_count": np.float64(12.0),
@@ -116,12 +127,18 @@ def test_generate_binary_features(cif_ThGe):
         "INT_UNI_shortest_heteroatomic_dist": 3.023,
         "INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size": 1.7448979591836735,
         "INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes": 1.0,
-        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": np.float64(1.0),
+        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": np.float64(
+            1.0
+        ),
         "INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": np.float64(
             1.0000000000000002
         ),
-        "INT_UNI_highest_refined_percent_diff_abs": np.float64(0.7448979591836735),
-        "INT_UNI_lowest_refined_percent_diff_abs": np.float64(0.5075083426028922),
+        "INT_UNI_highest_refined_percent_diff_abs": np.float64(
+            0.7448979591836735
+        ),
+        "INT_UNI_lowest_refined_percent_diff_abs": np.float64(
+            0.5075083426028922
+        ),
         "INT_UNI_refined_packing_efficiency": np.float64(0.79303),
         "UNI_WYK_lowest_wyckoff": 4,
         "CN_AVG_coordination_number": 10.5,

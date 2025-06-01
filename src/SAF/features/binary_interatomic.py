@@ -1,16 +1,12 @@
-from SAF.optimize import radius as radius_opt
 from cifkit import Cif
-from SAF.utils import packing, bond_distance
-from SAF.utils import element_parser
-from SAF.data.radius_handler import (
-    get_radius_values_per_element,
-)
+
+from SAF.data.radius_handler import get_radius_values_per_element
+from SAF.optimize import radius as radius_opt
+from SAF.utils import bond_distance, element_parser, packing
 
 
 def compute_binary_interatomic_features(cif: Cif):
-    """
-    Parse A, B
-    """
+    """Parse A, B."""
     # Get A, B
     elements = list(cif.unique_elements)
     A, B = element_parser.get_binary_AB_elements(elements)
@@ -22,8 +18,10 @@ def compute_binary_interatomic_features(cif: Cif):
     A_CIF_rad = combined_radii[A]["CIF_radius"]
     B_CIF_rad = combined_radii[B]["CIF_radius"]
 
-    shortest_distances_pair_sorted = bond_distance.get_shortest_bond_distances_by_AB(
-        cif.shortest_bond_pair_distance, A, B
+    shortest_distances_pair_sorted = (
+        bond_distance.get_shortest_bond_distances_by_AB(
+            cif.shortest_bond_pair_distance, A, B
+        )
     )
     distAA, distBB, distAB = bond_distance.get_AA_BB_AB_dists(
         shortest_distances_pair_sorted

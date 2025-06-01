@@ -1,12 +1,12 @@
 from functools import partial
+
 from scipy.optimize import minimize
 
 
 def objective_binary(params, A_CIF_rad, B_CIF_rad):
-    """
-    Calculate the objective value for binary systems by computing the sum of squared percent differences
-    between original and refined CIF radii for two atoms.
-    """
+    """Calculate the objective value for binary systems by computing the sum of
+    squared percent differences between original and refined CIF radii for two
+    atoms."""
     A_CIF_rad_refined, B_CIF_rad_refined = params
 
     # Calculate differences between original and refined radii
@@ -26,10 +26,9 @@ def objective_binary(params, A_CIF_rad, B_CIF_rad):
 
 
 def objective_ternary(params, R_CIF_rad, M_CIF_rad, X_CIF_rad):
-    """
-    Calculate the objective value for ternary systems by computing the sum of squared percent differences
-    between original and refined CIF radii for three atoms.
-    """
+    """Calculate the objective value for ternary systems by computing the sum
+    of squared percent differences between original and refined CIF radii for
+    three atoms."""
     (
         R_CIF_rad_refined,
         M_CIF_rad_refined,
@@ -96,9 +95,11 @@ def optimize_CIF_rad_binary(
     shortest_distances_pair,
     return_obj_value=False,
 ):
-    """
-    Optimizes CIF radii for a binary system, given the initial radii and shortest distances between atom pairs.
-    It sets up the constraints based on the shortest distances and employs the minimizer to optimize the radii.
+    """Optimizes CIF radii for a binary system, given the initial radii and
+    shortest distances between atom pairs.
+
+    It sets up the constraints based on the shortest distances and
+    employs the minimizer to optimize the radii.
     """
 
     # Construct constraint dictionaries
@@ -141,7 +142,9 @@ def optimize_CIF_rad_binary(
     }
 
     # Sort distances
-    sorted_distances = sorted(shortest_distances_pair.items(), key=lambda x: x[1])
+    sorted_distances = sorted(
+        shortest_distances_pair.items(), key=lambda x: x[1]
+    )
 
     # Extract shortest pairs
     first_shortest_pair = sorted_distances[0][0]
@@ -179,9 +182,11 @@ def optimize_CIF_rad_ternary(
     shortest_distances_pair,
     return_obj_value=False,
 ):
-    """
-    Optimizes CIF radii for a ternary system, given the initial radii and shortest distances between atom pairs.
-    It sets up the constraints based on the shortest distances and employs the minimizer to optimize the radii.
+    """Optimizes CIF radii for a ternary system, given the initial radii and
+    shortest distances between atom pairs.
+
+    It sets up the constraints based on the shortest distances and
+    employs the minimizer to optimize the radii.
     """
     # Create generic constraints based on shortest distances
     constraints = {}
@@ -210,7 +215,9 @@ def optimize_CIF_rad_ternary(
             ]
 
     # Sort distances
-    sorted_distances = sorted(shortest_distances_pair.items(), key=lambda x: x[1])
+    sorted_distances = sorted(
+        shortest_distances_pair.items(), key=lambda x: x[1]
+    )
 
     # Extract shortest pairs
     first_shortest_pair = sorted_distances[0][0]
