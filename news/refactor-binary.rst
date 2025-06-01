@@ -13,7 +13,7 @@
 
 **Removed:**
 
-* <news item>
+* All demo .cif files are now removed. They will be availalbe in ``SAF-app`` instead.
 
 **Fixed:**
 
