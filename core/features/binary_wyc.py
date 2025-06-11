@@ -6,9 +6,7 @@ from core.utils import element_parser, environment_parser
 def compute_binary_wyc_features(cif: Cif):
     elements = list(cif.unique_elements)
     A, B = element_parser.get_binary_AB_elements(elements)
-    A_env, B_env = environment_parser.get_binary_atomic_environment_info(
-        cif._loop_values, A, B
-    )
+    A_env, B_env = environment_parser.get_binary_atomic_environment_info(cif._loop_values, A, B)
 
     A_sites_total = A_env["sites"]
     A_multiplicity_total = A_env["multiplicity"]

@@ -35,7 +35,7 @@ def Th7Rh3_site_dist_info():
 
 
 @pytest.fixture(scope="function")
-def binary_531015_cif_site_dist_info():
+def binary_ThSb_cif_site_dist_info():
     return {
         "Sb1": {
             "shortest_dist": 3.332,
@@ -50,17 +50,12 @@ def binary_531015_cif_site_dist_info():
     }
 
 
-def test_find_shortest_distances_binary_ThSb(
-    binary_531015_cif, binary_531015_cif_site_dist_info
-):
+def test_find_shortest_distances_binary_ThSb(binary_531015_cif, binary_ThSb_cif_site_dist_info):
     result = compute_count_first_second_min_dist(binary_531015_cif.connections)
-    print(result)
-    assert result == binary_531015_cif_site_dist_info
+    assert result == binary_ThSb_cif_site_dist_info
 
 
-def test_find_shortest_distances_binary_Th7Rh3(
-    Th7Rh3_cif, Th7Rh3_site_dist_info
-):
+def test_find_shortest_distances_binary_Th7Rh3(Th7Rh3_cif, Th7Rh3_site_dist_info):
     result = compute_count_first_second_min_dist(Th7Rh3_cif.connections)
     assert result == Th7Rh3_site_dist_info
 
@@ -99,9 +94,9 @@ def test_extract_best_labels_Th7Rh3(Th7Rh3_site_dist_info):
 
 
 def test_extract_best_labels_531015(
-    binary_531015_cif_site_dist_info,
+    binary_ThSb_cif_site_dist_info,
 ):
-    result = extract_best_labels(binary_531015_cif_site_dist_info)
+    result = extract_best_labels(binary_ThSb_cif_site_dist_info)
     assert result == {
         "Sb": {
             "label_count": 1,
@@ -132,15 +127,9 @@ def test_extract_best_labels_531015(
     }
 
 
-def test_extract_shortest_dist_with_tol(
-    binary_531015_cif, binary_531015_cif_site_dist_info
-):
-    best_label_dist_info = extract_best_labels(
-        binary_531015_cif_site_dist_info
-    )
-    result = extract_shortest_dist_with_tol(
-        best_label_dist_info, binary_531015_cif.connections
-    )
+def test_extract_shortest_dist_with_tol(binary_531015_cif, binary_ThSb_cif_site_dist_info):
+    best_label_dist_info = extract_best_labels(binary_ThSb_cif_site_dist_info)
+    result = extract_shortest_dist_with_tol(best_label_dist_info, binary_531015_cif.connections)
 
     assert result == {
         "Sb": {"shortest_dist_count_within_tol": 8},
@@ -180,12 +169,8 @@ def test_extract_avg_shortest_dist_with_tol(binary_531015_cif):
 
 
 @pytest.mark.fast
-def test_get_first_by_second_shortest_dist_ratio(
-    binary_531015_cif_site_dist_info, binary_531015_cif
-):
-    result = get_avg_second_by_first_shortest_dist_ratio(
-        binary_531015_cif_site_dist_info, binary_531015_cif.connections
-    )
+def test_get_first_by_second_shortest_dist_ratio(binary_ThSb_cif_site_dist_info, binary_531015_cif):
+    result = get_avg_second_by_first_shortest_dist_ratio(binary_ThSb_cif_site_dist_info, binary_531015_cif.connections)
 
     assert result == {
         "Sb": {"avg_second_by_first_shortest_dist": 1.154561824729892},
@@ -194,12 +179,8 @@ def test_get_first_by_second_shortest_dist_ratio(
 
 
 @pytest.mark.fast
-def test_get_first_by_second_shortest_dist_ratio(
-    Th7Rh3_site_dist_info, Th7Rh3_cif
-):
-    result = get_avg_second_by_first_shortest_dist_ratio(
-        Th7Rh3_site_dist_info, Th7Rh3_cif.connections
-    )
+def test_get_first_by_second_shortest_dist_ratio(Th7Rh3_site_dist_info, Th7Rh3_cif):
+    result = get_avg_second_by_first_shortest_dist_ratio(Th7Rh3_site_dist_info, Th7Rh3_cif.connections)
 
     assert result == {
         "Rh": {"avg_second_by_first_shortest_dist": 1.028232833739979},

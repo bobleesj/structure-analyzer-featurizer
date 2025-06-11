@@ -35,16 +35,12 @@ def get_CN_metrics_per_method(cif: Cif):
                 hull = ConvexHull(polyhedron_points)
 
             except Exception:
-                print(
-                    f"Error in determining polyhedron for {label} using {method} - skipped"
-                )
+                print(f"Error in determining polyhedron for {label} using {method} - skipped")
                 site_data[label][method] = None
                 continue  # Move to the next method
 
             # Returns non if there is any error
-            polyhedron_metrics = compute_polyhedron_metrics(
-                polyhedron_points, hull
-            )
+            polyhedron_metrics = compute_polyhedron_metrics(polyhedron_points, hull)
             site_data[label][method] = polyhedron_metrics
 
     return site_data
@@ -66,9 +62,7 @@ def compute_number_of_atoms_in_binary_CN(label_connections, CN_metrics, A, B):
             for connection in CN_connections:
                 connected_label = connection[0]
 
-                parsed_label = string_parser.get_atom_type_from_label(
-                    connected_label
-                )
+                parsed_label = string_parser.get_atom_type_from_label(connected_label)
                 if parsed_label == A:
                     A_element_count += 1
                 elif parsed_label == B:
@@ -81,9 +75,7 @@ def compute_number_of_atoms_in_binary_CN(label_connections, CN_metrics, A, B):
     return CN_atom_count_data
 
 
-def compute_number_of_atoms_in_ternary_CN(
-    label_connections, CN_metrics, R, M, X
-):
+def compute_number_of_atoms_in_ternary_CN(label_connections, CN_metrics, R, M, X):
     """Compute the number of atoms in the CN metrics."""
     CN_atom_count_data = {}
     for site_label, method_data in CN_metrics.items():
@@ -100,9 +92,7 @@ def compute_number_of_atoms_in_ternary_CN(
             for connection in CN_connections:
                 connected_label = connection[0]
 
-                parsed_label = string_parser.get_atom_type_from_label(
-                    connected_label
-                )
+                parsed_label = string_parser.get_atom_type_from_label(connected_label)
                 if parsed_label == R:
                     R_element_count += 1
                 elif parsed_label == M:

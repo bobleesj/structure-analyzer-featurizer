@@ -51,11 +51,7 @@ def objective_ternary(params, R_CIF_rad, M_CIF_rad, X_CIF_rad):
     X_CIF_rad_diff_percent_squared = X_CIF_rad_diff_percent**2
 
     # Return the sum of squared percent differences
-    return (
-        R_CIF_rad_diff_percent_squared
-        + M_CIF_rad_diff_percent_squared
-        + X_CIF_rad_diff_percent_squared
-    )
+    return R_CIF_rad_diff_percent_squared + M_CIF_rad_diff_percent_squared + X_CIF_rad_diff_percent_squared
 
 
 def constraint_binary_1(params, shortest_AA):
@@ -142,9 +138,7 @@ def optimize_CIF_rad_binary(
     }
 
     # Sort distances
-    sorted_distances = sorted(
-        shortest_distances_pair.items(), key=lambda x: x[1]
-    )
+    sorted_distances = sorted(shortest_distances_pair.items(), key=lambda x: x[1])
 
     # Extract shortest pairs
     first_shortest_pair = sorted_distances[0][0]
@@ -215,9 +209,7 @@ def optimize_CIF_rad_ternary(
             ]
 
     # Sort distances
-    sorted_distances = sorted(
-        shortest_distances_pair.items(), key=lambda x: x[1]
-    )
+    sorted_distances = sorted(shortest_distances_pair.items(), key=lambda x: x[1])
 
     # Extract shortest pairs
     first_shortest_pair = sorted_distances[0][0]

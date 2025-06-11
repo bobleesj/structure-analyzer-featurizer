@@ -253,16 +253,12 @@ def RhSb2_min_max_avg_CN_metrics_from_sites():
 
 
 @pytest.mark.now
-def test_find_min_max_avg_CN_metrics(
-    RhSb2_CN_metrics_per_method, RhSb2_min_max_avg_CN_metrics_from_sites
-):
+def test_find_min_max_avg_CN_metrics(RhSb2_CN_metrics_per_method, RhSb2_min_max_avg_CN_metrics_from_sites):
     """Compute the min, max, and avg of the CN metrics from each site label
     across 4 methods."""
     result = compute_min_max_avg_per_label(RhSb2_CN_metrics_per_method)
     for label in RhSb2_min_max_avg_CN_metrics_from_sites:
-        for key, metric in RhSb2_min_max_avg_CN_metrics_from_sites[
-            label
-        ].items():
+        for key, metric in RhSb2_min_max_avg_CN_metrics_from_sites[label].items():
             assert result[label][key]["min"] == pytest.approx(
                 metric["min"], abs=0.005
             ), f"{label}-{key} min is incorrect"
@@ -276,9 +272,7 @@ def test_find_min_max_avg_CN_metrics(
 
 @pytest.mark.now
 def test_compute_global_averages(RhSb2_min_max_avg_CN_metrics_from_sites):
-    result = compute_global_averages_for_min_max_avg_metrics(
-        RhSb2_min_max_avg_CN_metrics_from_sites
-    )
+    result = compute_global_averages_for_min_max_avg_metrics(RhSb2_min_max_avg_CN_metrics_from_sites)
     expected = {
         "min": {
             "volume_of_polyhedron": 15.423333333333334,
@@ -324,9 +318,7 @@ def test_compute_global_averages(RhSb2_min_max_avg_CN_metrics_from_sites):
 def test_compute_number_of_atoms_in_CN(RhSb2_cif):
     CN_data = get_CN_metrics_per_method(RhSb2_cif)
     A, B = get_binary_AB_elements(list(RhSb2_cif.unique_elements))
-    result = compute_number_of_atoms_in_binary_CN(
-        RhSb2_cif.connections, CN_data, A, B
-    )
+    result = compute_number_of_atoms_in_binary_CN(RhSb2_cif.connections, CN_data, A, B)
     assert result == {
         "SbI": {
             "dist_by_shortest_dist": {"A_count": 3, "B_count": 1},
@@ -381,9 +373,7 @@ def test_compute_global_average_for_atom_count_in_CN():
         },
     }
 
-    result = compute_global_averages_for_min_max_avg_metrics(
-        min_max_avg_result
-    )
+    result = compute_global_averages_for_min_max_avg_metrics(min_max_avg_result)
 
     expected = {
         "min": {"A_count": 2.3333333333333335, "B_count": 2.6666666666666665},

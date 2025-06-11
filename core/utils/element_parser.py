@@ -35,11 +35,7 @@ def get_ternary_RMX_elements(
     # Use a loop to check each permutation of the input elements
     try:
         for perm in itertools.permutations(elements):
-            if (
-                perm[0] in R_labels
-                and perm[1] in M_labels
-                and perm[2] in X_labels
-            ):
+            if perm[0] in R_labels and perm[1] in M_labels and perm[2] in X_labels:
                 return (
                     perm[0],
                     perm[1],

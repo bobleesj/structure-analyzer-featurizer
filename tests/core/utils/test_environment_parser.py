@@ -31,9 +31,7 @@ def test_parse_atomic_environment_from_loop():
 def test_get_binary_atomic_environment_info():
     file_path = "tests/cif/binary/Th7Rh3.cif"
     cif = Cif(file_path)
-    A_info, B_info = get_binary_atomic_environment_info(
-        cif._loop_values, "Th", "Rh"
-    )
+    A_info, B_info = get_binary_atomic_environment_info(cif._loop_values, "Th", "Rh")
 
     assert A_info == {
         "sites": 3,
@@ -52,9 +50,7 @@ def test_get_binary_atomic_environment_info():
 def test_get_ternary_atomic_environment_info():
     file_path = "tests/cif/ternary/URhIn.cif"
     cif = Cif(file_path)
-    R_env, M_env, X_env = get_ternary_atomic_environment_info(
-        cif._loop_values, "U", "Rh", "In"
-    )
+    R_env, M_env, X_env = get_ternary_atomic_environment_info(cif._loop_values, "U", "Rh", "In")
 
     assert R_env == {
         "sites": 1,

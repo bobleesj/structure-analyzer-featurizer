@@ -10,9 +10,7 @@ def check_availability_for_binary_ternary(elements):
 
     for element in elements:
         if element not in possible_elements:
-            raise ValueError(
-                f"Element {element} not found in the configuration"
-            )
+            raise ValueError(f"Element {element} not found in the configuration")
 
     element_count = len(elements)
     # Check the content either binary or ternary

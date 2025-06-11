@@ -4,7 +4,7 @@ ignore-words = ".codespell/ignore_words.txt"
 skip = "*.cif,*.dat"
 
 [tool.black]
-line-length = 79
+line-length = 120
 include = '\.pyi?$'
 exclude = '''
 /(

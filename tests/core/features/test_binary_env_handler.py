@@ -63,12 +63,8 @@ def test_compute_binary_env_features_RhSb2(RhSb2_cif):
         "ENV_B_avg_shortest_dist_within_tol_count": 3.0,
         "ENV_A_second_by_first_shortest_dist": np.float64(1.0151033386327504),
         "ENV_B_second_by_first_shortest_dist": np.float64(1.0151033386327504),
-        "ENV_A_avg_second_by_first_shortest_dist": np.float64(
-            1.0151033386327504
-        ),
-        "ENV_B_avg_second_by_first_shortest_dist": np.float64(
-            1.0084943540825893
-        ),
+        "ENV_A_avg_second_by_first_shortest_dist": np.float64(1.0151033386327504),
+        "ENV_B_avg_second_by_first_shortest_dist": np.float64(1.0084943540825893),
         "ENV_A_second_shortest_dist_count": np.int64(1),
         "ENV_B_second_shortest_dist_count": np.int64(1),
         "ENV_A_avg_second_shortest_dist_count": np.float64(1.0),
