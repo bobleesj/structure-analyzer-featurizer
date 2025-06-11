@@ -1,7 +1,6 @@
 import pytest
 from cifkit import Cif
 
-
 """
 Binary
 """
