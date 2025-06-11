@@ -1,17 +1,14 @@
-from scipy.spatial import ConvexHull
-from cifkit.utils import string_parser
 from cifkit import Cif
 from cifkit.coordination.geometry import compute_polyhedron_metrics
+from cifkit.utils import string_parser
+from scipy.spatial import ConvexHull
 
 # For each file, get all polyhedrons
 
 
-def get_CN_metrices_per_method(cif: Cif):
-    """
-    Find the best polyhedron for each label based on the minimum
-    distance between the reference atom to the average position of
-    connected atoms.
-    """
+def get_CN_metrics_per_method(cif: Cif):
+    """Find the best polyhedron for each label based on the minimum distance
+    between the reference atom to the average position of connected atoms."""
     max_gaps_per_label = cif.CN_max_gap_per_site
     connections = cif.connections
     site_data = {}
@@ -38,23 +35,25 @@ def get_CN_metrices_per_method(cif: Cif):
                 hull = ConvexHull(polyhedron_points)
 
             except Exception:
-                print(f"Error in determining polyhedron for {label} using {method} - skipped")
+                print(
+                    f"Error in determining polyhedron for {label} using {method} - skipped"
+                )
                 site_data[label][method] = None
                 continue  # Move to the next method
 
-            # Returns non if ther eis any error
-            polyhedron_metrics = compute_polyhedron_metrics(polyhedron_points, hull)
+            # Returns non if there is any error
+            polyhedron_metrics = compute_polyhedron_metrics(
+                polyhedron_points, hull
+            )
             site_data[label][method] = polyhedron_metrics
 
     return site_data
 
 
-def compute_number_of_atoms_in_binary_CN(label_connections, CN_metrices, A, B):
-    """
-    Compute the number of atoms in the CN metrices.
-    """
+def compute_number_of_atoms_in_binary_CN(label_connections, CN_metrics, A, B):
+    """Compute the number of atoms in the CN metrics."""
     CN_atom_count_data = {}
-    for site_label, method_data in CN_metrices.items():
+    for site_label, method_data in CN_metrics.items():
         CN_atom_count_data[site_label] = {}
         for method, data in method_data.items():
             # Get the number of CN per method
@@ -67,7 +66,9 @@ def compute_number_of_atoms_in_binary_CN(label_connections, CN_metrices, A, B):
             for connection in CN_connections:
                 connected_label = connection[0]
 
-                parsed_label = string_parser.get_atom_type_from_label(connected_label)
+                parsed_label = string_parser.get_atom_type_from_label(
+                    connected_label
+                )
                 if parsed_label == A:
                     A_element_count += 1
                 elif parsed_label == B:
@@ -80,12 +81,12 @@ def compute_number_of_atoms_in_binary_CN(label_connections, CN_metrices, A, B):
     return CN_atom_count_data
 
 
-def compute_number_of_atoms_in_ternary_CN(label_connections, CN_metrices, R, M, X):
-    """
-    Compute the number of atoms in the CN metrices.
-    """
+def compute_number_of_atoms_in_ternary_CN(
+    label_connections, CN_metrics, R, M, X
+):
+    """Compute the number of atoms in the CN metrics."""
     CN_atom_count_data = {}
-    for site_label, method_data in CN_metrices.items():
+    for site_label, method_data in CN_metrics.items():
         CN_atom_count_data[site_label] = {}
         for method, data in method_data.items():
             # Get the number of CN per method
@@ -99,7 +100,9 @@ def compute_number_of_atoms_in_ternary_CN(label_connections, CN_metrices, R, M, 
             for connection in CN_connections:
                 connected_label = connection[0]
 
-                parsed_label = string_parser.get_atom_type_from_label(connected_label)
+                parsed_label = string_parser.get_atom_type_from_label(
+                    connected_label
+                )
                 if parsed_label == R:
                     R_element_count += 1
                 elif parsed_label == M:
@@ -116,10 +119,9 @@ def compute_number_of_atoms_in_ternary_CN(label_connections, CN_metrices, R, M, 
 
 
 def compute_min_max_avg_per_label(site_data):
-    """
-    Calculate the minimum, maximum, and average values for each metric across
-    different calculation methods, grouped by each element label (e.g., Sb1, Th1).
-    """
+    """Calculate the minimum, maximum, and average values for each metric
+    across different calculation methods, grouped by each element label (e.g.,
+    Sb1, Th1)."""
     result = {}
     # Iterate over each element (like Sb1, Th1, etc.)
     for label in site_data:
@@ -144,11 +146,9 @@ def compute_min_max_avg_per_label(site_data):
     return result
 
 
-def compute_global_averages_for_min_max_avg_metrices(min_max_avg_result):
-    """
-    Calculate global averages of all minimums, maximums, and averages across all labels
-    from a pre-computed min-max-avg result.
-    """
+def compute_global_averages_for_min_max_avg_metrics(min_max_avg_result):
+    """Calculate global averages of all minimums, maximums, and averages across
+    all labels from a pre-computed min-max-avg result."""
     # Initialize dictionaries to store cumulative sums of min, max, and avg
     global_sums = {"min": {}, "max": {}, "avg": {}}
     # Initialize counts to average the sums

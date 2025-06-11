@@ -1,4 +1,6 @@
 from cifkit.utils.string_parser import strip_numbers_and_symbols
+
+
 def parse_atomic_environment_from_loop(CIF_loop_values):
     # Initialize a dictionary to store element information
     atomic_env = {}
@@ -27,7 +29,9 @@ def parse_atomic_environment_from_loop(CIF_loop_values):
 
         # Update the element with the lowest Wyckoff multiplicity
         if multiplicity < atomic_env[site_element]["multiplicity"]:
-            atomic_env[site_element]["lowest_wyckoff_multiplicity"] = multiplicity
+            atomic_env[site_element][
+                "lowest_wyckoff_multiplicity"
+            ] = multiplicity
             atomic_env[site_element]["lowest_wyckoff_element"] = site_label
 
     return atomic_env

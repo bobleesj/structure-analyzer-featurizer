@@ -1,4 +1,4 @@
-from numpy import cos, sqrt, pi
+from numpy import cos, pi, sqrt
 
 
 def compute_packing_efficiency(
@@ -37,8 +37,8 @@ def compute_packing_efficiency(
     return round(packing_eff_refined, 5)
 
 
-def get_unit_cell_volume(lenghts, angles):
-    a_length, b_length, c_length = lenghts
+def get_unit_cell_volume(lengths, angles):
+    a_length, b_length, c_length = lengths
     alpha_angle, beta_angle, gamma_angle = angles
 
     volume = (

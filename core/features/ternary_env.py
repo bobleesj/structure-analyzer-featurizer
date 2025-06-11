@@ -1,16 +1,17 @@
 from cifkit.utils import string_parser
+
 from core.utils.bond_count import (
-    get_site_labels_per_element,
     compute_count_first_second_min_dist,
     extract_best_labels,
+    get_site_labels_per_element,
 )
 
 
-def compute_homoatomic_dist_by_site_shortest_dist(connections, R_best_label, M_best_label, X_best_label):
-    """
-    Computes the shortest homoatomic distances normalized by the shortest distance
-    encountered at the best site for each element.
-    """
+def compute_homoatomic_dist_by_site_shortest_dist(
+    connections, R_best_label, M_best_label, X_best_label
+):
+    """Computes the shortest homoatomic distances normalized by the shortest
+    distance encountered at the best site for each element."""
     R = string_parser.get_atom_type_from_label(R_best_label)
     M = string_parser.get_atom_type_from_label(M_best_label)
     X = string_parser.get_atom_type_from_label(X_best_label)
@@ -31,22 +32,46 @@ def compute_homoatomic_dist_by_site_shortest_dist(connections, R_best_label, M_b
         if site_label == R_best_label:
             R_min_dist = current_min_dist
             # Find the shortest homoatomic distance for A
-            R_homoatomic_shortest_dist = min([dist for label, dist, _, _ in site_connections if label.startswith(R)])
+            R_homoatomic_shortest_dist = min(
+                [
+                    dist
+                    for label, dist, _, _ in site_connections
+                    if label.startswith(R)
+                ]
+            )
 
         if site_label == M_best_label:
             M_min_dist = current_min_dist
             # Find the shortest homoatomic distance for A
-            M_homoatomic_shortest_dist = min([dist for label, dist, _, _ in site_connections if label.startswith(M)])
+            M_homoatomic_shortest_dist = min(
+                [
+                    dist
+                    for label, dist, _, _ in site_connections
+                    if label.startswith(M)
+                ]
+            )
 
         if site_label == X_best_label:
             X_min_dist = current_min_dist
             # Find the shortest homoatomic distance for B
-            X_homoatomic_shortest_dist = min([dist for label, dist, _, _ in site_connections if label.startswith(X)])
+            X_homoatomic_shortest_dist = min(
+                [
+                    dist
+                    for label, dist, _, _ in site_connections
+                    if label.startswith(X)
+                ]
+            )
 
     # Normalize the shortest distances by the shortest distances at the best sites
-    R_homoatomic_dist_by_shortest_dist = R_homoatomic_shortest_dist / R_min_dist
-    M_homoatomic_dist_by_shortest_dist = M_homoatomic_shortest_dist / M_min_dist
-    X_homoatomic_dist_by_shortest_dist = X_homoatomic_shortest_dist / X_min_dist
+    R_homoatomic_dist_by_shortest_dist = (
+        R_homoatomic_shortest_dist / R_min_dist
+    )
+    M_homoatomic_dist_by_shortest_dist = (
+        M_homoatomic_shortest_dist / M_min_dist
+    )
+    X_homoatomic_dist_by_shortest_dist = (
+        X_homoatomic_shortest_dist / X_min_dist
+    )
 
     return (
         R_homoatomic_dist_by_shortest_dist,
@@ -56,13 +81,11 @@ def compute_homoatomic_dist_by_site_shortest_dist(connections, R_best_label, M_b
 
 
 def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, R, M, X):
-    """
-    Computes the average of the homoatomic distances normalized by the
-    shortest distance encountered at each site for two distinct element
-    types within a given set of connections.
-    """
+    """Computes the average of the homoatomic distances normalized by the
+    shortest distance encountered at each site for two distinct element types
+    within a given set of connections."""
 
-    # Shortest distnace per site label
+    # Shortest distance per site label
     element_to_site_labels = get_site_labels_per_element(connections)
     R_total_homoatomic_dist_by_shortest_dist = 0.0
     M_total_homoatomic_dist_by_shortest_dist = 0.0
@@ -73,21 +96,36 @@ def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, R, M, X):
         for connection in site_connections:
             other_label, dist, _, _ = connection
             if site_label.startswith(R) and other_label.startswith(R):
-                R_total_homoatomic_dist_by_shortest_dist += dist / min_dist_per_site
+                R_total_homoatomic_dist_by_shortest_dist += (
+                    dist / min_dist_per_site
+                )
                 break
             if site_label.startswith(M) and other_label.startswith(M):
-                M_total_homoatomic_dist_by_shortest_dist += dist / min_dist_per_site
+                M_total_homoatomic_dist_by_shortest_dist += (
+                    dist / min_dist_per_site
+                )
                 break
             if site_label.startswith(X) and other_label.startswith(X):
-                X_total_homoatomic_dist_by_shortest_dist += dist / min_dist_per_site
+                X_total_homoatomic_dist_by_shortest_dist += (
+                    dist / min_dist_per_site
+                )
                 break
 
     # Average of (A-A distance / shortest distance for each site label)
     # Average of (B-B distance / (shortest distance for each site label)
 
-    R_avg_homoatomic_dist_by_shortest_dist = R_total_homoatomic_dist_by_shortest_dist / len(element_to_site_labels[R])
-    M_avg_homoatomic_dist_by_shortest_dist = M_total_homoatomic_dist_by_shortest_dist / len(element_to_site_labels[M])
-    X_avg_homoatomic_dist_by_shortest_dist = X_total_homoatomic_dist_by_shortest_dist / len(element_to_site_labels[X])
+    R_avg_homoatomic_dist_by_shortest_dist = (
+        R_total_homoatomic_dist_by_shortest_dist
+        / len(element_to_site_labels[R])
+    )
+    M_avg_homoatomic_dist_by_shortest_dist = (
+        M_total_homoatomic_dist_by_shortest_dist
+        / len(element_to_site_labels[M])
+    )
+    X_avg_homoatomic_dist_by_shortest_dist = (
+        X_total_homoatomic_dist_by_shortest_dist
+        / len(element_to_site_labels[X])
+    )
     return (
         R_avg_homoatomic_dist_by_shortest_dist,
         M_avg_homoatomic_dist_by_shortest_dist,
@@ -96,10 +134,11 @@ def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, R, M, X):
 
 
 def get_R_and_M_and_X_count_in_best_label_per_element(connections, R, M, X):
-    """
-    Compute the occurrences of element types A and B at the shortest distances
-    within their respective best labeled site for each element. The best site
-    label is determined with the label with the shortest distance pair.
+    """Compute the occurrences of element types A and B at the shortest
+    distances within their respective best labeled site for each element.
+
+    The best site label is determined with the label with the shortest
+    distance pair.
     """
     R_count_at_R_shortest_dist = 0
     R_count_at_M_shortest_dist = 0
@@ -173,10 +212,8 @@ def get_R_and_M_and_X_count_in_best_label_per_element(connections, R, M, X):
 
 
 def get_avg_R_and_M_and_X_count_in_per_element(connections, R, M, X):
-    """
-    Compute the occurrences of element types R, M, and X at the shortest distances
-    within their respective site for all site labels
-    """
+    """Compute the occurrences of element types R, M, and X at the shortest
+    distances within their respective site for all site labels."""
     R_total_count_at_R_shortest_dist = 0
     R_total_count_at_M_shortest_dist = 0
     R_total_count_at_X_shortest_dist = 0
@@ -196,7 +233,9 @@ def get_avg_R_and_M_and_X_count_in_per_element(connections, R, M, X):
 
     for site_label, connection_data in connections.items():
         parsed_element = string_parser.get_atom_type_from_label(site_label)
-        shortest_dist_per_site_label = dist_count_per_label[site_label]["shortest_dist"]
+        shortest_dist_per_site_label = dist_count_per_label[site_label][
+            "shortest_dist"
+        ]
 
         for connection in connection_data:
             other_label, dist, _, _ = connection
