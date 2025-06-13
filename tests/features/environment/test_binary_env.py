@@ -36,7 +36,6 @@ def test_compute_binary_env_features_ThSb(ThSb_cif):
         "ENV_B_avg_count_at_A_shortest_dist": 8.0,
         "ENV_B_avg_count_at_B_shortest_dist": 0.0,
     }
-
     diff = DeepDiff(actual, expected, significant_digits=3)
     assert diff == {}
 

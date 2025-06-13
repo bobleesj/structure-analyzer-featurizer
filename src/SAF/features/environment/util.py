@@ -8,7 +8,19 @@ def count_first_second_min_dist(
     all_labels_connections,
 ):
     """Determine the shortest and second shortest distances from each site
-    label and their respective counts."""
+    label and their respective counts.
+
+    Examples
+    --------
+    >>> all_labels_connections = {
+    ...     "Rh1": [("Rh1", 2.0, "Rh1", "Rh1"), ("Rh1", 3.0, "Rh1", "Rh2")],
+    ...     "Rh2": [("Rh2", 1.5, "Rh2", "Rh1"), ("Rh2", 2.5, "Rh2", "Rh2")],
+    ... }
+    >>> result = count_first_second_min_dist(all_labels_connections)
+    >>> print(result)
+    {'Rh1': {'shortest_dist': 2.0, 'second_shortest_dist': 3.0, 'counts': {2.0: 1, 3.0: 1}},
+     'Rh2': {'shortest_dist': 1.5, 'second_shortest_dist': 2.5, 'counts': {1.5: 1, 2.5: 1}}}
+    """
     # Dictionary to hold the results
     first_second_dist_info = defaultdict(
         lambda: {
@@ -17,7 +29,6 @@ def count_first_second_min_dist(
             "counts": {},
         }
     )
-
     # Collect all distances for each label
     for (
         label,
@@ -26,14 +37,9 @@ def count_first_second_min_dist(
         distances = []
         for _, dist, _, _ in connections:
             distances.append(dist)
-
         if distances:
-            # Sorting distances
             sorted_distances = sorted(distances)
-
-            # Find unique distances and their counts using numpy
             unique_distances, counts = np.unique(sorted_distances, return_counts=True)
-
             # Populate the shortest_dist and second shortest_dist distances
             if len(unique_distances) > 0:
                 first_second_dist_info[label]["shortest_dist"] = unique_distances[0]
@@ -41,14 +47,12 @@ def count_first_second_min_dist(
             if len(unique_distances) > 1:
                 first_second_dist_info[label]["second_shortest_dist"] = unique_distances[1]
                 first_second_dist_info[label]["counts"][unique_distances[1]] = counts[1]
-
     return dict(first_second_dist_info)
 
 
 def extract_best_labels(data):
     """Extract the best label for each element based on the shortest distance,
     and if there's a tie, use the second shortest distance as a tiebreaker."""
-
     best_labels = {}
     label_counts = {}
     total_distances = {}
