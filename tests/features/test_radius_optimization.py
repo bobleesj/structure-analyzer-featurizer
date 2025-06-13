@@ -28,7 +28,7 @@ def test_binary_DyCo_cif(Dy2Co17_cif):
 
 
 def test_unit_cell_volume(Dy2Co17_cif):
-    lenghts = Dy2Co17_cif.unitcell_lengths
+    lengths = Dy2Co17_cif.unitcell_lengths
     angles = Dy2Co17_cif.unitcell_angles
-    volume = packing._get_unit_cell_volume(lenghts, angles)
+    volume = packing._get_unit_cell_volume(lengths, angles)
     assert volume == pytest.approx(734.7396088113346, abs=1e-4)
