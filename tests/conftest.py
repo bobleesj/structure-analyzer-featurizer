@@ -43,7 +43,8 @@ def URhIn_cif():
 
 @pytest.fixture(scope="module")
 def Tb4RhInGe4_cif():
-    cif = Cif("tests/cif/quaternary/Tb4RhInGe4.cif", supercell_size=3)
+    # Tested that supercell size 2 or 3 both work
+    cif = Cif("tests/cif/quaternary/Tb4RhInGe4.cif", supercell_size=2)
     cif.compute_connections()
     return cif
 

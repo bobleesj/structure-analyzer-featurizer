@@ -55,9 +55,7 @@ def extract_best_labels(data):
 
     # Initialize storage for distance statistics
     for label in data:
-        element = string_parser.get_atom_type_from_label(
-            label
-        )  # Assuming label ends with a number like 'Rh1', 'Th1', etc.
+        element = string_parser.get_atom_type_from_label(label)  # Assuming label ends with a number like 'Rh1', 'Th1', etc.
         if element not in total_distances:
             total_distances[element] = {
                 "shortest_counts": [],
@@ -74,9 +72,7 @@ def extract_best_labels(data):
         # Update total distance counts
         total_distances[element]["shortest_counts"].append(details["counts"][details["shortest_dist"]])
         if "second_shortest_dist" in details:
-            total_distances[element]["second_shortest_counts"].append(
-                details["counts"].get(details["second_shortest_dist"], 0)
-            )
+            total_distances[element]["second_shortest_counts"].append(details["counts"].get(details["second_shortest_dist"], 0))
 
         # Determine best label
         if element not in best_labels:
@@ -95,9 +91,7 @@ def extract_best_labels(data):
         total_shortest = sum(total_distances[element]["shortest_counts"])
         total_second_shortest = sum(total_distances[element]["second_shortest_counts"])
         avg_shortest = total_shortest / label_counts[element]
-        avg_second_shortest = (
-            total_second_shortest / label_counts[element] if total_distances[element]["second_shortest_counts"] else 0
-        )
+        avg_second_shortest = total_second_shortest / label_counts[element] if total_distances[element]["second_shortest_counts"] else 0
 
         output[element] = {
             "label_count": label_counts[element],

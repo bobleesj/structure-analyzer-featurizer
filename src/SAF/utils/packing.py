@@ -29,7 +29,6 @@ def compute_efficiency(
         vol_of_atoms += count * (4 / 3) * pi * radius_dict[atom] ** 3
     vol_of_unt_cell = _get_unit_cell_volume(cif.unitcell_lengths, cif.unitcell_angles)
     packing_eff_refined = vol_of_atoms / vol_of_unt_cell
-
     return round(packing_eff_refined, 5)
 
 
