@@ -3,8 +3,8 @@ from cifkit import Cif
 from SAF.features.environment.quaternary_helper import (
     compute_avg_homoatomic_dist_by_site_shortest_dist,
     compute_homoatomic_dist_by_site_shortest_dist,
+    get_A_and_B_and_C_and_D_count_in_best_label_per_element,
     get_avg_A_and_B_and_C_and_D_count_in_per_element,
-    get_A_and_B_and_C_and_D_count_in_best_label_per_element
 )
 from SAF.features.environment.util import (
     count_first_second_min_dist,
@@ -15,15 +15,16 @@ from SAF.features.environment.util import (
 )
 from SAF.utils.element_order import get_quaternary_ABCD_elements
 
+
 def compute_features(cif: Cif):
     connections = cif.connections
     A, B, C, D = get_quaternary_ABCD_elements(list(cif.unique_elements))
-    
+
     (
         A_avg_homoatomic_dist_by_shortest_dist,
         B_avg_homoatomic_dist_by_shortest_dist,
         C_avg_homoatomic_dist_by_shortest_dist,
-        D_avg_homoatomic_dist_by_shortest_dist, 
+        D_avg_homoatomic_dist_by_shortest_dist,
     ) = compute_avg_homoatomic_dist_by_site_shortest_dist(connections, A, B, C, D)
     (
         A_count_at_A_shortest_dist,
@@ -41,25 +42,25 @@ def compute_features(cif: Cif):
         D_count_at_A_shortest_dist,
         D_count_at_B_shortest_dist,
         D_count_at_C_shortest_dist,
-        D_count_at_D_shortest_dist
+        D_count_at_D_shortest_dist,
     ) = get_A_and_B_and_C_and_D_count_in_best_label_per_element(connections, A, B, C, D)
     (
         A_avg_count_at_A_shorest_dist,
         A_avg_count_at_B_shorest_dist,
         A_avg_count_at_C_shorest_dist,
-        A_avg_count_at_D_shorest_dist, 
+        A_avg_count_at_D_shorest_dist,
         B_avg_count_at_A_shorest_dist,
         B_avg_count_at_B_shorest_dist,
         B_avg_count_at_C_shorest_dist,
-        B_avg_count_at_D_shorest_dist, 
+        B_avg_count_at_D_shorest_dist,
         C_avg_count_at_A_shorest_dist,
         C_avg_count_at_B_shorest_dist,
         C_avg_count_at_C_shorest_dist,
-        C_avg_count_at_D_shorest_dist, 
+        C_avg_count_at_D_shorest_dist,
         D_avg_count_at_A_shorest_dist,
         D_avg_count_at_B_shorest_dist,
         D_avg_count_at_C_shorest_dist,
-        D_avg_count_at_D_shorest_dist
+        D_avg_count_at_D_shorest_dist,
     ) = get_avg_A_and_B_and_C_and_D_count_in_per_element(connections, A, B, C, D)
     # 1. Compute the first, second shortest distances and count
     first_second_dist_per_site_data = count_first_second_min_dist(connections)
@@ -117,14 +118,12 @@ def compute_features(cif: Cif):
     C_avg_second_shortest_dist_count = best_site_data[C]["avg_second_shortest_dist_count"]
     D_avg_second_shortest_dist_count = best_site_data[D]["avg_second_shortest_dist_count"]
     # Get avg second by first shortest distance ratio across site labels per element
-    avg_second_by_first_dist = get_avg_second_by_first_shortest_dist_ratio(
-        first_second_dist_per_site_data, connections
-    )
+    avg_second_by_first_dist = get_avg_second_by_first_shortest_dist_ratio(first_second_dist_per_site_data, connections)
     A_avg_second_by_first_shortest_dist = avg_second_by_first_dist[A]["avg_second_by_first_shortest_dist"]
     B_avg_second_by_first_shortest_dist = avg_second_by_first_dist[B]["avg_second_by_first_shortest_dist"]
     C_avg_second_by_first_shortest_dist = avg_second_by_first_dist[C]["avg_second_by_first_shortest_dist"]
     D_avg_second_by_first_shortest_dist = avg_second_by_first_dist[D]["avg_second_by_first_shortest_dist"]
-    
+
     results = {
         # Shortest distance count
         "ENV_A_shortest_dist_count": A_shortest_dist_count,

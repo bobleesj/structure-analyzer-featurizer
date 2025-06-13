@@ -1,6 +1,6 @@
 from cifkit.utils import string_parser
 
-from SAF.features.environment.util import count_first_second_min_dist, extract_best_labels, _get_site_labels_per_element
+from SAF.features.environment.util import _get_site_labels_per_element, count_first_second_min_dist, extract_best_labels
 
 
 def compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_best_label):

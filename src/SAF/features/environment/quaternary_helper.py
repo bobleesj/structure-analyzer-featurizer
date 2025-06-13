@@ -1,6 +1,7 @@
 from cifkit.utils import string_parser
 
-from SAF.features.environment.util import count_first_second_min_dist, extract_best_labels, _get_site_labels_per_element
+from SAF.features.environment.util import _get_site_labels_per_element, count_first_second_min_dist, extract_best_labels
+
 
 def compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_best_label, C_best_label, D_best_label):
     """Compute the shortest homoatomic distances normalized by the shortest
@@ -46,6 +47,7 @@ def compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_b
         D_homoatomic_dist_by_shortest_dist,
     )
 
+
 def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, A, B, C, D):
     """Compute the average of the homoatomic distances normalized by the
     shortest distance encountered at each site for four distinct element types
@@ -54,7 +56,7 @@ def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, A, B, C, D):
     A_total_homoatomic_dist_by_shortest_dist = 0.0
     B_total_homoatomic_dist_by_shortest_dist = 0.0
     C_total_homoatomic_dist_by_shortest_dist = 0.0
-    D_total_homoatomic_dist_by_shortest_dist = 0.0     
+    D_total_homoatomic_dist_by_shortest_dist = 0.0
     for site_label, site_connections in connections.items():
         shortest_dist_per_site = site_connections[0][1]
         for connection in site_connections:
@@ -81,8 +83,8 @@ def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, A, B, C, D):
         C_avg_homoatomic_dist_by_shortest_dist,
         D_avg_homoatomic_dist_by_shortest_dist,
     )
-    
-    
+
+
 def get_A_and_B_and_C_and_D_count_in_best_label_per_element(connections, A, B, C, D):
     """Compute the occurrences of element types A, B, C, D at the shortest
     distances within their respective best labeled site for each element.
@@ -178,7 +180,8 @@ def get_A_and_B_and_C_and_D_count_in_best_label_per_element(connections, A, B, C
         D_count_at_C_shortest_dist,
         D_count_at_D_shortest_dist,
     )
-    
+
+
 def get_avg_A_and_B_and_C_and_D_count_in_per_element(connections, A, B, C, D):
     """Compute the occurrences of element types A, B, C, D at the shortest
     distances within their respective site for all site labels."""
@@ -204,11 +207,11 @@ def get_avg_A_and_B_and_C_and_D_count_in_per_element(connections, A, B, C, D):
     B_site_label_count = best_labels[B]["label_count"]
     C_site_label_count = best_labels[C]["label_count"]
     D_site_label_count = best_labels[D]["label_count"]
-    
+
     for site_label, connection_data in connections.items():
         parsed_element = string_parser.get_atom_type_from_label(site_label)
         shortest_dist_per_site_label = dist_count_per_label[site_label]["shortest_dist"]
-        
+
         for connection in connection_data:
             other_label, dist, _, _ = connection
             if parsed_element == A and dist == shortest_dist_per_site_label:
@@ -247,7 +250,7 @@ def get_avg_A_and_B_and_C_and_D_count_in_per_element(connections, A, B, C, D):
                     C_total_count_at_D_shortest_dist += 1
                 if other_label.startswith(D):
                     D_total_count_at_D_shortest_dist += 1
-                        
+
     A_avg_count_at_A = A_total_count_at_A_shortest_dist / A_site_label_count
     A_avg_count_at_B = A_total_count_at_B_shortest_dist / B_site_label_count
     A_avg_count_at_C = A_total_count_at_C_shortest_dist / C_site_label_count
@@ -264,7 +267,7 @@ def get_avg_A_and_B_and_C_and_D_count_in_per_element(connections, A, B, C, D):
     D_avg_count_at_B = D_total_count_at_B_shortest_dist / B_site_label_count
     D_avg_count_at_C = D_total_count_at_C_shortest_dist / C_site_label_count
     D_avg_count_at_D = D_total_count_at_D_shortest_dist / D_site_label_count
-    
+
     return (
         A_avg_count_at_A,
         A_avg_count_at_B,
@@ -283,5 +286,3 @@ def get_avg_A_and_B_and_C_and_D_count_in_per_element(connections, A, B, C, D):
         D_avg_count_at_C,
         D_avg_count_at_D,
     )
-    
-    

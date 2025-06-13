@@ -1,6 +1,6 @@
 from cifkit.utils import string_parser
 
-from SAF.features.environment.util import count_first_second_min_dist, extract_best_labels, _get_site_labels_per_element
+from SAF.features.environment.util import _get_site_labels_per_element, count_first_second_min_dist, extract_best_labels
 
 
 def compute_homoatomic_dist_by_site_shortest_dist(connections, R_best_label, M_best_label, X_best_label):
@@ -38,7 +38,7 @@ def compute_homoatomic_dist_by_site_shortest_dist(connections, R_best_label, M_b
         M_homoatomic_dist_by_shortest_dist,
         X_homoatomic_dist_by_shortest_dist,
     )
-    
+
 
 def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, R, M, X):
     """Compute the average of the homoatomic distances normalized by the
