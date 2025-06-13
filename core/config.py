@@ -102,7 +102,7 @@ def get_ternary_RMX_labels() -> tuple[list[str], list[str], list[str]]:
         "Gd",
         "Tb",
         "Dy",
-        "U"
+        "U",
     ]
     M_labels = [
         "Ho",

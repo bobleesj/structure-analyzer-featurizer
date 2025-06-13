@@ -259,15 +259,9 @@ def test_find_min_max_avg_CN_metrics(RhSb2_CN_metrics_per_method, RhSb2_min_max_
     result = compute_min_max_avg_per_label(RhSb2_CN_metrics_per_method)
     for label in RhSb2_min_max_avg_CN_metrics_from_sites:
         for key, metric in RhSb2_min_max_avg_CN_metrics_from_sites[label].items():
-            assert result[label][key]["min"] == pytest.approx(
-                metric["min"], abs=0.005
-            ), f"{label}-{key} min is incorrect"
-            assert result[label][key]["max"] == pytest.approx(
-                metric["max"], abs=0.005
-            ), f"{label}-{key} max is incorrect"
-            assert result[label][key]["avg"] == pytest.approx(
-                metric["avg"], abs=0.005
-            ), f"{label}-{key} avg is incorrect"
+            assert result[label][key]["min"] == pytest.approx(metric["min"], abs=0.005), f"{label}-{key} min is incorrect"
+            assert result[label][key]["max"] == pytest.approx(metric["max"], abs=0.005), f"{label}-{key} max is incorrect"
+            assert result[label][key]["avg"] == pytest.approx(metric["avg"], abs=0.005), f"{label}-{key} avg is incorrect"
 
 
 @pytest.mark.now

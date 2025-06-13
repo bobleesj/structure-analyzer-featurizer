@@ -22,7 +22,8 @@ def get_binary_AB_elements(
 
 
 def get_ternary_RMX_elements(elements: list[str]) -> tuple[str, str, str]:
-    """Get R, M, X elements from a list of three elements based on RMX label groups."""
+    """Get R, M, X elements from a list of three elements based on RMX label
+    groups."""
 
     if len(elements) != 3:
         raise ValueError("Input must be a list of exactly three elements.")
@@ -34,4 +35,3 @@ def get_ternary_RMX_elements(elements: list[str]) -> tuple[str, str, str]:
             return perm  # Found valid R, M, X ordering
 
     raise ValueError(f"Could not determine RMX ordering for elements: {elements}")
-

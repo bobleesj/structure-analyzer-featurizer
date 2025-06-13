@@ -4,6 +4,7 @@ from core.features.interatomic.ternary import (
     compute_features,
 )
 
+
 def test_compute_ternary_interatomic_feature(URhIn_cif):
     actual, _ = compute_features(URhIn_cif)
     expected = {

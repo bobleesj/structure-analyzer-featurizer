@@ -14,6 +14,13 @@ def ThSb_cif():
 
 
 @pytest.fixture(scope="module")
+def Dy2Co17_cif():
+    cif = Cif("tests/cif/binary/Dy2Co17.cif", supercell_size=2)
+    cif.compute_connections()
+    return cif
+
+
+@pytest.fixture(scope="module")
 def RhSb2_cif():
     cif = Cif("tests/cif/binary/RhSb2.cif")
     cif.compute_connections()
@@ -27,11 +34,11 @@ def Th7Rh3_cif():
     return cif
 
 
-# @pytest.fixture(scope="module")
-# def URhIn_cif():
-#     cif = Cif("tests/cif/ternary/URhIn.cif")
-#     cif.compute_connections()
-#     return cif
+@pytest.fixture(scope="module")
+def URhIn_cif():
+    cif = Cif("tests/cif/ternary/URhIn.cif")
+    cif.compute_connections()
+    return cif
 
 
 # @pytest.fixture(scope="module")

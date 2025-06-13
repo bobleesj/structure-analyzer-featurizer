@@ -10,16 +10,12 @@ def compute_features(cif: Cif):
     R_CIF_rad = cif.radius_values[R]["CIF_radius"]
     M_CIF_rad = cif.radius_values[M]["CIF_radius"]
     X_CIF_rad = cif.radius_values[X]["CIF_radius"]
-    CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius(
-        [R, M, X], cif.shortest_bond_pair_distance, elements_ordered=False
-    )
+    CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius([R, M, X], cif.shortest_bond_pair_distance, elements_ordered=False)
     R_CIF_rad_refined = CIF_rad_refined[R]
     M_CIF_rad_refined = CIF_rad_refined[M]
     X_CIF_rad_refined = CIF_rad_refined[X]
     # Do not use the alphabetical order of the elements for the refined radius
-    min_bond_dists = bond.get_min_distances_by_labels(
-        cif.shortest_bond_pair_distance, [R, M, X], labels=["R", "M", "X"]
-    )
+    min_bond_dists = bond.get_min_distances_by_labels(cif.shortest_bond_pair_distance, [R, M, X], labels=["R", "M", "X"])
     distRR = min_bond_dists["RR"]
     distRM = min_bond_dists["RM"]
     distRX = min_bond_dists["RX"]
@@ -27,13 +23,12 @@ def compute_features(cif: Cif):
     distMX = min_bond_dists["MX"]
     distXX = min_bond_dists["XX"]
     # Distances
-    distRM_by_byRsizebyMsize = distRM / (R_CIF_rad + M_CIF_rad)
-    distRX_by_byRsizebyXsize = distRX / (R_CIF_rad + X_CIF_rad)
-    distMX_by_byMsizebyXsize = distMX / (M_CIF_rad + X_CIF_rad)
-
-    distR_R_rad = distRR / 2
-    distM_M_rad = distMM / 2
-    distX_X_rad = distXX / 2
+    distRM_by_R_and_M_sizes_combined = distRM / (R_CIF_rad + M_CIF_rad)
+    distRX_by_R_and_X_sizes_combined = distRX / (R_CIF_rad + X_CIF_rad)
+    distMX_by_M_and_X_sizes_combined = distMX / (M_CIF_rad + X_CIF_rad)
+    distRR_by_2 = distRR / 2
+    distMM_by_2 = distMM / 2
+    distXX_by_2 = distXX / 2
 
     RR_radius_sum = 2 * R_CIF_rad_refined
     MM_radius_sum = 2 * M_CIF_rad_refined
@@ -45,17 +40,16 @@ def compute_features(cif: Cif):
     percent_diff_R = (R_CIF_rad_refined - R_CIF_rad) / R_CIF_rad
     percent_diff_M = (M_CIF_rad_refined - M_CIF_rad) / M_CIF_rad
     percent_diff_X = (X_CIF_rad_refined - X_CIF_rad) / X_CIF_rad
-
     # Interatomic distance features
     Rsize_by_Msize = R_CIF_rad / M_CIF_rad
     Msize_by_Xsize = M_CIF_rad / X_CIF_rad
     Rsize_by_Xsize = R_CIF_rad / X_CIF_rad
 
-    distRR_by_byRsize = distR_R_rad / R_CIF_rad
-    distMM_by_byMsize = distM_M_rad / M_CIF_rad
-    distXX_by_byXsize = distX_X_rad / X_CIF_rad
-    distRM_by_byRsizebyMsize = distRM / (R_CIF_rad + M_CIF_rad)
-    distMX_by_byMsizebyXsize = distMX / (M_CIF_rad + X_CIF_rad)
+    distRR_by_byRsize = distRR_by_2 / R_CIF_rad
+    distMM_by_byMsize = distMM_by_2 / M_CIF_rad
+    distXX_by_byXsize = distXX_by_2 / X_CIF_rad
+    distRM_by_R_and_M_sizes_combined = distRM / (R_CIF_rad + M_CIF_rad)
+    distMX_by_M_and_X_sizes_combined = distMX / (M_CIF_rad + X_CIF_rad)
 
     RR_minus_ref_diff = (distRR - RR_radius_sum) / distRR
     MM_minus_ref_diff = (distMM - MM_radius_sum) / distMM
@@ -63,15 +57,7 @@ def compute_features(cif: Cif):
     RM_minus_ref_diff = (distRM - RM_radius_sum) / distRM
     RX_minus_ref_diff = (distRX - RX_radius_sum) / distRX
     MX_minus_ref_diff = (distMX - MX_radius_sum) / distMX
-    # Packing efficiency
-    packing_efficiency = packing.compute_efficiency(
-        cif,
-        {
-            R: R_CIF_rad_refined,
-            M: M_CIF_rad_refined,
-            X: X_CIF_rad_refined,
-        },
-    )
+
     # Get the shortest homo/hetroatomic distance
     homoatomic_dists = helper.get_bond_distances_by_labels(min_bond_dists, ["RR", "MM", "XX"])
     heteroatomic_dists = helper.get_bond_distances_by_labels(min_bond_dists, ["RM", "MX", "RX"])
@@ -79,7 +65,7 @@ def compute_features(cif: Cif):
     shortest_homoatomic_dist = helper.get_min_from_dists(homoatomic_dists)
 
     # Parse the CIF radius based on the shortest homo/heteroatomic dist
-    radius = {
+    rad_dict = {
         "RR": R_CIF_rad,
         "MM": M_CIF_rad,
         "XX": X_CIF_rad,
@@ -88,7 +74,7 @@ def compute_features(cif: Cif):
         "RX": (R_CIF_rad + X_CIF_rad),
     }
 
-    radius_refined = {
+    refined_rad_dict = {
         "RR": R_CIF_rad_refined,
         "MM": M_CIF_rad_refined,
         "XX": X_CIF_rad_refined,
@@ -98,17 +84,27 @@ def compute_features(cif: Cif):
     }
 
     percent_diffs = [percent_diff_R, percent_diff_M, percent_diff_X]
-    shortest_homo_key = [k for k, v in min_bond_dists.items() if v == shortest_homoatomic_dist][0]
-    shortest_hetero_key = [k for k, v in min_bond_dists.items() if v == shortest_heteroatomic_dist][0]
-
-    # Extract 9 universal features for Ternary
-    min_homoatomic_dist_by_2_by_atom_size = (shortest_homoatomic_dist / 2) / radius[shortest_homo_key]
-    min_heteroatomic_dist_by_sum_of_atom_sizes = shortest_heteroatomic_dist / radius[shortest_hetero_key]
-    min_homoatomic_dist_by_2_by_refined_atom_sizes = (shortest_homoatomic_dist / 2) / radius_refined[shortest_homo_key]
-    min_heteroatomic_dist_by_refined_atom_sizes = shortest_heteroatomic_dist / radius_refined[shortest_hetero_key]
-    highest_refined_percent_diff = max([abs(p) for p in percent_diffs])
-    lowest_refined_percent_diff = min([abs(p) for p in percent_diffs])
-
+    shortest_homo_key = helper.get_shortest_homo_key(min_bond_dists, shortest_homoatomic_dist)
+    shortest_hetero_key = helper.get_shortest_hetero_key(min_bond_dists, shortest_heteroatomic_dist)
+    uni_features = helper.get_shortest_homo_heteroatomic_features(
+        shortest_homoatomic_dist,
+        shortest_homo_key,
+        shortest_heteroatomic_dist,
+        shortest_hetero_key,
+        rad_dict,
+        refined_rad_dict,
+    )
+    highest_refined_percent_diff = helper.get_highest_refined_percent_diff(percent_diffs)
+    lowest_refined_percent_diff = helper.get_lowest_refined_percent_diff(percent_diffs)
+    # Packing efficiency
+    packing_efficiency = packing.compute_efficiency(
+        cif,
+        {
+            R: R_CIF_rad_refined,
+            M: M_CIF_rad_refined,
+            X: X_CIF_rad_refined,
+        },
+    )
     data = {
         "Entry": cif.file_name_without_ext,
         "Formula": cif.formula,
@@ -131,9 +127,9 @@ def compute_features(cif: Cif):
         "INT_distRR_by2_byRsize": distRR_by_byRsize,
         "INT_distMM_by2_byMsize": distMM_by_byMsize,
         "INT_distXX_by2_byXsize": distXX_by_byXsize,
-        "INT_distRM_byRsizebyMsize": distRM_by_byRsizebyMsize,
-        "INT_distMX_byMsizebyXsize": distMX_by_byMsizebyXsize,
-        "INT_distRX_byRsizebyXsize": distRX_by_byRsizebyXsize,
+        "INT_distRM_byRsizebyMsize": distRM_by_R_and_M_sizes_combined,
+        "INT_distMX_byMsizebyXsize": distMX_by_M_and_X_sizes_combined,
+        "INT_distRX_byRsizebyXsize": distRX_by_R_and_X_sizes_combined,
         "INT_Rsize_ref": R_CIF_rad_refined,
         "INT_Msize_ref": M_CIF_rad_refined,
         "INT_Xsize_ref": X_CIF_rad_refined,
@@ -149,10 +145,10 @@ def compute_features(cif: Cif):
         "INT_R_factor": obj_value,
         "INT_UNI_shortest_homoatomic_dist": shortest_homoatomic_dist,
         "INT_UNI_shortest_heteroatomic_dist": shortest_heteroatomic_dist,
-        "INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size": min_homoatomic_dist_by_2_by_atom_size,
-        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes": min_heteroatomic_dist_by_sum_of_atom_sizes,
-        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": min_homoatomic_dist_by_2_by_refined_atom_sizes,
-        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": min_heteroatomic_dist_by_refined_atom_sizes,
+        "INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size": uni_features["shortest_homoatomic_dist_by_2_by_atom_size"],
+        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes": uni_features["shortest_heteroatomic_dist_by_sum_of_atom_sizes"],
+        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": uni_features["shortest_homoatomic_dist_by_2_by_refined_atom_sizes"],
+        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": uni_features["shortest_heteroatomic_dist_by_refined_atom_sizes"],
         "INT_UNI_highest_refined_percent_diff_abs": highest_refined_percent_diff,
         "INT_UNI_lowest_refined_percent_diff_abs": lowest_refined_percent_diff,
         "INT_UNI_refined_packing_efficiency": packing_efficiency,
@@ -163,10 +159,10 @@ def compute_features(cif: Cif):
         "Formula": cif.formula,
         "INT_UNI_shortest_homoatomic_dist": shortest_homoatomic_dist,
         "INT_UNI_shortest_heteroatomic_dist": shortest_heteroatomic_dist,
-        "INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size": min_homoatomic_dist_by_2_by_atom_size,
-        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes": min_heteroatomic_dist_by_sum_of_atom_sizes,
-        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": min_homoatomic_dist_by_2_by_refined_atom_sizes,
-        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": min_heteroatomic_dist_by_refined_atom_sizes,
+        "INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size": uni_features["shortest_homoatomic_dist_by_2_by_atom_size"],
+        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes": uni_features["shortest_heteroatomic_dist_by_sum_of_atom_sizes"],
+        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": uni_features["shortest_homoatomic_dist_by_2_by_refined_atom_sizes"],
+        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": uni_features["shortest_heteroatomic_dist_by_refined_atom_sizes"],
         "INT_UNI_highest_refined_percent_diff_abs": highest_refined_percent_diff,
         "INT_UNI_lowest_refined_percent_diff_abs": lowest_refined_percent_diff,
         "INT_UNI_refined_packing_efficiency": packing_efficiency,

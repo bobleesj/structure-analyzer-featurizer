@@ -106,9 +106,7 @@ def compute_ternary_env_features(cif: Cif):
     X_avg_second_shortest_dist_count = best_site_data[M]["avg_second_shortest_dist_count"]
 
     # Get avg second by first shortest distance ratio across site labels per element
-    avg_second_by_first_dist = get_avg_second_by_first_shortest_dist_ratio(
-        first_second_dist_per_label_data, connections
-    )
+    avg_second_by_first_dist = get_avg_second_by_first_shortest_dist_ratio(first_second_dist_per_label_data, connections)
     R_avg_second_by_first_shortest_dist = avg_second_by_first_dist[R]["avg_second_by_first_shortest_dist"]
     M_avg_second_by_first_shortest_dist = avg_second_by_first_dist[M]["avg_second_by_first_shortest_dist"]
     X_avg_second_by_first_shortest_dist = avg_second_by_first_dist[X]["avg_second_by_first_shortest_dist"]
