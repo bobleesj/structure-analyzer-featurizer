@@ -3,7 +3,6 @@ import pytest
 from SAF.features.wyc.binary import compute_features
 
 
-@pytest.mark.now
 def test_compute_features_ThSb(ThSb_cif):
     result, uni_result = compute_features(ThSb_cif)
     expected = {
@@ -22,7 +21,6 @@ def test_compute_features_ThSb(ThSb_cif):
     assert uni_result == uni_expected
 
 
-@pytest.mark.now
 def test_compute_features_Th7Rh3(Th7Rh3_cif):
     result, uni_result = compute_features(Th7Rh3_cif)
     expected = {
