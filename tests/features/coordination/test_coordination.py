@@ -2,7 +2,7 @@ import pytest
 
 from SAF.features.coordination.helper import (
     _compute_global_avg_for_min_max_avg_metrics,
-    _compute_min_max_avg_per_label,
+    _compute_min_max_avg_per_atomic_label,
     _compute_number_of_atoms_in_binary_CN,
     get_CN_metrics_per_method,
 )
@@ -255,7 +255,7 @@ def RhSb2_min_max_avg_CN_metrics_from_sites():
 def test_find_min_max_avg_CN_metrics(RhSb2_CN_metrics_per_method, RhSb2_min_max_avg_CN_metrics_from_sites):
     """Compute the min, max, and avg of the CN metrics from each site label
     across 4 methods."""
-    result = _compute_min_max_avg_per_label(RhSb2_CN_metrics_per_method)
+    result = _compute_min_max_avg_per_atomic_label(RhSb2_CN_metrics_per_method)
     for label in RhSb2_min_max_avg_CN_metrics_from_sites:
         for key, metric in RhSb2_min_max_avg_CN_metrics_from_sites[label].items():
             assert result[label][key]["min"] == pytest.approx(metric["min"], abs=0.005), f"{label}-{key} min is incorrect"
@@ -330,7 +330,7 @@ def test_compute_number_of_atoms_in_CN(RhSb2_cif):
             "dist_by_Pauling_radius_sum": {"A_count": 3, "B_count": 12},
         },
     }
-    min_max_avg_result = _compute_min_max_avg_per_label(result)
+    min_max_avg_result = _compute_min_max_avg_per_atomic_label(result)
     assert min_max_avg_result == {
         "SbI": {
             "A_count": {"min": 3, "max": 3, "avg": 3.0},
