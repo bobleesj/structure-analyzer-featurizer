@@ -1,7 +1,7 @@
-import pytest
 import numpy as np
-from SAF.features.interatomic.quaternary import compute_features
+import pytest
 
+from SAF.features.interatomic.quaternary import compute_features
 
 
 def test_compute_features(Tb4RhInGe4_cif):
