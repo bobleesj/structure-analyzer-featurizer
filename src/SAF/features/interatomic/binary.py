@@ -1,8 +1,8 @@
 from cifkit import Cif
-
 from cifkit.data import radius_optimization as radius_opt
-from SAF.utils import bond, element_order, packing
+
 from SAF.features.interatomic import helper
+from SAF.utils import bond, element_order, packing
 
 
 def compute_features(cif: Cif):
@@ -10,7 +10,9 @@ def compute_features(cif: Cif):
     A, B = element_order.get_binary_AB_elements(elements)
     A_CIF_rad = cif.radius_values[A]["CIF_radius"]
     B_CIF_rad = cif.radius_values[B]["CIF_radius"]
-    CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius([A, B], cif.shortest_bond_pair_distance, elements_ordered=False)
+    CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius(
+        [A, B], cif.shortest_bond_pair_distance, elements_ordered=False
+    )
     min_bond_dists = bond.get_min_distances_by_labels(cif.shortest_bond_pair_distance, [A, B], labels=["A", "B"])
     distAA = min_bond_dists["AA"]
     distBB = min_bond_dists["BB"]
@@ -101,10 +103,18 @@ def compute_features(cif: Cif):
         "INT_R_factor": obj_value,
         "INT_UNI_shortest_homoatomic_dist": shortest_homoatomic_dist,
         "INT_UNI_shortest_heteroatomic_dist": shortest_heteroatomic_dist,
-        "INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size": uni_features["shortest_homoatomic_dist_by_2_by_atom_size"],
-        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes": uni_features["shortest_heteroatomic_dist_by_sum_of_atom_sizes"],
-        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": uni_features["shortest_homoatomic_dist_by_2_by_refined_atom_sizes"],
-        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": uni_features["shortest_heteroatomic_dist_by_refined_atom_sizes"],
+        "INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size": uni_features[
+            "shortest_homoatomic_dist_by_2_by_atom_size"
+        ],
+        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes": uni_features[
+            "shortest_heteroatomic_dist_by_sum_of_atom_sizes"
+        ],
+        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": uni_features[
+            "shortest_homoatomic_dist_by_2_by_refined_atom_sizes"
+        ],
+        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": uni_features[
+            "shortest_heteroatomic_dist_by_refined_atom_sizes"
+        ],
         "INT_UNI_highest_refined_percent_diff_abs": highest_refined_percent_diff,
         "INT_UNI_lowest_refined_percent_diff_abs": lowest_refined_percent_diff,
         "INT_UNI_refined_packing_efficiency": packing_efficiency,
@@ -114,10 +124,18 @@ def compute_features(cif: Cif):
         "Formula": cif.formula,
         "INT_UNI_shortest_homoatomic_dist": shortest_homoatomic_dist,
         "INT_UNI_shortest_heteroatomic_dist": shortest_heteroatomic_dist,
-        "INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size": uni_features["shortest_homoatomic_dist_by_2_by_atom_size"],
-        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes": uni_features["shortest_heteroatomic_dist_by_sum_of_atom_sizes"],
-        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": uni_features["shortest_homoatomic_dist_by_2_by_refined_atom_sizes"],
-        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": uni_features["shortest_heteroatomic_dist_by_refined_atom_sizes"],
+        "INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size": uni_features[
+            "shortest_homoatomic_dist_by_2_by_atom_size"
+        ],
+        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes": uni_features[
+            "shortest_heteroatomic_dist_by_sum_of_atom_sizes"
+        ],
+        "INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size": uni_features[
+            "shortest_homoatomic_dist_by_2_by_refined_atom_sizes"
+        ],
+        "INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": uni_features[
+            "shortest_heteroatomic_dist_by_refined_atom_sizes"
+        ],
         "INT_UNI_highest_refined_percent_diff_abs": highest_refined_percent_diff,
         "INT_UNI_lowest_refined_percent_diff_abs": lowest_refined_percent_diff,
         "INT_UNI_refined_packing_efficiency": packing_efficiency,

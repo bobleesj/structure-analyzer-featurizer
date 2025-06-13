@@ -1,5 +1,5 @@
-from numpy import cos, pi, sqrt
 from cifkit import Cif
+from numpy import cos, pi, sqrt
 
 
 def compute_efficiency(
@@ -8,10 +8,9 @@ def compute_efficiency(
 ):
     """Compute the packing efficiency of a crystal structure.
 
-    It usees the number of multiplicities of atoms in the CIF loop
-    values and the CIF radii dictionary to calculate the total volume
-    occupied by the atoms, and then divides it by the volume of the unit
-    cell.
+    It uses the number of multiplicities of atoms in the CIF loop values
+    and the CIF radii dictionary to calculate the total volume occupied
+    by the atoms, and then divides it by the volume of the unit cell.
     """
     elements = cif.unique_elements
     atom_counts = {element: 0 for element in elements}

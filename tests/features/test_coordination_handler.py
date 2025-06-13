@@ -1,6 +1,6 @@
+import numpy as np
 import pytest
 from core.features.coordination_handler import get_CN_binary_features
-import numpy as np
 
 
 @pytest.mark.now

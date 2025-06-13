@@ -1,7 +1,6 @@
 import pytest
-from SAF.features.interatomic.binary import (
-    compute_features,
-)
+
+from SAF.features.interatomic.binary import compute_features
 
 
 @pytest.mark.now

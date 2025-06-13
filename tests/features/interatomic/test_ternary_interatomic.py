@@ -1,8 +1,7 @@
 import pytest
 from cifkit import Cif
-from SAF.features.interatomic.ternary import (
-    compute_features,
-)
+
+from SAF.features.interatomic.ternary import compute_features
 
 
 def test_compute_ternary_interatomic_feature(URhIn_cif):

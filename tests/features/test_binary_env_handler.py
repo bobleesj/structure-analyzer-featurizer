@@ -1,10 +1,8 @@
-import pytest
-from core.features.binary_env_handler import (
-    compute_binary_env_features,
-)
-from deepdiff import DeepDiff
-from core.utils.log import print_connected_points
 import numpy as np
+import pytest
+from core.features.binary_env_handler import compute_binary_env_features
+from core.utils.log import print_connected_points
+from deepdiff import DeepDiff
 
 
 @pytest.mark.now

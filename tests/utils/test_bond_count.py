@@ -1,9 +1,9 @@
 import pytest
 from core.utils.bond_count import (
     compute_count_first_second_min_dist,
+    extract_avg_shortest_dist_with_tol,
     extract_best_labels,
     extract_shortest_dist_with_tol,
-    extract_avg_shortest_dist_with_tol,
     get_avg_second_by_first_shortest_dist_ratio,
 )
 
