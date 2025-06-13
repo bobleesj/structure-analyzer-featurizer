@@ -1,12 +1,10 @@
 import pytest
-from core.features.binary_wyc import compute_binary_wyc_features
-from core.utils.element_order import get_binary_AB_elements
+from SAF.features.wyc.binary import compute_features
 
 
 @pytest.mark.now
-def test_compute_binary_wyc_features_ThSb(ThSb_cif):
-    result, uni_result = compute_binary_wyc_features(ThSb_cif)
-
+def test_compute_features_ThSb(ThSb_cif):
+    result, uni_result = compute_features(ThSb_cif)
     expected = {
         "WYK_A_lowest_wyckoff": 1,
         "WYK_B_lowest_wyckoff": 1,
@@ -16,19 +14,16 @@ def test_compute_binary_wyc_features_ThSb(ThSb_cif):
         "WYK_A_multiplicity_total": 1,
         "WYK_B_multiplicity_total": 1,
     }
-
     uni_expected = {
         "UNI_WYK_lowest_wyckoff": 1,
     }
-
     assert result == expected
     assert uni_result == uni_expected
 
 
 @pytest.mark.now
-def test_compute_binary_wyc_features_Th7Rh3(Th7Rh3_cif):
-    result, uni_result = compute_binary_wyc_features(Th7Rh3_cif)
-
+def test_compute_features_Th7Rh3(Th7Rh3_cif):
+    result, uni_result = compute_features(Th7Rh3_cif)
     expected = {
         "WYK_A_lowest_wyckoff": 2,
         "WYK_B_lowest_wyckoff": 6,
@@ -38,10 +33,6 @@ def test_compute_binary_wyc_features_Th7Rh3(Th7Rh3_cif):
         "WYK_A_multiplicity_total": 14,
         "WYK_B_multiplicity_total": 6,
     }
-
     uni_expected = {"UNI_WYK_lowest_wyckoff": 2}
-
-    print(result, uni_result)
-
     assert result == expected
     assert uni_result == uni_expected
