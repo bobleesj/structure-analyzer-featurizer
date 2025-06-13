@@ -89,7 +89,6 @@ def get_ternary_RMX_labels() -> tuple[list[str], list[str], list[str]]:
         "Ge",
         "Y",
         "Ru",
-        "Rh",
         "Pd",
         "In",
         "Sn",
@@ -103,6 +102,7 @@ def get_ternary_RMX_labels() -> tuple[list[str], list[str], list[str]]:
         "Gd",
         "Tb",
         "Dy",
+        "U"
     ]
     M_labels = [
         "Ho",
@@ -114,7 +114,7 @@ def get_ternary_RMX_labels() -> tuple[list[str], list[str], list[str]]:
         "Ir",
         "Pt",
         "Th",
-        "U",
+        "Rh",
         "Al",
         "Mo",
         "Hf",
@@ -156,6 +156,7 @@ def get_ternary_RMX_labels() -> tuple[list[str], list[str], list[str]]:
         "W",
         "Zn",
         "Zr",
+        "In",
     ]
 
     return R_labels, M_labels, X_labels

@@ -1,7 +1,7 @@
 import itertools
 from typing import Dict, Tuple
 
-def get_shortest_bond_distances_by_elements(
+def get_min_distances_by_labels(
     shortest_bond_pair_distance: Dict[Tuple[str, str], float],
     elements: list[str],
     labels: list[str] = None,
@@ -9,13 +9,25 @@ def get_shortest_bond_distances_by_elements(
     """
     Get bond distances using symbolic labels (like RR, RX, MX) for arbitrary elements.
     
-    Args:
+    Parameters
+    ----------
         shortest_bond_pair_distance: dict of bond distances keyed by (element1, element2)
         elements: list of actual element symbols
         labels: optional symbolic labels (e.g., ['R', 'M', 'X']) to use for display keys
     
-    Returns:
+    Returns
+    -------
         Dict[str, float] with symbolic pair keys
+
+    Examples
+    --------
+    >>> bond_distances = {
+    ...     ('Th', 'Th'): 1.1,
+    ...     ('Os', 'Os'): 1.2,
+    ...     ('Th', 'Os'): 1.3,
+    ... }
+    >>> get_shortest_bond_distances(bond_distances, ['Th', 'Os'], labels=['A', 'B'])
+    {'AA': 1.1, 'BB': 1.2, 'AB': 1.3}
     """
     if labels is None:
         labels = elements

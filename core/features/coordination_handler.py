@@ -76,16 +76,11 @@ def get_CN_binary_features(cif: Cif):
         "CN_MAX_volume_of_inscribed_sphere": avg_CN_metrics["max"]["volume_of_inscribed_sphere"],
         "CN_MAX_packing_efficiency": avg_CN_metrics["max"]["packing_efficiency"],
     }
-
-    # log.print_dict_pretty(data, "env binary")
-    # log.print_connected_points(cif.connections)
     return data
 
 
 def get_CN_ternary_features(cif: Cif):
     avg_CN_metrics, avg_CN_atom_count = get_CN_atom_count_data(cif)
-
-    # Compute average of min, max, and avg
 
     data = {
         "CN_AVG_coordination_number": avg_CN_metrics["avg"]["number_of_vertices"],

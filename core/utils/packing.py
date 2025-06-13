@@ -1,12 +1,10 @@
 from numpy import cos, pi, sqrt
+from cifkit import Cif
 
 
-def compute_packing_efficiency(
-    atoms,
-    CIF_loop_values,
+def compute_efficiency(
+    cif: Cif,
     radius_dict,
-    cell_lengths,
-    cell_angles_rad,
 ):
     """Compute the packing efficiency of a crystal structure.
 
@@ -15,9 +13,10 @@ def compute_packing_efficiency(
     occupied by the atoms, and then divides it by the volume of the unit
     cell.
     """
-    atom_counts = {atom: 0 for atom in atoms}
-    atom_site_types = CIF_loop_values[1]
-    atom_site_symmetry_multiplicities = CIF_loop_values[2]
+    elements = cif.unique_elements
+    atom_counts = {element: 0 for element in elements}
+    atom_site_types = cif._loop_values[1]
+    atom_site_symmetry_multiplicities = cif._loop_values[2]
     # Calculate atom counts
     for (
         atom_site_type,
@@ -29,7 +28,7 @@ def compute_packing_efficiency(
     vol_of_atoms = 0
     for atom, count in atom_counts.items():
         vol_of_atoms += count * (4 / 3) * pi * radius_dict[atom] ** 3
-    vol_of_unt_cell = _get_unit_cell_volume(cell_lengths, cell_angles_rad)
+    vol_of_unt_cell = _get_unit_cell_volume(cif.unitcell_lengths, cif.unitcell_angles)
     packing_eff_refined = vol_of_atoms / vol_of_unt_cell
 
     return round(packing_eff_refined, 5)
