@@ -1,21 +1,19 @@
 from cifkit import Cif
 
-from core.utils.bond_count import (
-    compute_count_first_second_min_dist,
-    extract_best_labels,
-    extract_shortest_dist_with_tol,
-    extract_avg_shortest_dist_with_tol,
-    get_avg_second_by_first_shortest_dist_ratio,
-)
-
 from core.features.binary_env import (
-    compute_homoatomic_dist_by_site_shortest_dist,
     compute_avg_homoatomic_dist_by_site_shortest_dist,
+    compute_homoatomic_dist_by_site_shortest_dist,
     get_A_and_B_count_in_best_label_per_element,
     get_avg_A_and_B_count_in_per_element,
 )
-from core.utils import element_parser
-from core.utils import log
+from core.utils import element_parser, log
+from core.utils.bond_count import (
+    compute_count_first_second_min_dist,
+    extract_avg_shortest_dist_with_tol,
+    extract_best_labels,
+    extract_shortest_dist_with_tol,
+    get_avg_second_by_first_shortest_dist_ratio,
+)
 
 
 def compute_binary_env_features(cif: Cif):
@@ -63,31 +61,23 @@ def compute_binary_env_features(cif: Cif):
     # First shortest distance
     A_shortest_dist = best_site_data[A]["details"]["shortest_dist"]
     B_shortest_dist = best_site_data[B]["details"]["shortest_dist"]
-
     # Second shortest distance
     A_second_shortest_dist = best_site_data[A]["details"]["second_shortest_dist"]
     B_second_shortest_dist = best_site_data[B]["details"]["second_shortest_dist"]
-
     # Shorest distance count from best site
     A_shortest_dist_count = best_site_data[A]["details"]["counts"][A_shortest_dist]
     B_shortest_dist_count = best_site_data[B]["details"]["counts"][B_shortest_dist]
-
     # Second shorest distance count from best site
     A_second_shortest_dist_count = best_site_data[A]["details"]["counts"][A_second_shortest_dist]
     B_second_shortest_dist_count = best_site_data[B]["details"]["counts"][B_second_shortest_dist]
-
     # Avg shortest distance count across site labels per element
     A_avg_shortest_dist_count = best_site_data[A]["avg_shortest_dist"]
     B_avg_shortest_dist_count = best_site_data[B]["avg_shortest_dist"]
-
     # Avg second shortest distance count across site labels per element
     A_avg_second_shortest_dist_count = best_site_data[A]["avg_second_shortest_dist_count"]
     B_avg_second_shortest_dist_count = best_site_data[B]["avg_second_shortest_dist_count"]
-
     # Get avg second by first shortest distance ratio across site labels per element
-    avg_second_by_first_dist = get_avg_second_by_first_shortest_dist_ratio(
-        first_second_dist_per_label_data, connections
-    )
+    avg_second_by_first_dist = get_avg_second_by_first_shortest_dist_ratio(first_second_dist_per_label_data, connections)
     A_avg_second_by_first_shortest_dist = avg_second_by_first_dist[A]["avg_second_by_first_shortest_dist"]
     B_avg_second_by_first_shortest_dist = avg_second_by_first_dist[B]["avg_second_by_first_shortest_dist"]
 

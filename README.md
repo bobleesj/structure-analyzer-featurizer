@@ -41,9 +41,10 @@ files containing the following elements: `Si` `Sc` `Fe` `Co` `Ni` `Ga` `Ge` `Y`
 `Nb` `P` `Pb` `Rb` `Re` `S` `Se` `Sr` `Te` `Ti` `Tl` `V` `W` `Zn` `Zr` `Tc` `N`
 `O` `F` `Cl` `Br` `I` `Sm`
 
-:Note: The Pauling CN 12 radii values for some gases [N, O, F, Cl, Br and I] as well as Tc and Sm were interpolated using 
-Gaussian Process Regression. The CIF radii for the aforementioned gases were compiled averages of low-temperature structures 
-from PCD.
+:Note: The Pauling CN 12 radii values for some gases [N, O, F, Cl, Br and I] as
+well as Tc and Sm were interpolated using Gaussian Process Regression. The CIF
+radii for the aforementioned gases were compiled averages of low-temperature
+structures from PCD.
 
 ### Adding more elements
 
@@ -115,7 +116,7 @@ Enter the number corresponding to the folder containing .cif files: 3
 ### Output
 
 After running the script using `python main.py` and selecting the folder
-contianing `.cif` files, `.csv` files are generated. For binary compounds,
+containing `.cif` files, `.csv` files are generated. For binary compounds,
 `binary_features.csv` with 124 features is generated. For ternary compounds,
 `ternary_features.csv` with 165 unique features is generated. For all types of
 compounds, `universal_featrues.csv` is generated.

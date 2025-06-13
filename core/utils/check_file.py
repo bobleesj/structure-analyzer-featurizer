@@ -1,8 +1,8 @@
+from core.config import get_all_possible_elements
 from core.utils.element_parser import (
     get_binary_AB_elements,
     get_ternary_RMX_elements,
 )
-from core.config import get_all_possible_elements
 
 
 def check_availability_for_binary_ternary(elements):
@@ -17,7 +17,7 @@ def check_availability_for_binary_ternary(elements):
     if element_count not in [2, 3]:
         raise ValueError(f"Only binary and ternary formulas are supported")
 
-    # Checck the elements existing the in config
+    # Check the elements existing the in config
     element_count = len(elements)
     if element_count == 2:
         get_binary_AB_elements(elements)

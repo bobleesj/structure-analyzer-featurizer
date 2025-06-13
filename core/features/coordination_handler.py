@@ -1,37 +1,37 @@
 from cifkit import Cif
+
+from core.features.coordination import (
+    compute_global_averages_for_min_max_avg_metrics,
+    compute_min_max_avg_per_label,
+    compute_number_of_atoms_in_binary_CN,
+    compute_number_of_atoms_in_ternary_CN,
+    get_CN_metrics_per_method,
+)
 from core.utils.element_parser import (
     get_binary_AB_elements,
     get_ternary_RMX_elements,
-)
-from core.utils import log
-from core.features.coordination import (
-    get_CN_metrices_per_method,
-    compute_number_of_atoms_in_binary_CN,
-    compute_number_of_atoms_in_ternary_CN,
-    compute_min_max_avg_per_label,
-    compute_global_averages_for_min_max_avg_metrices,
 )
 
 
 def get_CN_atom_count_data(cif: Cif):
     # Compute geometrical features for the CN
-    CN_metrices = get_CN_metrices_per_method(cif)
+    CN_metrics = get_CN_metrics_per_method(cif)
     # Compute min, max, and avg for each site label
-    min_max_avg_CN_metrices = compute_min_max_avg_per_label(CN_metrices)
+    min_max_avg_CN_metrics = compute_min_max_avg_per_label(CN_metrics)
 
     if len(cif.unique_elements) == 2:
         A, B = get_binary_AB_elements(list(cif.unique_elements))
-        CN_atom_count_data = compute_number_of_atoms_in_binary_CN(cif.connections, CN_metrices, A, B)
+        CN_atom_count_data = compute_number_of_atoms_in_binary_CN(cif.connections, CN_metrics, A, B)
 
     if len(cif.unique_elements) == 3:
         R, M, X = get_ternary_RMX_elements(list(cif.unique_elements))
-        CN_atom_count_data = compute_number_of_atoms_in_ternary_CN(cif.connections, CN_metrices, R, M, X)
+        CN_atom_count_data = compute_number_of_atoms_in_ternary_CN(cif.connections, CN_metrics, R, M, X)
 
     # Compute the min, max, and avg for each label. Each label has 4 methods
     min_max_avg_CN_count = compute_min_max_avg_per_label(CN_atom_count_data)
     # Find the average of the min, max, and avg across all labels
-    avg_CN_metrics = compute_global_averages_for_min_max_avg_metrices(min_max_avg_CN_metrices)
-    avg_CN_atom_count = compute_global_averages_for_min_max_avg_metrices(min_max_avg_CN_count)
+    avg_CN_metrics = compute_global_averages_for_min_max_avg_metrics(min_max_avg_CN_metrics)
+    avg_CN_atom_count = compute_global_averages_for_min_max_avg_metrics(min_max_avg_CN_count)
 
     return avg_CN_metrics, avg_CN_atom_count
 
@@ -76,16 +76,11 @@ def get_CN_binary_features(cif: Cif):
         "CN_MAX_volume_of_inscribed_sphere": avg_CN_metrics["max"]["volume_of_inscribed_sphere"],
         "CN_MAX_packing_efficiency": avg_CN_metrics["max"]["packing_efficiency"],
     }
-
-    # log.print_dict_pretty(data, "env binary")
-    # log.print_connected_points(cif.connections)
     return data
 
 
 def get_CN_ternary_features(cif: Cif):
     avg_CN_metrics, avg_CN_atom_count = get_CN_atom_count_data(cif)
-
-    # Compute average of min, max, and avg
 
     data = {
         "CN_AVG_coordination_number": avg_CN_metrics["avg"]["number_of_vertices"],

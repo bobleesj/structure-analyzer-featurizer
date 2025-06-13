@@ -1,4 +1,6 @@
 from cifkit.utils.string_parser import strip_numbers_and_symbols
+
+
 def parse_atomic_environment_from_loop(CIF_loop_values):
     # Initialize a dictionary to store element information
     atomic_env = {}

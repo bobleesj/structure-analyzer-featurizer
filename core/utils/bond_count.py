@@ -1,4 +1,5 @@
 from collections import defaultdict
+
 import numpy as np
 from cifkit.utils import string_parser
 
@@ -6,10 +7,8 @@ from cifkit.utils import string_parser
 def compute_count_first_second_min_dist(
     all_labels_connections,
 ):
-    """
-    Determine the shortest and second shortest distances from
-    each site label and their respective counts.
-    """
+    """Determine the shortest and second shortest distances from each site
+    label and their respective counts."""
     # Dictionary to hold the results
     first_second_dist_info = defaultdict(
         lambda: {
@@ -47,10 +46,8 @@ def compute_count_first_second_min_dist(
 
 
 def extract_best_labels(data):
-    """
-    Extract the best label for each element based on the shortest distance,
-    and if there's a tie, use the second shortest distance as a tiebreaker.
-    """
+    """Extract the best label for each element based on the shortest distance,
+    and if there's a tie, use the second shortest distance as a tiebreaker."""
 
     best_labels = {}
     label_counts = {}
@@ -58,9 +55,7 @@ def extract_best_labels(data):
 
     # Initialize storage for distance statistics
     for label in data:
-        element = string_parser.get_atom_type_from_label(
-            label
-        )  # Assuming label ends with a number like 'Rh1', 'Th1', etc.
+        element = string_parser.get_atom_type_from_label(label)  # Assuming label ends with a number like 'Rh1', 'Th1', etc.
         if element not in total_distances:
             total_distances[element] = {
                 "shortest_counts": [],
@@ -77,9 +72,7 @@ def extract_best_labels(data):
         # Update total distance counts
         total_distances[element]["shortest_counts"].append(details["counts"][details["shortest_dist"]])
         if "second_shortest_dist" in details:
-            total_distances[element]["second_shortest_counts"].append(
-                details["counts"].get(details["second_shortest_dist"], 0)
-            )
+            total_distances[element]["second_shortest_counts"].append(details["counts"].get(details["second_shortest_dist"], 0))
 
         # Determine best label
         if element not in best_labels:
@@ -98,9 +91,7 @@ def extract_best_labels(data):
         total_shortest = sum(total_distances[element]["shortest_counts"])
         total_second_shortest = sum(total_distances[element]["second_shortest_counts"])
         avg_shortest = total_shortest / label_counts[element]
-        avg_second_shortest = (
-            total_second_shortest / label_counts[element] if total_distances[element]["second_shortest_counts"] else 0
-        )
+        avg_second_shortest = total_second_shortest / label_counts[element] if total_distances[element]["second_shortest_counts"] else 0
 
         output[element] = {
             "label_count": label_counts[element],
@@ -116,10 +107,8 @@ def extract_best_labels(data):
 
 
 def extract_shortest_dist_with_tol(best_label_dist_info, connections, tol=0.05):
-    """
-    Compute the count of distances within a specified tolerance
-    of the shortest distance of each site label
-    """
+    """Compute the count of distances within a specified tolerance of the
+    shortest distance of each site label."""
     best_site_result = {}
 
     # Find the shortest distance form the best site label
@@ -141,10 +130,8 @@ def extract_shortest_dist_with_tol(best_label_dist_info, connections, tol=0.05):
 
 
 def extract_avg_shortest_dist_with_tol(connection_data, tol=0.05):
-    """
-    Compute the count of distances within a specified tolerance
-    of the shortest distance of each site label
-    """
+    """Compute the count of distances within a specified tolerance of the
+    shortest distance of each site label."""
 
     # Now, find the average
     site_result = defaultdict(lambda: {"shortest_dist_count_within_tol": 0})
@@ -183,10 +170,8 @@ def extract_avg_shortest_dist_with_tol(connection_data, tol=0.05):
 
 
 def get_avg_second_by_first_shortest_dist_ratio(site_dist_info, connection_data):
-    """
-    Compute the ratio of the second shortest distance to the shortest distance
-    for each site label
-    """
+    """Compute the ratio of the second shortest distance to the shortest
+    distance for each site label."""
     ratio_total_result = defaultdict(lambda: {"total_second_by_first_shortest_dist": 0.0})
 
     for site_label, data in site_dist_info.items():

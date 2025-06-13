@@ -1,7 +1,6 @@
 {
-    "exec": "black -l 120 . && npx prettier --write **/*.md && python main.py",
-    "ext": "py",
-    "ignore": ["*.pyc", "*__pycache__*"],
-    "watch": ["*.*"]
-  }
-  
+  "exec": "black -l 120 . && npx prettier --write **/*.md && python main.py",
+  "ext": "py",
+  "ignore": ["*.pyc", "*__pycache__*"],
+  "watch": ["*.*"]
+}

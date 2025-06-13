@@ -1,20 +1,22 @@
-from numpy import cos, sqrt, pi
+from numpy import cos, pi, sqrt
+from cifkit import Cif
 
 
-def compute_packing_efficiency(
-    atoms,
-    CIF_loop_values,
-    CIF_rad_dict,
-    cell_lengths,
-    cell_angles_rad,
+def compute_efficiency(
+    cif: Cif,
+    radius_dict,
 ):
-    # Initialize a dictionary for atom counts
-    atom_counts = {atom: 0 for atom in atoms}
+    """Compute the packing efficiency of a crystal structure.
 
-    # Unpack CIF loop values
-    atom_site_types = CIF_loop_values[1]
-    atom_site_symmetry_multiplicities = CIF_loop_values[2]
-
+    It usees the number of multiplicities of atoms in the CIF loop
+    values and the CIF radii dictionary to calculate the total volume
+    occupied by the atoms, and then divides it by the volume of the unit
+    cell.
+    """
+    elements = cif.unique_elements
+    atom_counts = {element: 0 for element in elements}
+    atom_site_types = cif._loop_values[1]
+    atom_site_symmetry_multiplicities = cif._loop_values[2]
     # Calculate atom counts
     for (
         atom_site_type,
@@ -22,23 +24,18 @@ def compute_packing_efficiency(
     ) in zip(atom_site_types, atom_site_symmetry_multiplicities):
         if atom_site_type in atom_counts:
             atom_counts[atom_site_type] += int(atom_site_symmetry_multiplicity)
-
     # Calculate total volume for all atom types
-    total_volume = 0
+    vol_of_atoms = 0
     for atom, count in atom_counts.items():
-        total_volume += count * (4 / 3) * pi * CIF_rad_dict[atom] ** 3
-
-    # Get the volume of the unit cell
-    vol_of_unt_cell = get_unit_cell_volume(cell_lengths, cell_angles_rad)
-
-    # Calculate packing efficiency
-    packing_eff_refined = total_volume / vol_of_unt_cell
+        vol_of_atoms += count * (4 / 3) * pi * radius_dict[atom] ** 3
+    vol_of_unt_cell = _get_unit_cell_volume(cif.unitcell_lengths, cif.unitcell_angles)
+    packing_eff_refined = vol_of_atoms / vol_of_unt_cell
 
     return round(packing_eff_refined, 5)
 
 
-def get_unit_cell_volume(lenghts, angles):
-    a_length, b_length, c_length = lenghts
+def _get_unit_cell_volume(lengths, angles):
+    a_length, b_length, c_length = lengths
     alpha_angle, beta_angle, gamma_angle = angles
 
     volume = (

@@ -1,6 +1,6 @@
-from core.utils import environment_parser
-from core.utils import element_parser
 from cifkit import Cif
+
+from core.utils import element_parser, environment_parser
 
 
 def compute_ternary_wyk_features(cif: Cif):
