@@ -1,9 +1,0 @@
-cifkit
-click
-gemmi
-matplotlib
-numpy
-openpyxl
-pandas
-scipy
-pyvista
