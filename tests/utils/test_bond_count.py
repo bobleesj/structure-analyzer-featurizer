@@ -1,7 +1,7 @@
 import pytest
 
-from SAF.utils.bond_count import (
-    compute_count_first_second_min_dist,
+from SAF.features.environment.util import (
+    count_first_second_min_dist,
     extract_avg_shortest_dist_with_tol,
     extract_best_labels,
     extract_shortest_dist_with_tol,
@@ -52,12 +52,12 @@ def binary_ThSb_cif_site_dist_info():
 
 
 def test_find_shortest_distances_binary_ThSb(binary_531015_cif, binary_ThSb_cif_site_dist_info):
-    result = compute_count_first_second_min_dist(binary_531015_cif.connections)
+    result = count_first_second_min_dist(binary_531015_cif.connections)
     assert result == binary_ThSb_cif_site_dist_info
 
 
 def test_find_shortest_distances_binary_Th7Rh3(Th7Rh3_cif, Th7Rh3_site_dist_info):
-    result = compute_count_first_second_min_dist(Th7Rh3_cif.connections)
+    result = count_first_second_min_dist(Th7Rh3_cif.connections)
     assert result == Th7Rh3_site_dist_info
 
 
@@ -72,7 +72,7 @@ def test_extract_best_labels_Th7Rh3(Th7Rh3_site_dist_info):
             "avg_shortest_dist": 2.0,
             "avg_second_shortest_dist_count": 1.0,
             "best_label": "Rh1",
-            "details": {
+            "best_label_details": {
                 "shortest_dist": 2.869,
                 "second_shortest_dist": 2.95,
                 "counts": {2.869: 2, 2.95: 1},
@@ -85,7 +85,7 @@ def test_extract_best_labels_Th7Rh3(Th7Rh3_site_dist_info):
             "avg_shortest_dist": 2.3333333333333335,
             "avg_second_shortest_dist_count": 2.0,
             "best_label": "Th2",
-            "details": {
+            "best_label_details": {
                 "shortest_dist": 2.869,
                 "second_shortest_dist": 2.95,
                 "counts": {2.869: 2, 2.95: 1},
@@ -106,7 +106,7 @@ def test_extract_best_labels_531015(
             "avg_shortest_dist": 8.0,
             "avg_second_shortest_dist_count": 6.0,
             "best_label": "Sb1",
-            "details": {
+            "best_label_details": {
                 "shortest_dist": 3.332,
                 "second_shortest_dist": 3.847,
                 "counts": {3.332: 8, 3.847: 6},
@@ -119,7 +119,7 @@ def test_extract_best_labels_531015(
             "avg_shortest_dist": 8.0,
             "avg_second_shortest_dist_count": 6.0,
             "best_label": "Th1",
-            "details": {
+            "best_label_details": {
                 "shortest_dist": 3.332,
                 "second_shortest_dist": 3.847,
                 "counts": {3.332: 8, 3.847: 6},
