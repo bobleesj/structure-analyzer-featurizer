@@ -24,6 +24,7 @@ def Dy2Co17_cif():
 def RhSb2_cif():
     cif = Cif("tests/cif/binary/RhSb2.cif", supercell_size=2)
     cif.compute_connections()
+    cif.compute_CN()
     return cif
 
 
@@ -31,6 +32,7 @@ def RhSb2_cif():
 def Th7Rh3_cif():
     cif = Cif("tests/cif/binary/Th7Rh3.cif", supercell_size=2)
     cif.compute_connections()
+    cif.compute_CN()
     return cif
 
 

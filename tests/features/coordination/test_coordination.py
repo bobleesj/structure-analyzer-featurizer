@@ -1,9 +1,9 @@
 import pytest
 
-from SAF.features.coordination import (
-    compute_global_averages_for_min_max_avg_metrics,
-    compute_min_max_avg_per_label,
-    compute_number_of_atoms_in_binary_CN,
+from SAF.features.coordination.helper import (
+    _compute_global_avg_for_min_max_avg_metrics,
+    _compute_min_max_avg_per_label,
+    _compute_number_of_atoms_in_binary_CN,
     get_CN_metrics_per_method,
 )
 from SAF.utils.element_order import get_binary_AB_elements
@@ -252,11 +252,10 @@ def RhSb2_min_max_avg_CN_metrics_from_sites():
     }
 
 
-@pytest.mark.now
 def test_find_min_max_avg_CN_metrics(RhSb2_CN_metrics_per_method, RhSb2_min_max_avg_CN_metrics_from_sites):
     """Compute the min, max, and avg of the CN metrics from each site label
     across 4 methods."""
-    result = compute_min_max_avg_per_label(RhSb2_CN_metrics_per_method)
+    result = _compute_min_max_avg_per_label(RhSb2_CN_metrics_per_method)
     for label in RhSb2_min_max_avg_CN_metrics_from_sites:
         for key, metric in RhSb2_min_max_avg_CN_metrics_from_sites[label].items():
             assert result[label][key]["min"] == pytest.approx(metric["min"], abs=0.005), f"{label}-{key} min is incorrect"
@@ -264,9 +263,8 @@ def test_find_min_max_avg_CN_metrics(RhSb2_CN_metrics_per_method, RhSb2_min_max_
             assert result[label][key]["avg"] == pytest.approx(metric["avg"], abs=0.005), f"{label}-{key} avg is incorrect"
 
 
-@pytest.mark.now
 def test_compute_global_averages(RhSb2_min_max_avg_CN_metrics_from_sites):
-    result = compute_global_averages_for_min_max_avg_metrics(RhSb2_min_max_avg_CN_metrics_from_sites)
+    result = _compute_global_avg_for_min_max_avg_metrics(RhSb2_min_max_avg_CN_metrics_from_sites)
     expected = {
         "min": {
             "volume_of_polyhedron": 15.423333333333334,
@@ -308,11 +306,10 @@ def test_compute_global_averages(RhSb2_min_max_avg_CN_metrics_from_sites):
             assert result[category][metric] == pytest.approx(value, abs=0.005)
 
 
-@pytest.mark.now
 def test_compute_number_of_atoms_in_CN(RhSb2_cif):
     CN_data = get_CN_metrics_per_method(RhSb2_cif)
     A, B = get_binary_AB_elements(list(RhSb2_cif.unique_elements))
-    result = compute_number_of_atoms_in_binary_CN(RhSb2_cif.connections, CN_data, A, B)
+    result = _compute_number_of_atoms_in_binary_CN(RhSb2_cif.connections, CN_data, A, B)
     assert result == {
         "SbI": {
             "dist_by_shortest_dist": {"A_count": 3, "B_count": 1},
@@ -333,7 +330,7 @@ def test_compute_number_of_atoms_in_CN(RhSb2_cif):
             "dist_by_Pauling_radius_sum": {"A_count": 3, "B_count": 12},
         },
     }
-    min_max_avg_result = compute_min_max_avg_per_label(result)
+    min_max_avg_result = _compute_min_max_avg_per_label(result)
     assert min_max_avg_result == {
         "SbI": {
             "A_count": {"min": 3, "max": 3, "avg": 3.0},
@@ -350,7 +347,6 @@ def test_compute_number_of_atoms_in_CN(RhSb2_cif):
     }
 
 
-@pytest.mark.now
 def test_compute_global_average_for_atom_count_in_CN():
     min_max_avg_result = {
         "SbI": {
@@ -366,9 +362,7 @@ def test_compute_global_average_for_atom_count_in_CN():
             "B_count": {"min": 1, "max": 12, "avg": 3.75},
         },
     }
-
-    result = compute_global_averages_for_min_max_avg_metrics(min_max_avg_result)
-
+    result = _compute_global_avg_for_min_max_avg_metrics(min_max_avg_result)
     expected = {
         "min": {"A_count": 2.3333333333333335, "B_count": 2.6666666666666665},
         "max": {"A_count": 2.3333333333333335, "B_count": 9.666666666666666},
