@@ -1,8 +1,8 @@
 from cifkit import Cif
 
 from cifkit.data import radius_optimization as radius_opt
-from core.utils import bond, element_order, packing
-from core.features.interatomic import helper
+from SAF.utils import bond, element_order, packing
+from SAF.features.interatomic import helper
 
 
 def compute_features(cif: Cif):

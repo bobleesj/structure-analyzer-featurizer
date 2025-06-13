@@ -1,6 +1,6 @@
 import itertools
 
-from core.config import get_labels
+from SAF.config import get_labels
 
 
 def get_binary_AB_elements(elements: list[str]) -> tuple[str, str]:

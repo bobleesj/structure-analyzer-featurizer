@@ -1,6 +1,6 @@
 import pytest
 from cifkit import Cif
-from core.features.interatomic.ternary import (
+from SAF.features.interatomic.ternary import (
     compute_features,
 )
 

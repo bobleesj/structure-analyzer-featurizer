@@ -15,7 +15,7 @@
 """Python package to generate geometric features of interatomic distances, atomic environment information, and coordination numbers from a folder containing .cif files."""
 
 # package version
-from structure_analyzer_featurizer.version import __version__  # noqa
+from SAF.version import __version__  # noqa
 
 # silence the pyflakes syntax checker
 assert __version__ or True

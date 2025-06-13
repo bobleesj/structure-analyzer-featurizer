@@ -1,5 +1,5 @@
 import pytest
-from core.features.interatomic.binary import (
+from SAF.features.interatomic.binary import (
     compute_features,
 )
 

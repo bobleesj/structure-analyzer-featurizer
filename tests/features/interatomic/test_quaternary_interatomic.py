@@ -1,5 +1,5 @@
 import pytest
-from core.features.interatomic.quaternary import (
+from SAF.features.interatomic.quaternary import (
     compute_features,
 )
 
