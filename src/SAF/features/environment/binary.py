@@ -6,14 +6,14 @@ from SAF.features.environment.binary_helper import (
     get_A_and_B_count_in_best_label_per_element,
     get_avg_A_and_B_count_in_per_element,
 )
-from SAF.utils import element_order
-from SAF.utils.bond_count import (
-    compute_count_first_second_min_dist,
+from SAF.features.environment.util import (
+    count_first_second_min_dist,
     extract_avg_shortest_dist_with_tol,
     extract_best_labels,
     extract_shortest_dist_with_tol,
     get_avg_second_by_first_shortest_dist_ratio,
 )
+from SAF.utils import element_order
 
 
 def compute_features(cif: Cif):
@@ -36,7 +36,7 @@ def compute_features(cif: Cif):
         B_avg_count_at_B_shortest_dist,
     ) = get_avg_A_and_B_count_in_per_element(connections, A, B)
     # Compute the first, second shortest distances and count
-    first_second_dist_per_label_data = compute_count_first_second_min_dist(connections)
+    first_second_dist_per_label_data = count_first_second_min_dist(connections)
     # Compute the best site for each label, determined by the shortest distance
     best_site_data = extract_best_labels(first_second_dist_per_label_data)
     # Tol result

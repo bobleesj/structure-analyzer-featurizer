@@ -4,7 +4,7 @@ import numpy as np
 from cifkit.utils import string_parser
 
 
-def compute_count_first_second_min_dist(
+def count_first_second_min_dist(
     all_labels_connections,
 ):
     """Determine the shortest and second shortest distances from each site

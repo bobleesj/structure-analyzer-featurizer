@@ -1,6 +1,6 @@
 from cifkit.utils import string_parser
 
-from SAF.utils.bond_count import compute_count_first_second_min_dist, extract_best_labels, get_site_labels_per_element
+from SAF.features.environment.util import count_first_second_min_dist, extract_best_labels, get_site_labels_per_element
 
 
 def compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_best_label):
@@ -77,7 +77,7 @@ def get_A_and_B_count_in_best_label_per_element(connections, A, B):
     A_count_at_B_shortest_dist = 0
     B_count_at_A_shortest_dist = 0
     B_count_at_B_shortest_dist = 0
-    dist_count_per_label = compute_count_first_second_min_dist(connections)
+    dist_count_per_label = count_first_second_min_dist(connections)
     best_label_dict = extract_best_labels(dist_count_per_label)
     best_A_site_label = best_label_dict[A]["best_label"]
     best_A_shortest_dist = best_label_dict[A]["details"]["shortest_dist"]
@@ -114,7 +114,7 @@ def get_avg_A_and_B_count_in_per_element(connections, A, B):
     B_total_count_at_A_shortest_dist = 0
     B_total_count_at_B_shortest_dist = 0
 
-    dist_count_per_label = compute_count_first_second_min_dist(connections)
+    dist_count_per_label = count_first_second_min_dist(connections)
     # Use the best label dict to parse the number of site labels for A and B
     best_labels = extract_best_labels(dist_count_per_label)
     A_site_label_count = best_labels[A]["label_count"]

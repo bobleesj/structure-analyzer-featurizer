@@ -1,13 +1,13 @@
 from cifkit import Cif
 
-from SAF.features.environment.ternary import (
+from SAF.features.environment.ternary_helper import (
     compute_avg_homoatomic_dist_by_site_shortest_dist,
     compute_homoatomic_dist_by_site_shortest_dist,
     get_avg_R_and_M_and_X_count_in_per_element,
     get_R_and_M_and_X_count_in_best_label_per_element,
 )
-from SAF.utils.bond_count import (
-    compute_count_first_second_min_dist,
+from SAF.features.environment.util import (
+    count_first_second_min_dist,
     extract_avg_shortest_dist_with_tol,
     extract_best_labels,
     extract_shortest_dist_with_tol,
@@ -16,10 +16,9 @@ from SAF.utils.bond_count import (
 from SAF.utils.element_order import get_ternary_RMX_elements
 
 
-def compute_ternary_env_features(cif: Cif):
+def compute_features(cif: Cif):
     connections = cif.connections
     R, M, X = get_ternary_RMX_elements(list(cif.unique_elements))
-
     (
         R_avg_homoatomic_dist_by_shortest_dist,
         M_avg_homoatomic_dist_by_shortest_dist,
@@ -36,7 +35,6 @@ def compute_ternary_env_features(cif: Cif):
         X_count_at_M_shortest_dist,
         X_count_at_X_shortest_dist,
     ) = get_R_and_M_and_X_count_in_best_label_per_element(connections, R, M, X)
-
     (
         R_avg_count_at_R_shorest_dist,
         R_avg_count_at_M_shorest_dist,
@@ -48,9 +46,8 @@ def compute_ternary_env_features(cif: Cif):
         X_avg_count_at_M_shorest_dist,
         X_avg_count_at_X_shorest_dist,
     ) = get_avg_R_and_M_and_X_count_in_per_element(connections, R, M, X)
-
     # Compute the first, second shortest distances and count
-    first_second_dist_per_label_data = compute_count_first_second_min_dist(connections)
+    first_second_dist_per_label_data = count_first_second_min_dist(connections)
     # Compute the best site for each label, determined by the shortest distance
     best_site_data = extract_best_labels(first_second_dist_per_label_data)
     # Tol result

@@ -1,7 +1,7 @@
 import pytest
 
-from SAF.utils.bond_count import (
-    compute_count_first_second_min_dist,
+from SAF.features.environment.util import (
+    count_first_second_min_dist,
     extract_avg_shortest_dist_with_tol,
     extract_best_labels,
     extract_shortest_dist_with_tol,
@@ -52,12 +52,12 @@ def binary_ThSb_cif_site_dist_info():
 
 
 def test_find_shortest_distances_binary_ThSb(binary_531015_cif, binary_ThSb_cif_site_dist_info):
-    result = compute_count_first_second_min_dist(binary_531015_cif.connections)
+    result = count_first_second_min_dist(binary_531015_cif.connections)
     assert result == binary_ThSb_cif_site_dist_info
 
 
 def test_find_shortest_distances_binary_Th7Rh3(Th7Rh3_cif, Th7Rh3_site_dist_info):
-    result = compute_count_first_second_min_dist(Th7Rh3_cif.connections)
+    result = count_first_second_min_dist(Th7Rh3_cif.connections)
     assert result == Th7Rh3_site_dist_info
 
 

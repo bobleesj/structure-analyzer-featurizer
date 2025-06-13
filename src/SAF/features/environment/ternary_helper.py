@@ -1,6 +1,6 @@
 from cifkit.utils import string_parser
 
-from SAF.utils.bond_count import compute_count_first_second_min_dist, extract_best_labels, get_site_labels_per_element
+from SAF.features.environment.util import count_first_second_min_dist, extract_best_labels, get_site_labels_per_element
 
 
 def compute_homoatomic_dist_by_site_shortest_dist(connections, R_best_label, M_best_label, X_best_label):
@@ -9,19 +9,16 @@ def compute_homoatomic_dist_by_site_shortest_dist(connections, R_best_label, M_b
     R = string_parser.get_atom_type_from_label(R_best_label)
     M = string_parser.get_atom_type_from_label(M_best_label)
     X = string_parser.get_atom_type_from_label(X_best_label)
-
     R_homoatomic_shortest_dist = float("inf")
     M_homoatomic_shortest_dist = float("inf")
     X_homoatomic_shortest_dist = float("inf")
     R_min_dist = float("inf")
     M_min_dist = float("inf")
     X_min_dist = float("inf")
-
     # Process each site
     for site_label, site_connections in connections.items():
         # Compute the shortest distance at this site
         current_min_dist = min([dist for _, dist, _, _ in site_connections])
-
         # Update the minimum distances for A and B if this is their best site
         if site_label == R_best_label:
             R_min_dist = current_min_dist
@@ -107,7 +104,7 @@ def get_R_and_M_and_X_count_in_best_label_per_element(connections, R, M, X):
     X_count_at_M_shortest_dist = 0
     X_count_at_X_shortest_dist = 0
 
-    dist_count_per_label = compute_count_first_second_min_dist(connections)
+    dist_count_per_label = count_first_second_min_dist(connections)
     best_label_dict = extract_best_labels(dist_count_per_label)
 
     best_R_site_label = best_label_dict[R]["best_label"]
@@ -179,7 +176,7 @@ def get_avg_R_and_M_and_X_count_in_per_element(connections, R, M, X):
     X_total_count_at_M_shortest_dist = 0
     X_total_count_at_X_shortest_dist = 0
 
-    dist_count_per_label = compute_count_first_second_min_dist(connections)
+    dist_count_per_label = count_first_second_min_dist(connections)
     # Use the best label dict to parse the number of site labels for R, M, and X
     best_labels = extract_best_labels(dist_count_per_label)
     R_site_label_count = best_labels[R]["label_count"]

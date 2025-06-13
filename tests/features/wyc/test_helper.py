@@ -1,9 +1,6 @@
 from cifkit import Cif
-from SAF.features.wyc.helper import (
-    get_binary_site_info,
-    get_ternary_site_info,
-    _parse_site_data,
-)
+
+from SAF.features.wyc.helper import _parse_site_data, get_binary_site_info, get_ternary_site_info
 
 
 def test__parse_site_data():
