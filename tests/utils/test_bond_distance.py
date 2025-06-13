@@ -1,5 +1,4 @@
-import pytest
-from core.utils.bond import get_min_distances_by_labels
+from SAF.utils.bond import get_min_distances_by_labels
 
 binary_sample_data = {
     ("Th", "Th"): 1.1,
