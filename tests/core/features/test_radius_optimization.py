@@ -1,4 +1,4 @@
-from core.utils import bond, element_parser, packing
+from core.utils import bond, element_order, packing
 from cifkit.data import radius_optimization as radius_opt
 import pytest
 

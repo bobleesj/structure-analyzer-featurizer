@@ -37,3 +37,26 @@ def get_ternary_RMX_elements(elements: list[str]) -> tuple[str, str, str]:
             return perm
 
     raise ValueError(f"Could not determine RMX ordering for elements: {elements}")
+
+
+def get_quaternary_ABCD_elements(elements: list[str]) -> tuple[str, str, str, str]:
+    """Get A, B, C, D elements from a list of four elements using label groups."""
+    if len(elements) != 4:
+        raise ValueError("Input must be a list of exactly four elements.")
+
+    labels = get_labels()[4]
+    A_labels = labels["A"]
+    B_labels = labels["B"]
+    C_labels = labels["C"]
+    D_labels = labels["D"]
+
+    for perm in itertools.permutations(elements):
+        if (
+            perm[0] in A_labels and
+            perm[1] in B_labels and
+            perm[2] in C_labels and
+            perm[3] in D_labels
+        ):
+            return perm
+
+    raise ValueError(f"Could not determine A, B, C,D ordering for elements: {elements}")

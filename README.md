@@ -23,6 +23,8 @@ data scientists to generate structural features from `.cif` file. These features
 were engineered to be used as input data for ML models to predict crystal
 structures and their properties.
 
+> SAF is maintained and develoepd with the help of `scikit-package` (https://scikit-package.github.io/scikit-package/)
+
 ## Features
 
 - 94 numerical features for binary compounds saved in `.csv`
@@ -41,8 +43,8 @@ files containing the following elements: `Si` `Sc` `Fe` `Co` `Ni` `Ga` `Ge` `Y`
 `Nb` `P` `Pb` `Rb` `Re` `S` `Se` `Sr` `Te` `Ti` `Tl` `V` `W` `Zn` `Zr` `Tc` `N`
 `O` `F` `Cl` `Br` `I` `Sm`
 
-:Note: The Pauling CN 12 radii values for some gases [N, O, F, Cl, Br and I] as
-well as Tc and Sm were interpolated using Gaussian Process Regression. The CIF
+:Note: The Pauling CN 12 radii values for some gases [`N`, `O`, `F`, `Cl`, `Br` and `I`] as
+well as `Tc` and `Sm` were interpolated using Gaussian Process Regression. The CIF
 radii for the aforementioned gases were compiled averages of low-temperature
 structures from PCD.
 
@@ -73,8 +75,7 @@ def get_radius_data():
 
 For binary compounds, atoms are labeled as `AB`, and for ternary compounds,
 atoms are labeled as `RMX`, where `R=A` and `M=B`. If you want to customize
-this, modify the `get_binary_AB_labels` or `get_ternary_RMX_labels` function in
-`core/config.py` as shown below:
+this, add more elements in `core/config.py` as shown below:
 
 ```python
 A_labels = ["Sc", "Y", "La", "Ce", "Pr", "Nd", "Sm",
@@ -84,8 +85,6 @@ M_labels = ["Fe", "Co", "Ni", "Ru", "Rh", "Pd", "Os", "Ir", "Pt"]
 ```
 
 ## Getting started
-
-Start with the script via
 
 ```bash
 python main.py
@@ -157,14 +156,11 @@ The recommended way for installation is Conda
 ```bash
 git clone https://github.com/bobleesj/structure-analyzer-featurizer.git
 cd structure-analyzer-featurizer
-conda create -n cif python=3.12
-conda activate cif
+conda create -n SAF-env python=3.12
+conda activate SAF
 pip install -r requirements.txt
 python main.py
 ```
-
-If you are new to Conda (Python package manager), you may refer to
-[Intro to Python package manager for beginners (Ft. Conda with Cheatsheet](https://bobleesj.github.io/tutorial/2024/02/26/intro-to-python-package-manager.html).
 
 ## Contributors
 

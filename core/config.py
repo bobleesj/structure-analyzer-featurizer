@@ -158,9 +158,9 @@ def get_labels() -> dict[int, dict[str, list[str]]]:
             ],
         },
         4: {
-            "A": ["La", "Ce", "Pr", "Nd", "Pm"],  
-            "B": ["Fe", "Co", "Ni", "Mn", "Cr"],  
-            "C": ["Cu", "Zn", "Ag", "Au", "Hg"],  
-            "D": ["O", "S", "Se", "Te", "F"],  
+            "A": ["Tb", "Ce", "Pr", "Nd", "Pm"],
+            "B": ["Rh", "Co", "Ni", "Mn", "Cr"],
+            "C": ["In", "Zn", "Ag", "Au", "Hg"],
+            "D": ["Ge", "S", "Se", "Te", "F"],
         },
     }

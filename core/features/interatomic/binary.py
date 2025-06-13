@@ -1,13 +1,13 @@
 from cifkit import Cif
 
 from cifkit.data import radius_optimization as radius_opt
-from core.utils import bond, element_parser, packing
+from core.utils import bond, element_order, packing
 from core.features.interatomic import helper
 
 
 def compute_features(cif: Cif):
     elements = list(cif.unique_elements)
-    A, B = element_parser.get_binary_AB_elements(elements)
+    A, B = element_order.get_binary_AB_elements(elements)
     A_CIF_rad = cif.radius_values[A]["CIF_radius"]
     B_CIF_rad = cif.radius_values[B]["CIF_radius"]
     CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius([A, B], cif.shortest_bond_pair_distance, elements_ordered=False)
