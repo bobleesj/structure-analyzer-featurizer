@@ -4,15 +4,9 @@ from SAF.features.wyc import helper
 from SAF.utils import element_order
 
 
-from cifkit import Cif
-
-from SAF.features.wyc import helper
-from SAF.utils import element_order
-
-
 def compute_features(cif: Cif):
     elements = list(cif.unique_elements)
-    A, B, C, D = element_order.get_quaternary_ABCD_elements(elements)    
+    A, B, C, D = element_order.get_quaternary_ABCD_elements(elements)
     A_env, B_env, C_env, D_env = helper.get_quaternary_site_info(cif._loop_values, A, B, C, D)
     A_sites_total = A_env["sites"]
     B_sites_total = B_env["sites"]

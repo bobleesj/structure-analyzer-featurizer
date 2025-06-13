@@ -1,5 +1,6 @@
 import pytest
-from core.utils.bond_count import (
+
+from SAF.utils.bond_count import (
     compute_count_first_second_min_dist,
     extract_avg_shortest_dist_with_tol,
     extract_best_labels,
@@ -138,7 +139,7 @@ def test_extract_shortest_dist_with_tol(binary_531015_cif, binary_ThSb_cif_site_
 
 
 @pytest.mark.fast
-def test_extract_avg_shortest_dist_with_tol(Th7Rh3_cif):
+def test_extract_avg_shortest_dist_with_tol_Th7Rh3(Th7Rh3_cif):
     result = extract_avg_shortest_dist_with_tol(Th7Rh3_cif.connections)
 
     assert result == {
@@ -169,7 +170,7 @@ def test_extract_avg_shortest_dist_with_tol(binary_531015_cif):
 
 
 @pytest.mark.fast
-def test_get_first_by_second_shortest_dist_ratio(binary_ThSb_cif_site_dist_info, binary_531015_cif):
+def test_get_first_by_second_shortest_dist_ratio_ThSb(binary_ThSb_cif_site_dist_info, binary_531015_cif):
     result = get_avg_second_by_first_shortest_dist_ratio(binary_ThSb_cif_site_dist_info, binary_531015_cif.connections)
 
     assert result == {
@@ -179,7 +180,7 @@ def test_get_first_by_second_shortest_dist_ratio(binary_ThSb_cif_site_dist_info,
 
 
 @pytest.mark.fast
-def test_get_first_by_second_shortest_dist_ratio(Th7Rh3_site_dist_info, Th7Rh3_cif):
+def test_get_first_by_second_shortest_dist_ratio_Th7Rh3(Th7Rh3_site_dist_info, Th7Rh3_cif):
     result = get_avg_second_by_first_shortest_dist_ratio(Th7Rh3_site_dist_info, Th7Rh3_cif.connections)
 
     assert result == {
