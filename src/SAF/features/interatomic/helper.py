@@ -35,9 +35,7 @@ def get_shortest_homo_heteroatomic_features(
 ):
     return {
         "shortest_homoatomic_dist_by_2_by_atom_size": (shortest_homoatomic_dist / 2) / rad_dict[shortest_homo_key],
-        "shortest_homoatomic_dist_by_2_by_refined_atom_sizes": (shortest_homoatomic_dist / 2)
-        / refined_rad_dict[shortest_homo_key],
+        "shortest_homoatomic_dist_by_2_by_refined_atom_sizes": (shortest_homoatomic_dist / 2) / refined_rad_dict[shortest_homo_key],
         "shortest_heteroatomic_dist_by_sum_of_atom_sizes": shortest_heteroatomic_dist / rad_dict[shortest_hetero_key],
-        "shortest_heteroatomic_dist_by_refined_atom_sizes": shortest_heteroatomic_dist
-        / refined_rad_dict[shortest_hetero_key],
+        "shortest_heteroatomic_dist_by_refined_atom_sizes": shortest_heteroatomic_dist / refined_rad_dict[shortest_hetero_key],
     }

@@ -1,5 +1,6 @@
 from cifkit import Cif
-from core.utils import element_order, environment_parser
+
+from SAF.utils import element_order, environment_parser
 
 
 def compute_ternary_wyk_features(cif: Cif):
