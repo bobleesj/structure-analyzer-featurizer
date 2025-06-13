@@ -171,7 +171,7 @@ def _compute_global_avg_for_min_max_avg_metrics(min_max_avg_result):
     global_avg = {"min": {}, "max": {}, "avg": {}}
     for stat in ["min", "max", "avg"]:
         for metric, sum_value in global_sums[stat].items():
-            global_avg[stat][metric] = sum_value / global_counts[stat][metric]
+            global_avg[stat][metric] = float(sum_value / global_counts[stat][metric])
 
     return global_avg
 

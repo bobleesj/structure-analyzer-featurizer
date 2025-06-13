@@ -368,7 +368,6 @@ def test_compute_global_average_for_atom_count_in_CN():
         "max": {"A_count": 2.3333333333333335, "B_count": 9.666666666666666},
         "avg": {"A_count": 2.3333333333333335, "B_count": 4.416666666666667},
     }
-
     for category in ["min", "max", "avg"]:
         for metric, value in expected[category].items():
             assert result[category][metric] == pytest.approx(value, abs=0.005)
