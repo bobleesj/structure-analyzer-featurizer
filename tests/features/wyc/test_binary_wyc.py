@@ -1,4 +1,5 @@
 import pytest
+
 from SAF.features.wyc.binary import compute_features
 
 

@@ -1,7 +1,7 @@
 from cifkit.utils.string_parser import strip_numbers_and_symbols
 
 
-def parse_site_data(loop_values):
+def _parse_site_data(loop_values):
     # Initialize a dictionary to store element information
     data = {}
     # Get the number of atoms
@@ -30,7 +30,7 @@ def parse_site_data(loop_values):
 
 
 def get_binary_site_info(loop_values, A, B):
-    atomic_env = parse_site_data(loop_values)
+    atomic_env = _parse_site_data(loop_values)
     A_env, B_env = None, None
     # Check if the desired elements are present
     if A in atomic_env:
@@ -41,7 +41,7 @@ def get_binary_site_info(loop_values, A, B):
 
 
 def get_ternary_site_info(loop_values, R, M, X):
-    atomic_env = parse_site_data(loop_values)
+    atomic_env = _parse_site_data(loop_values)
     R_env, M_env, X_env = None, None, None
     # Check if the desired elements are present
     if R in atomic_env:
@@ -51,3 +51,18 @@ def get_ternary_site_info(loop_values, R, M, X):
     if X in atomic_env:
         X_env = atomic_env[X]
     return R_env, M_env, X_env
+
+
+def get_quaternary_site_info(loop_values, A, B, C, D):
+    atomic_env = _parse_site_data(loop_values)
+    A_env, B_env, C_env, D_env = None, None, None, None
+    # Check if the desired elements are present
+    if A in atomic_env:
+        A_env = atomic_env[A]
+    if B in atomic_env:
+        B_env = atomic_env[B]
+    if C in atomic_env:
+        C_env = atomic_env[C]
+    if D in atomic_env:
+        D_env = atomic_env[D]
+    return A_env, B_env, C_env, D_env
