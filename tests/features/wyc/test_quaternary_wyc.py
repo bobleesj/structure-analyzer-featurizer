@@ -1,5 +1,3 @@
-import pytest
-
 from SAF.features.wyc.quaternary import compute_features
 
 

@@ -1,4 +1,3 @@
-import numpy as np
 import pytest
 
 from SAF.features.coordination.quaternary import compute_features

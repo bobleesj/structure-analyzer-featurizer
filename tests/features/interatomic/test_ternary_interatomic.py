@@ -1,6 +1,5 @@
 import numpy as np
 import pytest
-from cifkit import Cif
 
 from SAF.features.interatomic.ternary import compute_features
 

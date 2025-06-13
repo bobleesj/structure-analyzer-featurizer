@@ -39,7 +39,8 @@ def get_CN_metrics_per_method(cif: Cif):
 
 
 def _compute_number_of_atoms_in_binary_CN(label_connections, CN_metrics, A, B):
-    """Compute the number of A, B atoms for each label, and 4 methods per label."""
+    """Compute the number of A, B atoms for each label, and 4 methods per
+    label."""
     CN_atom_count_data = {}
     for site_label, method_data in CN_metrics.items():
         CN_atom_count_data[site_label] = {}
@@ -64,7 +65,8 @@ def _compute_number_of_atoms_in_binary_CN(label_connections, CN_metrics, A, B):
 
 
 def _compute_number_of_atoms_in_ternary_CN(label_connections, CN_metrics, R, M, X):
-    """Compute the number of R, M, X atoms for each label, and 4 methods per label."""
+    """Compute the number of R, M, X atoms for each label, and 4 methods per
+    label."""
     CN_atom_count_data = {}
     for site_label, method_data in CN_metrics.items():
         CN_atom_count_data[site_label] = {}
@@ -93,7 +95,8 @@ def _compute_number_of_atoms_in_ternary_CN(label_connections, CN_metrics, R, M, 
 
 
 def _compute_number_of_atoms_in_quaternary_CN(label_connections, CN_metrics, A, B, C, D):
-    """Compute the number of A, B, C, D atoms for each label, and 4 methods per label."""
+    """Compute the number of A, B, C, D atoms for each label, and 4 methods per
+    label."""
     CN_atom_count_data = {}
     for site_label, method_data in CN_metrics.items():
         CN_atom_count_data[site_label] = {}
@@ -126,10 +129,8 @@ def _compute_number_of_atoms_in_quaternary_CN(label_connections, CN_metrics, A, 
 
 
 def _compute_min_max_avg_per_atomic_label(site_data):
-    """
-    Calculate the minimum, maximum, and average of the 4 methods for each 
-    atomic site label, e.g., "Sb1", "Sb2".
-    """
+    """Calculate the minimum, maximum, and average of the 4 methods for each
+    atomic site label, e.g., "Sb1", "Sb2"."""
     min_max_avg_per_site = {}
     # Iterate over each element (like Sb1, Th1, etc.)
     for label in site_data:
@@ -153,12 +154,13 @@ def _compute_min_max_avg_per_atomic_label(site_data):
 
 
 def _compute_global_avg_for_min_max_avg_metrics(min_max_avg_result):
-    """
-    Calculate global averages of all minimums, maximums, and averages across
-    all labels from a pre-computed min-max-avg result. From the above function, we
-    copmuted the min, max, and avg for each label, now we compute the global
-    averages across all labels. This is important for ML since we are trying 
-    capture the global min, max, and avg of the coordination environment values.
+    """Calculate global averages of all minimums, maximums, and averages across
+    all labels from a pre-computed min-max-avg result.
+
+    From the above function, we copmuted the min, max, and avg for each
+    label, now we compute the global averages across all labels. This is
+    important for ML since we are trying capture the global min, max,
+    and avg of the coordination environment values.
     """
     global_sums = {"min": {}, "max": {}, "avg": {}}
     global_counts = {"min": {}, "max": {}, "avg": {}}
@@ -195,7 +197,7 @@ def get_CN_atom_count_data(cif: Cif):
         CN_atom_count_data = _compute_number_of_atoms_in_quaternary_CN(cif.connections, CN_metrics, A, B, C, D)
     # Compute the min, max, and avg for each label. Each label has 4 methods
     min_max_avg_CN_count = _compute_min_max_avg_per_atomic_label(CN_atom_count_data)
-    # Find the average of the min, max, and avg from 
+    # Find the average of the min, max, and avg from
     avg_CN_metrics = _compute_global_avg_for_min_max_avg_metrics(min_max_avg_CN_metrics)
     avg_CN_atom_count = _compute_global_avg_for_min_max_avg_metrics(min_max_avg_CN_count)
     return avg_CN_metrics, avg_CN_atom_count

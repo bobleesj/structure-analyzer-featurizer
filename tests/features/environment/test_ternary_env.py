@@ -1,4 +1,3 @@
-import numpy as np
 from deepdiff import DeepDiff
 
 from SAF.features.environment.ternary import compute_features
