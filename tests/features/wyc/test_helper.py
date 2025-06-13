@@ -1,15 +1,15 @@
 from cifkit import Cif
-from core.utils.environment_parser import (
-    get_binary_atomic_environment_info,
-    get_ternary_atomic_environment_info,
-    parse_atomic_environment_from_loop,
+from SAF.features.wyc.helper import (
+    get_binary_site_info,
+    get_ternary_site_info,
+    _parse_site_data,
 )
 
 
-def test_parse_atomic_environment_from_loop():
+def test__parse_site_data():
     file_path = "tests/cif/binary/Th7Rh3.cif"
     cif = Cif(file_path)
-    atomic_env = parse_atomic_environment_from_loop(cif._loop_values)
+    atomic_env = _parse_site_data(cif._loop_values)
 
     assert atomic_env == {
         "Rh": {
@@ -27,10 +27,10 @@ def test_parse_atomic_environment_from_loop():
     }
 
 
-def test_get_binary_atomic_environment_info():
+def test_get_binary_site_info():
     file_path = "tests/cif/binary/Th7Rh3.cif"
     cif = Cif(file_path)
-    A_info, B_info = get_binary_atomic_environment_info(cif._loop_values, "Th", "Rh")
+    A_info, B_info = get_binary_site_info(cif._loop_values, "Th", "Rh")
 
     assert A_info == {
         "sites": 3,
@@ -46,10 +46,10 @@ def test_get_binary_atomic_environment_info():
     }
 
 
-def test_get_ternary_atomic_environment_info():
+def test_get_ternary_site_info():
     file_path = "tests/cif/ternary/URhIn.cif"
     cif = Cif(file_path)
-    R_env, M_env, X_env = get_ternary_atomic_environment_info(cif._loop_values, "U", "Rh", "In")
+    R_env, M_env, X_env = get_ternary_site_info(cif._loop_values, "U", "Rh", "In")
 
     assert R_env == {
         "sites": 1,

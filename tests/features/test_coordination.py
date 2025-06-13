@@ -1,11 +1,12 @@
 import pytest
-from core.features.coordination import (
+
+from SAF.features.coordination import (
     compute_global_averages_for_min_max_avg_metrics,
     compute_min_max_avg_per_label,
     compute_number_of_atoms_in_binary_CN,
     get_CN_metrics_per_method,
 )
-from core.utils.element_order import get_binary_AB_elements
+from SAF.utils.element_order import get_binary_AB_elements
 
 
 @pytest.fixture(scope="function")
