@@ -12,11 +12,11 @@ def count_first_second_min_dist(
 
     Examples
     --------
-    >>> all_labels_connections = {
+    >>> connections = {
     ...     "Rh1": [("Rh1", 2.0, "Rh1", "Rh1"), ("Rh1", 3.0, "Rh1", "Rh2")],
     ...     "Rh2": [("Rh2", 1.5, "Rh2", "Rh1"), ("Rh2", 2.5, "Rh2", "Rh2")],
     ... }
-    >>> result = count_first_second_min_dist(all_labels_connections)
+    >>> result = count_first_second_min_dist(connections)
     >>> print(result)
     {"Rh1": {"shortest_dist": 2.0, "second_shortest_dist": 3.0, "counts": {2.0: 1, 3.0: 1}},
      "Rh2": {"shortest_dist": 1.5, "second_shortest_dist": 2.5, "counts": {1.5: 1, 2.5: 1}}}
@@ -52,7 +52,52 @@ def count_first_second_min_dist(
 
 def extract_best_labels(data):
     """Extract the best label for each element based on the shortest distance,
-    and if there's a tie, use the second shortest distance as a tiebreaker."""
+    and if there's a tie, use the second shortest distance as a tiebreaker.
+
+    Attributes
+    ----------
+    data : first_second_dist_per_site_data
+
+    Examples
+    --------
+    >>> data = {
+    ...     "In1": {"shortest_dist": 2.697, "second_shortest_dist": 2.852, "counts": {2.697: 2, 2.852: 2}},
+    ...     "U1": {"shortest_dist": 2.983, "second_shortest_dist": 2.984, "counts": {2.983: 3, 2.984: 1}},
+    ...     "Rh1": {"shortest_dist": 2.852, "second_shortest_dist": 2.853, "counts": {2.852: 2, 2.853: 1}},
+    ...     "Rh2": {"shortest_dist": 2.697, "second_shortest_dist": 3.046, "counts": {2.697: 6, 3.046: 3}},
+    ...     }
+    >>> result = extract_best_labels(data)
+    >>> print(result)
+    {
+        "In": {
+            "label_count": 1,
+            "shortest_dist_total_count": 2,
+            "second_shortest_dist_count": 2,
+            "avg_shortest_dist": 2.0,
+            "avg_second_shortest_dist_count": 2.0,
+            "best_label": "In1",
+            "best_label_details": {"shortest_dist": 2.697, "second_shortest_dist": 2.852, "counts": {2.697: 2, 2.852: 2}},
+        },
+        "U": {
+            "label_count": 1,
+            "shortest_dist_total_count": 3,
+            "second_shortest_dist_count": 1,
+            "avg_shortest_dist": 3.0,
+            "avg_second_shortest_dist_count": 1.0,
+            "best_label": "U1",
+            "best_label_details": {"shortest_dist": 2.983, "second_shortest_dist": 2.984, "counts": {2.983: 3, 2.984: 1}},
+        },
+        "Rh": {
+            "label_count": 2,
+            "shortest_dist_total_count": 8,
+            "second_shortest_dist_count": 4,
+            "avg_shortest_dist": 4.0,
+            "avg_second_shortest_dist_count": 2.0,
+            "best_label": "Rh2",
+            "best_label_details": {"shortest_dist": 2.697, "second_shortest_dist": 3.046, "counts": {2.697: 6, 3.046: 3}},
+        },
+    }
+    """
     best_labels = {}
     label_counts = {}
     total_distances = {}
@@ -97,7 +142,7 @@ def extract_best_labels(data):
             "avg_shortest_dist": avg_shortest,
             "avg_second_shortest_dist_count": avg_second_shortest,
             "best_label": label,
-            "details": details,
+            "best_label_details": details,
         }
     return output
 
@@ -110,7 +155,7 @@ def extract_shortest_dist_with_tol(best_label_dist_info, connections, tol=0.05):
     # Find the shortest distance form the best site label
     for element, info in best_label_dist_info.items():
         best_site_shortest_dist_count_within_tol = 0
-        best_site_min_dist = best_label_dist_info[element]["details"]["shortest_dist"]
+        best_site_min_dist = best_label_dist_info[element]["best_label_details"]["shortest_dist"]
         best_site_label = best_label_dist_info[element]["best_label"]
         best_site_min_dist_with_tol = best_site_min_dist * (1 + tol)
         for connection in connections[best_site_label]:
@@ -126,24 +171,20 @@ def extract_shortest_dist_with_tol(best_label_dist_info, connections, tol=0.05):
 def extract_avg_shortest_dist_with_tol(connection_data, tol=0.05):
     """Compute the count of distances within a specified tolerance of the
     shortest distance of each site label."""
-
-    # Now, find the average
     site_result = defaultdict(lambda: {"shortest_dist_count_within_tol": 0})
     for site_label, connections in connection_data.items():
         site_result[site_label] = {}
         count_within_tol = 0
         min_dist_per_site_label = connections[0][1]
         site_min_dist_with_tol = min_dist_per_site_label * (1 + tol)
-
         for connection in connections:
             dist = connection[1]
             if dist <= site_min_dist_with_tol:
                 count_within_tol += 1
-
         site_result[site_label] = {"shortest_dist_count_within_tol": count_within_tol}
     # Step 2: Aggregate counts by element and compute averages
     avg_result = defaultdict(lambda: {"total_shortest_dist_within_tol_count": 0})
-    element_to_site_labels = get_site_labels_per_element(connection_data)
+    element_to_site_labels = _get_site_labels_per_element(connection_data)
     for site_label, result in site_result.items():
         element = string_parser.get_atom_type_from_label(site_label)
         if site_label in element_to_site_labels[element]:
@@ -165,7 +206,7 @@ def get_avg_second_by_first_shortest_dist_ratio(site_dist_info, connection_data)
         element = string_parser.get_atom_type_from_label(site_label)
         ratio = data["second_shortest_dist"] / data["shortest_dist"]
         ratio_total_result[element]["total_second_by_first_shortest_dist"] += ratio
-    element_to_site_labels = get_site_labels_per_element(connection_data)
+    element_to_site_labels = _get_site_labels_per_element(connection_data)
     ratio_avg_result = {}
     for element, result in ratio_total_result.items():
         num_sites = len(element_to_site_labels[element])
@@ -177,9 +218,9 @@ def get_avg_second_by_first_shortest_dist_ratio(site_dist_info, connection_data)
     return ratio_avg_result
 
 
-def get_site_labels_per_element(connection_data):
+def _get_site_labels_per_element(connection_data):
     element_to_site_labels = {}
-    for site_label, connection in connection_data.items():
+    for site_label, _ in connection_data.items():
         element_label = string_parser.get_atom_type_from_label(site_label)
         if element_label not in element_to_site_labels:
             element_to_site_labels[element_label] = []

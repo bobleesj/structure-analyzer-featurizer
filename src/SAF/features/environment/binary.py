@@ -54,17 +54,17 @@ def compute_features(cif: Cif):
         B_homoatomic_dist_by_shortest_dist,
     ) = compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_best_label)
     # First shortest distance
-    A_shortest_dist = best_site_data[A]["details"]["shortest_dist"]
-    B_shortest_dist = best_site_data[B]["details"]["shortest_dist"]
+    A_shortest_dist = best_site_data[A]["best_label_details"]["shortest_dist"]
+    B_shortest_dist = best_site_data[B]["best_label_details"]["shortest_dist"]
     # Second shortest distance
-    A_second_shortest_dist = best_site_data[A]["details"]["second_shortest_dist"]
-    B_second_shortest_dist = best_site_data[B]["details"]["second_shortest_dist"]
+    A_second_shortest_dist = best_site_data[A]["best_label_details"]["second_shortest_dist"]
+    B_second_shortest_dist = best_site_data[B]["best_label_details"]["second_shortest_dist"]
     # Shorest distance count from best site
-    A_shortest_dist_count = best_site_data[A]["details"]["counts"][A_shortest_dist]
-    B_shortest_dist_count = best_site_data[B]["details"]["counts"][B_shortest_dist]
+    A_shortest_dist_count = best_site_data[A]["best_label_details"]["counts"][A_shortest_dist]
+    B_shortest_dist_count = best_site_data[B]["best_label_details"]["counts"][B_shortest_dist]
     # Second shorest distance count from best site
-    A_second_shortest_dist_count = best_site_data[A]["details"]["counts"][A_second_shortest_dist]
-    B_second_shortest_dist_count = best_site_data[B]["details"]["counts"][B_second_shortest_dist]
+    A_second_shortest_dist_count = best_site_data[A]["best_label_details"]["counts"][A_second_shortest_dist]
+    B_second_shortest_dist_count = best_site_data[B]["best_label_details"]["counts"][B_second_shortest_dist]
     # Avg shortest distance count across site labels per element
     A_avg_shortest_dist_count = best_site_data[A]["avg_shortest_dist"]
     B_avg_shortest_dist_count = best_site_data[B]["avg_shortest_dist"]

@@ -1,6 +1,6 @@
 from cifkit.utils import string_parser
 
-from SAF.features.environment.util import count_first_second_min_dist, extract_best_labels, get_site_labels_per_element
+from SAF.features.environment.util import count_first_second_min_dist, extract_best_labels, _get_site_labels_per_element
 
 
 def compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_best_label):
@@ -41,7 +41,7 @@ def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, A, B):
     shortest distance encountered at each site for two distinct element types
     within a given set of connections."""
     # Shortest distance per site label
-    element_to_site_labels = get_site_labels_per_element(connections)
+    element_to_site_labels = _get_site_labels_per_element(connections)
     A_total_homoatomic_dist_by_shortest_dist = 0.0
     B_total_homoatomic_dist_by_shortest_dist = 0.0
 
@@ -80,9 +80,9 @@ def get_A_and_B_count_in_best_label_per_element(connections, A, B):
     dist_count_per_label = count_first_second_min_dist(connections)
     best_label_dict = extract_best_labels(dist_count_per_label)
     best_A_site_label = best_label_dict[A]["best_label"]
-    best_A_shortest_dist = best_label_dict[A]["details"]["shortest_dist"]
+    best_A_shortest_dist = best_label_dict[A]["best_label_details"]["shortest_dist"]
     best_B_site_label = best_label_dict[B]["best_label"]
-    best_B_shortest_dist = best_label_dict[B]["details"]["shortest_dist"]
+    best_B_shortest_dist = best_label_dict[B]["best_label_details"]["shortest_dist"]
     for connection in connections[best_A_site_label]:
         other_label, dist, _, _ = connection
         if dist == best_A_shortest_dist:
@@ -90,7 +90,6 @@ def get_A_and_B_count_in_best_label_per_element(connections, A, B):
                 A_count_at_A_shortest_dist += 1
             if other_label.startswith(B):
                 B_count_at_A_shortest_dist += 1
-
     for connection in connections[best_B_site_label]:
         other_label, dist, _, _ = connection
         if dist == best_B_shortest_dist:
