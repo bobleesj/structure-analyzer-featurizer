@@ -18,8 +18,8 @@ def count_first_second_min_dist(
     ... }
     >>> result = count_first_second_min_dist(all_labels_connections)
     >>> print(result)
-    {'Rh1': {'shortest_dist': 2.0, 'second_shortest_dist': 3.0, 'counts': {2.0: 1, 3.0: 1}},
-     'Rh2': {'shortest_dist': 1.5, 'second_shortest_dist': 2.5, 'counts': {1.5: 1, 2.5: 1}}}
+    {"Rh1": {"shortest_dist": 2.0, "second_shortest_dist": 3.0, "counts": {2.0: 1, 3.0: 1}},
+     "Rh2": {"shortest_dist": 1.5, "second_shortest_dist": 2.5, "counts": {1.5: 1, 2.5: 1}}}
     """
     # Dictionary to hold the results
     first_second_dist_info = defaultdict(
@@ -42,11 +42,11 @@ def count_first_second_min_dist(
             unique_distances, counts = np.unique(sorted_distances, return_counts=True)
             # Populate the shortest_dist and second shortest_dist distances
             if len(unique_distances) > 0:
-                first_second_dist_info[label]["shortest_dist"] = unique_distances[0]
-                first_second_dist_info[label]["counts"][unique_distances[0]] = counts[0]
+                first_second_dist_info[label]["shortest_dist"] = float(unique_distances[0])
+                first_second_dist_info[label]["counts"][float(unique_distances[0])] = int(counts[0])
             if len(unique_distances) > 1:
-                first_second_dist_info[label]["second_shortest_dist"] = unique_distances[1]
-                first_second_dist_info[label]["counts"][unique_distances[1]] = counts[1]
+                first_second_dist_info[label]["second_shortest_dist"] = float(unique_distances[1])
+                first_second_dist_info[label]["counts"][float(unique_distances[1])] = int(counts[1])
     return dict(first_second_dist_info)
 
 
@@ -92,10 +92,10 @@ def extract_best_labels(data):
         avg_second_shortest = total_second_shortest / label_counts[element] if total_distances[element]["second_shortest_counts"] else 0
         output[element] = {
             "label_count": label_counts[element],
-            "shortest_dist_total_count": int(total_shortest),
-            "second_shortest_dist_count": int(total_second_shortest),
-            "avg_shortest_dist": float(avg_shortest),
-            "avg_second_shortest_dist_count": float(avg_second_shortest),
+            "shortest_dist_total_count": total_shortest,
+            "second_shortest_dist_count": total_second_shortest,
+            "avg_shortest_dist": avg_shortest,
+            "avg_second_shortest_dist_count": avg_second_shortest,
             "best_label": label,
             "details": details,
         }
