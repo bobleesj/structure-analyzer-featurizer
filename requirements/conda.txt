@@ -1,7 +1,7 @@
 cifkit
 click
 gemmi
-matplotlib
+matplotlib-base
 numpy
 openpyxl
 pandas
