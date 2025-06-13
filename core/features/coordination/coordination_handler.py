@@ -7,7 +7,7 @@ from core.features.coordination import (
     compute_number_of_atoms_in_ternary_CN,
     get_CN_metrics_per_method,
 )
-from core.utils.element_parser import (
+from core.utils.element_order import (
     get_binary_AB_elements,
     get_ternary_RMX_elements,
 )

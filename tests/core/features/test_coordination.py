@@ -6,7 +6,7 @@ from core.features.coordination import (
     compute_global_averages_for_min_max_avg_metrics,
 )
 
-from core.utils.element_parser import get_binary_AB_elements
+from core.utils.element_order import get_binary_AB_elements
 
 
 @pytest.fixture(scope="function")

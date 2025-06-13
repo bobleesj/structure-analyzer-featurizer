@@ -1,12 +1,12 @@
 from cifkit import Cif
 from cifkit.data import radius_optimization as radius_opt
-from core.utils import bond, element_parser, packing
+from core.utils import bond, element_order, packing
 from core.features.interatomic import helper
 
 
 def compute_features(cif: Cif):
     elements = list(cif.unique_elements)
-    R, M, X = element_parser.get_ternary_RMX_elements(elements)
+    R, M, X = element_order.get_ternary_RMX_elements(elements)
     R_CIF_rad = cif.radius_values[R]["CIF_radius"]
     M_CIF_rad = cif.radius_values[M]["CIF_radius"]
     X_CIF_rad = cif.radius_values[X]["CIF_radius"]

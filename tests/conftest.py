@@ -41,6 +41,13 @@ def URhIn_cif():
     return cif
 
 
+@pytest.fixture(scope="module")
+def Tb4RhInGe4_cif():
+    cif = Cif("tests/cif/quaternary/Tb4RhInGe4.cif", supercell_size=3)
+    cif.compute_connections()
+    return cif
+
+
 # @pytest.fixture(scope="module")
 # def Th7Rh3_cif():
 #     cif = Cif("tests/cif/binary/Th7Rh3.cif")
