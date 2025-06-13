@@ -6,7 +6,6 @@ import pandas as pd
 # Process each file
 from cifkit import Cif
 from cifkit.utils.folder import get_file_paths
-
 from core.features import (
     binary_env_handler,
     binary_interatomic,

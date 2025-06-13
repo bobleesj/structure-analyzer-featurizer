@@ -1,6 +1,5 @@
 import click
 from click import echo, style
-
 from core.utils import folder
 
 
@@ -32,7 +31,9 @@ def get_user_input_folder_processing(dir_names, file_type):
 
 def get_folder_indices(dir_names_with_cif):
     while True:
-        folder_numbers_str = click.prompt("Enter the numbers corresponding to the folders listed above," " separated by spaces. Ex) 1 2 3")
+        folder_numbers_str = click.prompt(
+            "Enter the numbers corresponding to the folders listed above," " separated by spaces. Ex) 1 2 3"
+        )
         try:
             folder_indices = list(set(int(number) for number in folder_numbers_str.split()))
 

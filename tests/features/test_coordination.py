@@ -1,11 +1,10 @@
 import pytest
 from core.features.coordination import (
-    get_CN_metrics_per_method,
+    compute_global_averages_for_min_max_avg_metrics,
     compute_min_max_avg_per_label,
     compute_number_of_atoms_in_binary_CN,
-    compute_global_averages_for_min_max_avg_metrics,
+    get_CN_metrics_per_method,
 )
-
 from core.utils.element_order import get_binary_AB_elements
 
 
@@ -259,9 +258,15 @@ def test_find_min_max_avg_CN_metrics(RhSb2_CN_metrics_per_method, RhSb2_min_max_
     result = compute_min_max_avg_per_label(RhSb2_CN_metrics_per_method)
     for label in RhSb2_min_max_avg_CN_metrics_from_sites:
         for key, metric in RhSb2_min_max_avg_CN_metrics_from_sites[label].items():
-            assert result[label][key]["min"] == pytest.approx(metric["min"], abs=0.005), f"{label}-{key} min is incorrect"
-            assert result[label][key]["max"] == pytest.approx(metric["max"], abs=0.005), f"{label}-{key} max is incorrect"
-            assert result[label][key]["avg"] == pytest.approx(metric["avg"], abs=0.005), f"{label}-{key} avg is incorrect"
+            assert result[label][key]["min"] == pytest.approx(
+                metric["min"], abs=0.005
+            ), f"{label}-{key} min is incorrect"
+            assert result[label][key]["max"] == pytest.approx(
+                metric["max"], abs=0.005
+            ), f"{label}-{key} max is incorrect"
+            assert result[label][key]["avg"] == pytest.approx(
+                metric["avg"], abs=0.005
+            ), f"{label}-{key} avg is incorrect"
 
 
 @pytest.mark.now

@@ -1,6 +1,6 @@
-from core.utils import bond, element_order, packing
-from cifkit.data import radius_optimization as radius_opt
 import pytest
+from cifkit.data import radius_optimization as radius_opt
+from core.utils import bond, element_order, packing
 
 
 def test_binary_DyCo_cif(Dy2Co17_cif):

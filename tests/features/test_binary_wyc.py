@@ -1,8 +1,6 @@
 import pytest
+from core.features.binary_wyc import compute_binary_wyc_features
 from core.utils.element_order import get_binary_AB_elements
-from core.features.binary_wyc import (
-    compute_binary_wyc_features,
-)
 
 
 @pytest.mark.now

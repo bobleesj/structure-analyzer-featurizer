@@ -1,5 +1,4 @@
 from cifkit import Cif
-
 from core.features.coordination import (
     compute_global_averages_for_min_max_avg_metrics,
     compute_min_max_avg_per_label,
@@ -7,10 +6,7 @@ from core.features.coordination import (
     compute_number_of_atoms_in_ternary_CN,
     get_CN_metrics_per_method,
 )
-from core.utils.element_order import (
-    get_binary_AB_elements,
-    get_ternary_RMX_elements,
-)
+from core.utils.element_order import get_binary_AB_elements, get_ternary_RMX_elements
 
 
 def get_CN_atom_count_data(cif: Cif):

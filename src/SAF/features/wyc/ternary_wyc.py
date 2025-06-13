@@ -1,5 +1,4 @@
 from cifkit import Cif
-
 from core.utils import element_order, environment_parser
 
 

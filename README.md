@@ -23,7 +23,8 @@ data scientists to generate structural features from `.cif` file. These features
 were engineered to be used as input data for ML models to predict crystal
 structures and their properties.
 
-> SAF is maintained and develoepd with the help of `scikit-package` (https://scikit-package.github.io/scikit-package/)
+> SAF is maintained and develoepd with the help of `scikit-package`
+> (https://scikit-package.github.io/scikit-package/)
 
 ## Features
 
@@ -43,10 +44,10 @@ files containing the following elements: `Si` `Sc` `Fe` `Co` `Ni` `Ga` `Ge` `Y`
 `Nb` `P` `Pb` `Rb` `Re` `S` `Se` `Sr` `Te` `Ti` `Tl` `V` `W` `Zn` `Zr` `Tc` `N`
 `O` `F` `Cl` `Br` `I` `Sm`
 
-:Note: The Pauling CN 12 radii values for some gases [`N`, `O`, `F`, `Cl`, `Br` and `I`] as
-well as `Tc` and `Sm` were interpolated using Gaussian Process Regression. The CIF
-radii for the aforementioned gases were compiled averages of low-temperature
-structures from PCD.
+:Note: The Pauling CN 12 radii values for some gases [`N`, `O`, `F`, `Cl`, `Br`
+and `I`] as well as `Tc` and `Sm` were interpolated using Gaussian Process
+Regression. The CIF radii for the aforementioned gases were compiled averages of
+low-temperature structures from PCD.
 
 ### Adding more elements
 

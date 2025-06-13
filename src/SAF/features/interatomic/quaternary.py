@@ -1,7 +1,8 @@
 from cifkit import Cif
 from cifkit.data import radius_optimization as radius_opt
-from SAF.utils import bond, element_order, packing
+
 from SAF.features.interatomic import helper
+from SAF.utils import bond, element_order, packing
 
 
 def compute_features(cif: Cif):
@@ -11,12 +12,16 @@ def compute_features(cif: Cif):
     B_CIF_rad = cif.radius_values[B]["CIF_radius"]
     C_CIF_rad = cif.radius_values[C]["CIF_radius"]
     D_CIF_rad = cif.radius_values[D]["CIF_radius"]
-    CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius([A, B, C, D], cif.shortest_bond_pair_distance, elements_ordered=False)
+    CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius(
+        [A, B, C, D], cif.shortest_bond_pair_distance, elements_ordered=False
+    )
     A_CIF_rad_refined = CIF_rad_refined[A]
     B_CIF_rad_refined = CIF_rad_refined[B]
     C_CIF_rad_refined = CIF_rad_refined[C]
     D_CIF_rad_refined = CIF_rad_refined[D]
-    min_bond_dists = bond.get_min_distances_by_labels(cif.shortest_bond_pair_distance, [A, B, C, D], labels=["A", "B", "C", "D"])
+    min_bond_dists = bond.get_min_distances_by_labels(
+        cif.shortest_bond_pair_distance, [A, B, C, D], labels=["A", "B", "C", "D"]
+    )
     distAA = min_bond_dists["AA"]
     distAB = min_bond_dists["AB"]
     distAC = min_bond_dists["AC"]
@@ -24,11 +29,11 @@ def compute_features(cif: Cif):
     distBB = min_bond_dists["BB"]
     distBC = min_bond_dists["BC"]
     distBD = min_bond_dists["BD"]
-    distCC = min_bond_dists["CC"]    
+    distCC = min_bond_dists["CC"]
     distCD = min_bond_dists["CD"]
     distDD = min_bond_dists["DD"]
-    
-    # Distances    
+
+    # Distances
     data = {
         "Entry": cif.file_name_without_ext,
         "Formula": cif.formula,
@@ -55,8 +60,7 @@ def compute_features(cif: Cif):
         "INT_Bsize_ref": B_CIF_rad_refined,
         "INT_Csize_ref": C_CIF_rad_refined,
         "INT_Dsize_ref": D_CIF_rad_refined,
-        "INT_R_factor": obj_value
+        "INT_R_factor": obj_value,
     }
-    
 
     return data

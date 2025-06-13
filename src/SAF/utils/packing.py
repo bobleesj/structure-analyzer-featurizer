@@ -1,5 +1,5 @@
-from numpy import cos, pi, sqrt
 from cifkit import Cif
+from numpy import cos, pi, sqrt
 
 
 def compute_efficiency(

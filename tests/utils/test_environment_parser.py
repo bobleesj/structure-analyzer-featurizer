@@ -1,10 +1,9 @@
+from cifkit import Cif
 from core.utils.environment_parser import (
-    parse_atomic_environment_from_loop,
     get_binary_atomic_environment_info,
     get_ternary_atomic_environment_info,
+    parse_atomic_environment_from_loop,
 )
-
-from cifkit import Cif
 
 
 def test_parse_atomic_environment_from_loop():
