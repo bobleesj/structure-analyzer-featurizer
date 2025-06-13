@@ -47,14 +47,7 @@ def process_folder(dir_path):
         except Exception as e:
             print("Error found for", file_path, "Reason:", e)
             continue
-
-        # Check the elements in the configuration
-        try:
-            elements = list(cif.unique_elements)
-            check_file.check_availability_for_binary_ternary(elements)
-        except ValueError as e:
-            raise ValueError(f"Error found for {file_path}. Reason: {e}")
-
+        elements = cif.unique_elements
         # Check if binary or ternary
         try:
             if len(elements) == 2:
