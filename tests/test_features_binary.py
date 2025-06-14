@@ -1,12 +1,12 @@
 import pytest
 from deepdiff import DeepDiff
 
-from SAF.features.generator import generate_binary_features
+from SAF.features.generator import compute_binary_features
 
 
 def test_generate_binary_features():
     file_path = "tests/cif/binary/ThSb.cif"
-    actual_features, actual_uni_features = generate_binary_features(file_path)
+    actual_features, actual_uni_features = compute_binary_features(file_path)
     expected_features = {
         "Entry": "ThSb",
         "Formula": "ThSb",

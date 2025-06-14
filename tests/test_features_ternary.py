@@ -1,12 +1,12 @@
 import pytest
 from deepdiff import DeepDiff
 
-from SAF.features.generator import generate_ternary_features
+from SAF.features.generator import compute_ternary_features
 
 
 def test_generate_features():
     file_path = "tests/cif/ternary/URhIn.cif"
-    actual_features, actual_uni_features = generate_ternary_features(file_path)
+    actual_features, actual_uni_features = compute_ternary_features(file_path)
     expected_features = {
         "Entry": "URhIn",
         "Formula": "URhIn",

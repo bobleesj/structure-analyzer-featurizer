@@ -1,12 +1,12 @@
 import pytest
 from deepdiff import DeepDiff
 
-from SAF.features.generator import generate_quaternary_features
+from SAF.features.generator import compute_quaternary_features
 
 
 def test_generate_features():
     file_path = "tests/cif/quaternary/Tb4RhInGe4.cif"
-    actual_features, actual_uni_features = generate_quaternary_features(file_path)
+    actual_features, actual_uni_features = compute_quaternary_features(file_path)
     expected_features = {
         "Entry": "Tb4RhInGe4",
         "Formula": "Tb4RhInGe4",
