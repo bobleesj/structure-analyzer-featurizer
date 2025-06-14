@@ -1,10 +1,7 @@
 bobleesj.utils
 cifkit
 click
-gemmi
 matplotlib-base
 numpy
-openpyxl
-pandas
 scipy
-pyvista
+

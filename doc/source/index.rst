@@ -2,12 +2,42 @@
 |title|
 #######
 
-.. |title| replace:: structure-analyzer-featurizer documentation
+.. |title| replace:: SAF documentation
 
-``structure-analyzer-featurizer`` - Python package to generate geometric features of interatomic distances, atomic environment information, and coordination numbers from a folder containing .cif files.
+``SAF`` - Python package to generate geometric features of interatomic distances, atomic environment information, and coordination numbers from a folder containing .cif files.
 
 | Software version |release|
 | Last updated |today|.
+
+
+==========
+Motivation
+==========
+
+Structure Analysis/Featurizer (SAF) is a Python script designed to process CIF (Crystallographic Information File) files and extract geometric features. These features include interatomic distances, information on atomic environments, and coordination numbers. The script can sequentially process more than 10,000 ``.cif`` files and generate millions of data points used as ML input data.
+
+.. note:: ⚠️ Caution: Do you want to generate geometric features beyond binary, ternary, quaternary files? Please email me at bobleesj@stanford.edu.
+
+The script was originally developed to determine the coordination number and geometry for each crystallographic site on complex structures [1]. Then, we further included an interactive functionality for experimentalists and data scientists to generate structural features from .cif file. These features were engineered to be used as input data for ML models to predict crystal structures and their properties.
+
+
+=====
+Scope
+=====
+
+Supported elements
+------------------
+
+The current version supports the processing of **binary**, **ternary**, and **quaternary** ``.cif``
+files containing the following elements: ``Si`` ``Sc`` ``Fe`` ``Co`` ``Ni`` ``Ga`` ``Ge`` ``Y``
+``Ru`` ``Rh`` ``Pd`` ``In`` ``Sn`` ``Sb`` ``La`` ``Ce`` ``Pr`` ``Nd`` ``Sm`` ``Eu`` ``Gd`` ``Tb`` ``Dy`` ``Ho``
+``Er`` ``Tm`` ``Yb`` ``Lu`` ``Os`` ``Ir`` ``Pt`` ``Th`` ``U`` ``Al`` ``Mo`` ``Hf`` ``Ta``. ``Ag`` ``As`` ``Au``
+``B`` ``Ba`` ``Be`` ``Bi`` ``C`` ``Ca`` ``Cd`` ``Cr`` ``Cs`` ``Cu`` ``Hg`` ``K`` ``Li`` ``Mg`` ``Mn`` ``Na``
+``Nb`` ``P`` ``Pb`` ``Rb`` ``Re`` ``S`` ``Se`` ``Sr`` ``Te`` ``Ti`` ``Tl`` ``V`` ``W`` ``Zn`` ``Zr`` ``Tc`` ``N``
+``O`` ``F`` ``Cl`` ``Br`` ``I`` ``Sm``
+
+.. note:: The Pauling CN 12 radii values for some gases [``N``, ``O``, ``F``, ``Cl``, ``Br`` and ``I``] as well as ``Tc`` and ``Sm`` were interpolated using Gaussian Process Regression. The CIF radii for the aforementioned gases were compiled averages of low-temperature structures from Persson's CIF database.
+
 
 ===============
 Getting started
@@ -24,33 +54,66 @@ Authors
 ``structure-analyzer-featurizer`` is developed by Sangjoon Lee, Anton Oliynyk, Emil Jaffal, Danila Shiryaev. The maintainer for this project is Sangjoon Lee. For a detailed list of contributors see
 https://github.com/bobleesj/structure-analyzer-featurizer/graphs/contributors.
 
+=======
+Support
+=======
+
+Feel free to open an issue on the SAF GitHub repository https://github.com/bobleesj/structure-analyzer-featurizer/issues and click ``New Issue`` and the ``Bug report or Feature request`` template to report bugs or request new features. You can also reach out to the author, Sangjoon Lee via email provided on his GitHub profile.
+
+
 ============
-Installation
+Contributors
 ============
 
-See the `README <https://github.com/bobleesj/structure-analyzer-featurizer#installation>`_
-file included with the distribution.
+- Anton Oliynyk - CUNY Hunger College
+- Arnab Dutta - IIT Kharagpur
+- Nikhil Kumar Barua - University of Waterloo
+- Nishant Yadav - IIT Kharagpur
+- Sangjoon Bob Lee - Columbia University
+- Siddha Sankalpa Sethi - IIT Kharagpur
+
+============
+Publications
+============
+
+Here is a list of publications using SAF towards materials analysis and data-driven materials synthesis:
+
+.. [1] E. I. Jaffal, S. Lee, D. Shiryaev, A. V., N. K. Barua, H. Kleinke, A. O. Oliynyk, Composition and structure analyzer/featurizer for explainable machine-learning models to predict solid state structures. *Digital Discovery*. **976**, 173241 (2025).
+   `doi.org/10.1039/D4DD00332B <https://doi.org/10.1039/D4DD00332B>`__
+
+.. [2] Y. Tyvanchuk, V. Babizhetskyy, S. Baran, A. Szytula,
+   V. Smetana, S. Lee, A. O. Oliynyk, A. Mudring, The crystal and electronic
+   structure of RE23Co6.7In20.3 (RE = Gd–Tm, Lu): A new structure type based on
+   intergrowth of AlB2- and CsCl-type related slabs. *Journal of Alloys and
+   Compounds*. **4**, 548-560 (2024).
+   `doi:10.1016/j.jallcom.2023.173241 <https://doi.org/10.1016/j.jallcom.2023.173241>`__
+
+.. [3] S. S. Sethi, A. Dutta, E. I. Jaffal, N. Yadav, D. Shiryaev, B. Hoang, A. Machathi, S. Lee, K. Das, P. P. Jana, A. O. Oliynyk, Unsupervised Machine Learning Prediction of a Novel 1:3 Intermetallic Phase with the Synthesis of TbIr3 (PuNi3-type) as Experimental Validation. *Journal of the American Chemical Society*. **147**, 14739-14755 (2025).
+   `doi.org/10.1021/jacs.5c03510 <https://doi.org/10.1021/jacs.5c03510>`__
+
+.. note:: 
+
+   If you are interested in generating and using features generated by SAF for your research, you can reach out to me at bobleesj@stanford.edu.
 
 ================
 Acknowledgements
 ================
 
-``structure-analyzer-featurizer`` is built and maintained with `scikit-package <https://scikit-package.github.io/scikit-package/>`_.
+`scikit-package <https://scikit-package.github.io/scikit-package/>`_ is used to accelerate maintaining and developng this Pyton package. `cifkit <https://bobleesj.github.io/cifkit/>`_ is used to determine the coordination number and environment of each crystallographic site from each .cif file.
 
-=================
-Table of contents
-=================
 .. toctree::
    :maxdepth: 2
+   :hidden:
+   :caption: GUIDES
 
    getting-started
+   features
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: REFERENCE
+
    Package API <api/structure_analyzer_featurizer>
    release
    license
-
-=======
-Indices
-=======
-
-* :ref:`genindex`
-* :ref:`search`
