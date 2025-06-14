@@ -15,8 +15,8 @@ def compute_features(cif: Cif):
     AA_dist = min_bond_dists["AA"]
     BB_dist = min_bond_dists["BB"]
     AB_dist = min_bond_dists["AB"]
-    A_CIF_rad_refined = CIF_rad_refined[A]
-    B_CIF_rad_refined = CIF_rad_refined[B]
+    A_CIF_rad_refined = float(CIF_rad_refined[A])
+    B_CIF_rad_refined = float(CIF_rad_refined[B])
     # Distances
     AA_dist_by_2 = AA_dist / 2
     BB_dist_by_2 = BB_dist / 2

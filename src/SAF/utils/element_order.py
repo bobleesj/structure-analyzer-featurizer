@@ -32,12 +32,10 @@ def get_ternary_RMX_elements(elements: list[str]) -> tuple[str, str, str]:
     R_labels = labels["R"]
     M_labels = labels["M"]
     X_labels = labels["X"]
-
     for perm in itertools.permutations(elements):
         if perm[0] in R_labels and perm[1] in M_labels and perm[2] in X_labels:
             return perm
-
-    raise ValueError(f"Could not determine RMX ordering for elements: {elements}")
+    raise ValueError(f"Could not determine R, M, X ordering for elements: {elements}")
 
 
 def get_quaternary_ABCD_elements(elements: list[str]) -> tuple[str, str, str, str]:
@@ -55,5 +53,4 @@ def get_quaternary_ABCD_elements(elements: list[str]) -> tuple[str, str, str, st
     for perm in itertools.permutations(elements):
         if perm[0] in A_labels and perm[1] in B_labels and perm[2] in C_labels and perm[3] in D_labels:
             return perm
-
-    raise ValueError(f"Could not determine A, B, C,D ordering for elements: {elements}")
+    raise ValueError(f"Could not determine A, B, C, D ordering for elements: {elements}")

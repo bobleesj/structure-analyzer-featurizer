@@ -12,9 +12,9 @@ def compute_features(cif: Cif):
     M_CIF_rad = cif.radius_values[M]["CIF_radius"]
     X_CIF_rad = cif.radius_values[X]["CIF_radius"]
     CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius([R, M, X], cif.shortest_bond_pair_distance, elements_ordered=False)
-    R_CIF_rad_refined = CIF_rad_refined[R]
-    M_CIF_rad_refined = CIF_rad_refined[M]
-    X_CIF_rad_refined = CIF_rad_refined[X]
+    R_CIF_rad_refined = float(CIF_rad_refined[R])
+    M_CIF_rad_refined = float(CIF_rad_refined[M])
+    X_CIF_rad_refined = float(CIF_rad_refined[X])
     # Do not use the alphabetical order of the elements for the refined radius
     min_bond_dists = bond.get_min_distances_by_labels(cif.shortest_bond_pair_distance, [R, M, X], labels=["R", "M", "X"])
     # 1) Min bond distances
