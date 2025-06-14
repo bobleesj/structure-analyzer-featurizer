@@ -13,73 +13,58 @@ from SAF.features.wyc import binary as wyc_binary
 from SAF.features.wyc import quaternary as wyc_quaternary
 from SAF.features.wyc import ternary as wyc_ternary
 
-# FIXME: refactor this
-
-
-def generate_binary_features(file_path: str):
+def _generate_features(file_path: str, supercell_size:int, int_module, wyc_module, env_module, CN_module):
     cif = Cif(file_path)
     cif.compute_connections()
     cif.compute_CN()
-    int, int_uni = int_binary.compute_features(cif)
-    wyc, wyc_uni = wyc_binary.compute_features(cif)
-    env = env_binary.compute_features(cif)
-    CN = CN_binary.compute_features(cif)
+    int_feat, int_uni = int_module.compute_features(cif)
+    wyc_feat, wyc_uni = wyc_module.compute_features(cif)
+    env_feat = env_module.compute_features(cif)
+    CN_feat = CN_module.compute_features(cif)
 
     features = {
-        **int,
-        **wyc,
-        **env,
-        **CN,
+        **int_feat,
+        **wyc_feat,
+        **env_feat,
+        **CN_feat,
     }
 
     uni_features = {
         **int_uni,
         **wyc_uni,
     }
+
     return features, uni_features
 
 
-def generate_ternary_features(file_path: str):
-    cif = Cif(file_path)
-    cif.compute_connections()
-    cif.compute_CN()
-    int, int_uni = int_ternary.compute_features(cif)
-    wyc, wyc_uni = wyc_ternary.compute_features(cif)
-    env = env_ternary.compute_features(cif)
-    CN = CN_ternary.compute_features(cif)
-
-    features = {
-        **int,
-        **wyc,
-        **env,
-        **CN,
-    }
-
-    uni_features = {
-        **int_uni,
-        **wyc_uni,
-    }
-    return features, uni_features
+def generate_binary_features(file_path: str, supercell_size = 3):
+    return _generate_features(
+        file_path,
+        supercell_size,
+        int_module=int_binary,
+        wyc_module=wyc_binary,
+        env_module=env_binary,
+        CN_module=CN_binary,
+    )
 
 
-def generate_quaternary_features(file_path: str):
-    cif = Cif(file_path)
-    cif.compute_connections()
-    cif.compute_CN()
-    int, int_uni = int_quaternary.compute_features(cif)
-    wyc, wyc_uni = wyc_quaternary.compute_features(cif)
-    env = env_quaternary.compute_features(cif)
-    CN = CN_quaternary.compute_features(cif)
+def generate_ternary_features(file_path: str, supercell_size = 3):
+    return _generate_features(
+        file_path,
+        supercell_size,
+        int_module=int_ternary,
+        wyc_module=wyc_ternary,
+        env_module=env_ternary,
+        CN_module=CN_ternary,
+    )
 
-    features = {
-        **int,
-        **wyc,
-        **env,
-        **CN,
-    }
 
-    uni_features = {
-        **int_uni,
-        **wyc_uni,
-    }
-    return features, uni_features
+def generate_quaternary_features(file_path: str, supercell_size = 3):
+    return _generate_features(
+        file_path,
+        supercell_size,
+        int_module=int_quaternary,
+        wyc_module=wyc_quaternary,
+        env_module=env_quaternary,
+        CN_module=CN_quaternary,
+    )
