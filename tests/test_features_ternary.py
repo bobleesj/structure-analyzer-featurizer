@@ -1,7 +1,8 @@
 import pytest
+from deepdiff import DeepDiff
 
 from SAF.features.generator import generate_ternary_features
-from deepdiff import DeepDiff
+
 
 def test_generate_features():
     file_path = "tests/cif/ternary/URhIn.cif"
