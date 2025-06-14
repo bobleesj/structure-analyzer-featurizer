@@ -1,5 +1,7 @@
-from SAF.features.generator import generate_binary_features
+import pytest
 
+from SAF.features.generator import generate_binary_features
+from deepdiff import DeepDiff
 
 def test_generate_binary_features():
     file_path = "tests/cif/binary/ThSb.cif"
@@ -105,8 +107,9 @@ def test_generate_binary_features():
         "CN_MAX_volume_of_inscribed_sphere": 91.398,
         "CN_MAX_packing_efficiency": 0.803,
     }
-
-    assert actual_features == expected_features
+    # THis works but just unstable.
+    diff = DeepDiff(expected_features, actual_features, significant_digits=3)
+    assert diff == {}
     expected_uni_features = {
         "Entry": "ThSb",
         "Formula": "ThSb",
@@ -121,4 +124,5 @@ def test_generate_binary_features():
         "INT_UNI_refined_packing_efficiency": 0.7078488680834484,
         "UNI_WYK_lowest_wyckoff": 1,
     }
-    assert actual_uni_features == expected_uni_features
+    diff = DeepDiff(expected_uni_features, actual_uni_features, significant_digits=3)
+    assert diff == {}

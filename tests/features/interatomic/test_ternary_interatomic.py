@@ -1,4 +1,3 @@
-import numpy as np
 import pytest
 
 from SAF.features.interatomic.ternary import compute_features
@@ -54,11 +53,8 @@ def test_compute_ternary_interatomic_feature(URhIn_cif):
         "INT_UNI_lowest_refined_percent_diff_abs": 0.008182670624935252,
         "INT_UNI_refined_packing_efficiency": 0.60664,
     }
-
     for key, expected_value in expected.items():
-        # For float
         if isinstance(expected_value, float):
             assert actual[key] == pytest.approx(expected_value, abs=0.001)
-        # For str, integer, etc.
         else:
             assert actual[key] == expected_value
