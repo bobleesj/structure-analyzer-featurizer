@@ -55,9 +55,9 @@ extensions = [
 
 
 # Configure where to find the source code and write API .rst files
-apidoc_module_dir = '../../src/SAF'
-apidoc_output_dir = 'api'
-apidoc_excluded_paths = ['tests']
+apidoc_module_dir = "../../src/SAF"
+apidoc_output_dir = "api"
+apidoc_excluded_paths = ["tests"]
 apidoc_separate_modules = True
 
 # Add any paths that contain templates here, relative to this directory.

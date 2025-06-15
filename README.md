@@ -8,7 +8,7 @@ Structure Analyzer/Featurizer (SAF) is a Python package to generate geometric fe
 
 Features:
 
-- Generate hundreds of numerical structural features for **binary**, **ternary**, and **quaternary**  `.cif` files.
+- Generate hundreds of numerical structural features for **binary**, **ternary**, and **quaternary** `.cif` files.
 - No coding required - command-line interactive app provided.
 - Process hundreds to tens of thousands of .cif files.
 
@@ -16,11 +16,11 @@ Features:
 
 If you use `SAF` in your scientific publication, please cite the software packages:
 
-> *Digital Discovery*, https://doi.org/10.1039/D4DD00332B
+> _Digital Discovery_, https://doi.org/10.1039/D4DD00332B
 
-as well as the cifkit which is the engine of ``SAF`` for coordination environment analysis:
+as well as the cifkit which is the engine of `SAF` for coordination environment analysis:
 
-> *Journal of Open Source Software*, https://doi.org/10.21105/joss.07205
+> _Journal of Open Source Software_, https://doi.org/10.21105/joss.07205
 
 ## Getting started
 

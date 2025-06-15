@@ -49,7 +49,7 @@ In the above *Digital Discovery* paper (`DOI <https://doi.org/10.1039/D4DD00332B
    :alt: PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF.
 
 .. note::
-   
+
    **Figure 1:** PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF.
 
 .. image:: img/feature-extraction-diagram.png
@@ -149,4 +149,3 @@ Acknowledgements
    Package API <api/SAF>
    release
    license
-
