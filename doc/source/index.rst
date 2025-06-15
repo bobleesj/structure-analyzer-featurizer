@@ -88,6 +88,13 @@ How you can contribute to SAF
 
    Do you want to learn how to use GitHub and develop Python package to reuse your code? Please feel free to reach out to Sasngjoon Bob Lee (bobleesj@gmail.edu). There are resources you can use to get started such as `scikit-package <https://scikit-package.github.io/scikit-package/>`_
 
+.. image:: img/scikit-package-logo-text.png
+   :alt: scikit-package logo
+   :align: center
+   :width: 400px
+   :target: https://scikit-package.github.io/scikit-package
+
+
 Contributors
 ============
 

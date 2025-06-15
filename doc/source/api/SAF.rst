@@ -8,7 +8,6 @@ Submodules
    :maxdepth: 4
 
    SAF.config
-   SAF.functions
    SAF.version
 
 Module contents

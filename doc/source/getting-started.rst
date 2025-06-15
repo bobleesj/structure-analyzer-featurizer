@@ -50,7 +50,6 @@ Press ``Enter`` to generate structure features for the ``.cif`` files in the cho
 
    Are you having trouble running code? Learn to use conda environments by following the instructions provided `here <https://scikit-package.github.io/scikit-package/tutorials/tutorial-level-1-2-3.html#required-use-conda-environment-to-install-packages-and-run-python-code>`_.
 
-
 Method 2. Import SAF in Python file or Jupyter notebook
 -------------------------------------------------------
 
@@ -59,7 +58,6 @@ You might be interested in generating compositional features without using the S
 .. code-block:: bash
 
    pip install structure-analyzer-featurizer
-
 
 This will install key packages such as ``cifkit`` and ``bobleesj.utils`` that are required to run the SAF package. Then, you can generate features by calling the function provided in the SAF package directly.
 
