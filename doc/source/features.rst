@@ -2,12 +2,50 @@
 Features
 ========
 
+First, let's clarify some terminology and concepts used in ``SAF``:
+
+.. note::
+
+  **Q. What does "size" mean in this context?**
+
+  "Size" refers to the average radius of an atom in the crystal structure. The CIF radius is determined by dividing the shortest atomic distance across many .cif files for the same element.
+
+  **Q. What is the refined radius?**
+
+  The refined radius is the CIF radius optimized to minimize the least-squares difference between the observed interatomic distances and those calculated from the CIF radius. As a result, the original CIF radius values are adjusted.
+
+  There are **two primary constraints** in this optimization:
+
+    a. For ternary compounds, the shortest distances between R–M and M–X are used as target distances. For quaternary compounds, the shortest distances between A-B, B-C, C-D are used as target distances.
+
+    b. The refined radius must preserve the size order of the original CIF radius values.
+
+  **Q. How are the coordination number (CN) features calculated?**
+
+  The coordination number (CN) features are calculated based on the polyhedra formed by atoms in the crystal structure, using four different methods:
+
+  For each atomic site, the first 20 nearest neighbors are considered. The distances to these neighbors are normalized using four methods:
+
+    - ``dist_by_shortest_dist``: Normalization by the shortest distance from the site.
+    - ``dist_by_CIF_radius_sum``: Normalization by the sum of CIF radii.
+    - ``dist_by_CIF_radius_refined_sum``: Normalization by the sum of refined CIF radii.
+    - ``dist_by_Pauling_radius_sum``: Normalization by the sum of Pauling radii.
+
+  The radius sums are calculated for each element pair involved. For each normalization method, the "maximum gap" is determined as the largest difference between consecutive normalized distances (i.e., the difference between the nth and (n-1)th neighbors). For more information, please visit the ``cikfit`` documentation (https://bobleesj.github.io/cifkit).
+
+  **Q. How are the values of CN_AVG, CN_MIN, and CN_MAX features calculated?**
+
+  For each atomic site, the CN environment is determined using the four methods described above. For example, for the site ``Sb1``, there are four different polyhedron coordination values. *The minimum, maximum, and average of the four different methods* are computed for **each site**.
+
+  To calculate ``CN_MIN*``, ``CN_MAX*``, and ``CN_AVG*``, the **average** of *the minimum, maximum, and average of the four different methods are* computed across **all sites**.
+
+  If you have any further questions, please feel free to open an issue on the SAF GitHub repository.
+
 Binary
 ------
 
-.. list-table::
+.. list-table:: 94 binary numerical features
   :header-rows: 1
-  :widths: 5 30 65
 
   * - #
     - Feature
@@ -310,7 +348,7 @@ Binary
 Ternary
 -------
 
-.. list-table::
+.. list-table:: 134 binary numerical features
     :header-rows: 1
 
     * - #
@@ -598,7 +636,7 @@ Ternary
 Quaternary
 ----------
 
-.. list-table::
+.. list-table:: 182 quaternary numerical features
   :header-rows: 1
 
   * - #
@@ -608,376 +646,374 @@ Quaternary
   * - 2
     - Formula
   * - 3
-    - Structure
-  * - 4
     - A
-  * - 5
+  * - 4
     - B
-  * - 6
+  * - 5
     - C
-  * - 7
+  * - 6
     - D
-  * - 8
+  * - 7
     - INT_AA_dist
-  * - 9
+  * - 8
     - INT_BB_dist
-  * - 10
+  * - 9
     - INT_CC_dist
-  * - 11
+  * - 10
     - INT_DD_dist
-  * - 12
+  * - 11
     - INT_AB_dist
-  * - 13
+  * - 12
     - INT_AC_dist
-  * - 14
+  * - 13
     - INT_AD_dist
-  * - 15
+  * - 14
     - INT_BC_dist
-  * - 16
+  * - 15
     - INT_BD_dist
-  * - 17
+  * - 16
     - INT_CD_dist
-  * - 18
+  * - 17
     - INT_Asize
-  * - 19
+  * - 18
     - INT_Bsize
-  * - 20
+  * - 19
     - INT_Csize
-  * - 21
+  * - 20
     - INT_Dsize
-  * - 22
+  * - 21
     - INT_Asize_by_Bsize
-  * - 23
+  * - 22
     - INT_Bsize_by_Csize
-  * - 24
+  * - 23
     - INT_Csize_by_Dsize
-  * - 25
+  * - 24
     - INT_Asize_by_Csize
-  * - 26
+  * - 25
     - INT_Asize_by_Dsize
-  * - 27
+  * - 26
     - INT_Bsize_by_Dsize
-  * - 28
+  * - 27
     - INT_AA_dist_by_2_by_Asize
-  * - 29
+  * - 28
     - INT_BB_dist_by_2_by_Bsize
-  * - 30
+  * - 29
     - INT_CC_dist_by_2_by_Csize
-  * - 31
+  * - 30
     - INT_DD_dist_by_2_by_Dsize
-  * - 32
+  * - 31
     - INT_AB_dist_by_ABsizes
-  * - 33
+  * - 32
     - INT_AC_dist_by_ACsizes
-  * - 34
+  * - 33
     - INT_AD_dist_by_ADsizes
-  * - 35
+  * - 34
     - INT_BC_dist_by_BCsizes
-  * - 36
+  * - 35
     - INT_BD_dist_by_BDsizes
-  * - 37
+  * - 36
     - INT_CD_dist_by_CDsizes
-  * - 38
+  * - 37
     - INT_Asize_ref
-  * - 39
+  * - 38
     - INT_Bsize_ref
-  * - 40
+  * - 39
     - INT_Csize_ref
-  * - 41
+  * - 40
     - INT_Dsize_ref
-  * - 42
+  * - 41
     - INT_percent_diff_A_by_100
-  * - 43
+  * - 42
     - INT_percent_diff_B_by_100
-  * - 44
+  * - 43
     - INT_percent_diff_C_by_100
-  * - 45
+  * - 44
     - INT_percent_diff_D_by_100
-  * - 46
+  * - 45
     - INT_AA_minus_ref_diff
-  * - 47
+  * - 46
     - INT_BB_minus_ref_diff
-  * - 48
+  * - 47
     - INT_CC_minus_ref_diff
-  * - 49
+  * - 48
     - INT_DD_minus_ref_diff
-  * - 50
+  * - 49
     - INT_AB_minus_ref_diff
-  * - 51
+  * - 50
     - INT_AC_minus_ref_diff
-  * - 52
+  * - 51
     - INT_AD_minus_ref_diff
-  * - 53
+  * - 52
     - INT_BC_minus_ref_diff
-  * - 54
+  * - 53
     - INT_BD_minus_ref_diff
-  * - 55
+  * - 54
     - INT_CD_minus_ref_diff
-  * - 56
+  * - 55
     - INT_R_factor
-  * - 57
+  * - 56
     - INT_UNI_shortest_homoatomic_dist
-  * - 58
+  * - 57
     - INT_UNI_shortest_heteroatomic_dist
-  * - 59
+  * - 58
     - INT_UNI_shortest_homoatomic_dist_by_2_by_atom_size
-  * - 60
+  * - 59
     - INT_UNI_shortest_heteroatomic_dist_by_sum_of_atom_sizes
-  * - 61
+  * - 60
     - INT_UNI_shortest_homoatomic_dist_by_2_by_refined_atom_size
-  * - 62
+  * - 61
     - INT_UNI_shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes
-  * - 63
+  * - 62
     - INT_UNI_highest_refined_percent_diff_abs
-  * - 64
+  * - 63
     - INT_UNI_lowest_refined_percent_diff_abs
-  * - 65
+  * - 64
     - INT_UNI_refined_packing_efficiency
-  * - 66
+  * - 65
     - WYK_A_lowest_wyckoff
-  * - 67
+  * - 66
     - WYK_B_lowest_wyckoff
-  * - 68
+  * - 67
     - WYK_C_lowest_wyckoff
-  * - 69
+  * - 68
     - WYK_D_lowest_wyckoff
-  * - 70
+  * - 69
     - WYK_identical_lowest_wyckoff_count
-  * - 71
+  * - 70
     - WYK_A_sites_total
-  * - 72
+  * - 71
     - WYK_B_sites_total
-  * - 73
+  * - 72
     - WYK_C_sites_total
-  * - 74
+  * - 73
     - WYK_D_sites_total
-  * - 75
+  * - 74
     - WYK_A_multiplicity_total
-  * - 76
+  * - 75
     - WYK_B_multiplicity_total
-  * - 77
+  * - 76
     - WYK_C_multiplicity_total
-  * - 78
+  * - 77
     - WYK_D_multiplicity_total
-  * - 79
+  * - 78
     - ENV_A_shortest_dist_count
-  * - 80
+  * - 79
     - ENV_B_shortest_dist_count
-  * - 81
+  * - 80
     - ENV_C_shortest_dist_count
-  * - 82
+  * - 81
     - ENV_D_shortest_dist_count
-  * - 83
+  * - 82
     - ENV_A_avg_shortest_dist_count
-  * - 84
+  * - 83
     - ENV_B_avg_shortest_dist_count
-  * - 85
+  * - 84
     - ENV_C_avg_shortest_dist_count
-  * - 86
+  * - 85
     - ENV_D_avg_shortest_dist_count
-  * - 87
+  * - 86
     - ENV_A_shortest_tol_dist_count
-  * - 88
+  * - 87
     - ENV_B_shortest_tol_dist_count
-  * - 89
+  * - 88
     - ENV_C_shortest_tol_dist_count
-  * - 90
+  * - 89
     - ENV_D_shortest_tol_dist_count
-  * - 91
+  * - 90
     - ENV_A_avg_shortest_dist_within_tol_count
-  * - 92
+  * - 91
     - ENV_B_avg_shortest_dist_within_tol_count
-  * - 93
+  * - 92
     - ENV_C_avg_shortest_dist_within_tol_count
-  * - 94
+  * - 93
     - ENV_D_avg_shortest_dist_within_tol_count
-  * - 95
+  * - 94
     - ENV_A_second_by_first_shortest_dist
-  * - 96
+  * - 95
     - ENV_B_second_by_first_shortest_dist
-  * - 97
+  * - 96
     - ENV_C_second_by_first_shortest_dist
-  * - 98
+  * - 97
     - ENV_D_second_by_first_shortest_dist
-  * - 99
+  * - 98
     - ENV_A_avg_second_by_first_shortest_dist
-  * - 100
+  * - 99
     - ENV_B_avg_second_by_first_shortest_dist
-  * - 101
+  * - 100
     - ENV_C_avg_second_by_first_shortest_dist
-  * - 102
+  * - 101
     - ENV_D_avg_second_by_first_shortest_dist
-  * - 103
+  * - 102
     - ENV_A_second_shortest_dist_count
-  * - 104
+  * - 103
     - ENV_B_second_shortest_dist_count
-  * - 105
+  * - 104
     - ENV_C_second_shortest_dist_count
-  * - 106
+  * - 105
     - ENV_D_second_shortest_dist_count
-  * - 107
+  * - 106
     - ENV_A_avg_second_shortest_dist_count
-  * - 108
+  * - 107
     - ENV_B_avg_second_shortest_dist_count
-  * - 109
+  * - 108
     - ENV_C_avg_second_shortest_dist_count
-  * - 110
+  * - 109
     - ENV_D_avg_second_shortest_dist_count
-  * - 111
+  * - 110
     - ENV_A_homoatomic_dist_by_shortest_dist
-  * - 112
+  * - 111
     - ENV_B_homoatomic_dist_by_shortest_dist
-  * - 113
+  * - 112
     - ENV_C_homoatomic_dist_by_shortest_dist
-  * - 114
+  * - 113
     - ENV_D_homoatomic_dist_by_shortest_dist
-  * - 115
+  * - 114
     - ENV_A_avg_homoatomic_dist_by_shortest_dist
-  * - 116
+  * - 115
     - ENV_B_avg_homoatomic_dist_by_shortest_dist
-  * - 117
+  * - 116
     - ENV_C_avg_homoatomic_dist_by_shortest_dist
-  * - 118
+  * - 117
     - ENV_D_avg_homoatomic_dist_by_shortest_dist
-  * - 119
+  * - 118
     - ENV_A_count_at_A_shortest_dist
-  * - 120
+  * - 119
     - ENV_B_count_at_A_shortest_dist
-  * - 121
+  * - 120
     - ENV_C_count_at_A_shortest_dist
-  * - 122
+  * - 121
     - ENV_D_count_at_A_shortest_dist
-  * - 123
+  * - 122
     - ENV_A_avg_count_at_A_shortest_dist
-  * - 124
+  * - 123
     - ENV_B_avg_count_at_A_shortest_dist
-  * - 125
+  * - 124
     - ENV_C_avg_count_at_A_shortest_dist
-  * - 126
+  * - 125
     - ENV_D_avg_count_at_A_shortest_dist
-  * - 127
+  * - 126
     - ENV_A_count_at_B_shortest_dist
-  * - 128
+  * - 127
     - ENV_B_count_at_B_shortest_dist
-  * - 129
+  * - 128
     - ENV_C_count_at_B_shortest_dist
-  * - 130
+  * - 129
     - ENV_D_count_at_B_shortest_dist
-  * - 131
+  * - 130
     - ENV_A_avg_count_at_B_shortest_dist
-  * - 132
+  * - 131
     - ENV_B_avg_count_at_B_shortest_dist
-  * - 133
+  * - 132
     - ENV_C_avg_count_at_B_shortest_dist
-  * - 134
+  * - 133
     - ENV_D_avg_count_at_B_shortest_dist
-  * - 135
+  * - 134
     - ENV_A_count_at_C_shortest_dist
-  * - 136
+  * - 135
     - ENV_B_count_at_C_shortest_dist
-  * - 137
+  * - 136
     - ENV_C_count_at_C_shortest_dist
-  * - 138
+  * - 137
     - ENV_D_count_at_C_shortest_dist
-  * - 139
+  * - 138
     - ENV_A_avg_count_at_C_shortest_dist
-  * - 140
+  * - 139
     - ENV_B_avg_count_at_C_shortest_dist
-  * - 141
+  * - 140
     - ENV_C_avg_count_at_C_shortest_dist
-  * - 142
+  * - 141
     - ENV_D_avg_count_at_C_shortest_dist
-  * - 143
+  * - 142
     - ENV_A_count_at_D_shortest_dist
-  * - 144
+  * - 143
     - ENV_B_count_at_D_shortest_dist
-  * - 145
+  * - 144
     - ENV_C_count_at_D_shortest_dist
-  * - 146
+  * - 145
     - ENV_D_count_at_D_shortest_dist
-  * - 147
+  * - 146
     - ENV_A_avg_count_at_D_shortest_dist
-  * - 148
+  * - 147
     - ENV_B_avg_count_at_D_shortest_dist
-  * - 149
+  * - 148
     - ENV_C_avg_count_at_D_shortest_dist
-  * - 150
+  * - 149
     - ENV_D_avg_count_at_D_shortest_dist
-  * - 151
+  * - 150
     - CN_AVG_coordination_number
-  * - 152
+  * - 151
     - CN_AVG_A_atom_count
-  * - 153
+  * - 152
     - CN_AVG_B_atom_count
-  * - 154
+  * - 153
     - CN_AVG_C_atom_count
-  * - 155
+  * - 154
     - CN_AVG_D_atom_count
-  * - 156
+  * - 155
     - CN_AVG_polyhedron_volume
-  * - 157
+  * - 156
     - CN_AVG_central_atom_to_center_of_mass_dist
-  * - 158
+  * - 157
     - CN_AVG_number_of_edges
-  * - 159
+  * - 158
     - CN_AVG_number_of_faces
-  * - 160
+  * - 159
     - CN_AVG_shortest_distance_to_face
-  * - 161
+  * - 160
     - CN_AVG_shortest_distance_to_edge
-  * - 162
+  * - 161
     - CN_AVG_volume_of_inscribed_sphere
-  * - 163
+  * - 162
     - CN_AVG_packing_efficiency
-  * - 164
+  * - 163
     - CN_MIN_coordination_number
-  * - 165
+  * - 164
     - CN_MIN_A_atom_count
-  * - 166
+  * - 165
     - CN_MIN_B_atom_count
-  * - 167
+  * - 166
     - CN_MIN_C_atom_count
-  * - 168
+  * - 167
     - CN_MIN_D_atom_count
-  * - 169
+  * - 168
     - CN_MIN_polyhedron_volume
-  * - 170
+  * - 169
     - CN_MIN_central_atom_to_center_of_mass_dist
-  * - 171
+  * - 170
     - CN_MIN_number_of_edges
-  * - 172
+  * - 171
     - CN_MIN_number_of_faces
-  * - 173
+  * - 172
     - CN_MIN_shortest_distance_to_face
-  * - 174
+  * - 173
     - CN_MIN_shortest_distance_to_edge
-  * - 175
+  * - 174
     - CN_MIN_volume_of_inscribed_sphere
-  * - 176
+  * - 175
     - CN_MIN_packing_efficiency
-  * - 177
+  * - 176
     - CN_MAX_coordination_number
-  * - 178
+  * - 177
     - CN_MAX_A_atom_count
-  * - 179
+  * - 178
     - CN_MAX_B_atom_count
-  * - 180
+  * - 179
     - CN_MAX_C_atom_count
-  * - 181
+  * - 180
     - CN_MAX_D_atom_count
-  * - 182
+  * - 181
     - CN_MAX_polyhedron_volume
-  * - 183
+  * - 182
     - CN_MAX_central_atom_to_center_of_mass_dist
-  * - 184
+  * - 183
     - CN_MAX_number_of_edges
-  * - 185
+  * - 184
     - CN_MAX_number_of_faces
-  * - 186
+  * - 185
     - CN_MAX_shortest_distance_to_face
-  * - 187
+  * - 186
     - CN_MAX_shortest_distance_to_edge
-  * - 188
+  * - 187
     - CN_MAX_volume_of_inscribed_sphere
-  * - 189
+  * - 188
     - CN_MAX_packing_efficiency

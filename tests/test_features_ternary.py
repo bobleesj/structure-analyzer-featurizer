@@ -1,4 +1,3 @@
-import pytest
 from deepdiff import DeepDiff
 
 from SAF.features.generator import compute_ternary_features
