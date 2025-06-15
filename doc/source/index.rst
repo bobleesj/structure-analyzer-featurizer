@@ -2,7 +2,7 @@
 |title|
 #######
 
-.. |title| replace:: Structure Analyzer/Featurizer (CAF)
+.. |title| replace:: Structure Analyzer/Featurizer (SAF)
 
 .. image:: https://img.shields.io/badge/PR-Welcome-29ab47ff
    :alt: PR Welcome
@@ -19,7 +19,7 @@
 | Software version |release|
 | Last updated |today|.
 
-Structure Analyzer/Featurizer (SAF) is a Python package to generate geometric features of interatomic distances, atomic environment information, and coordination numbers from a folder containing CIF (Crystallographic Information File).
+Structure Analyzer/Featurizer (SAF) is a Python package to generate geometric features of interatomic distances, atomic environment information, and coordination numbers from a folder containing CIF (Crystallographic Information File) files.
 
 Citation
 ========
@@ -35,11 +35,35 @@ as well as the ``cifkit`` package, which is the engine of ``SAF`` for coordinati
 Publications and scientific utility
 ===================================
 
-Structure features include interatomic distances, information on atomic environments, and coordination numbers. The script can sequentially process more than 10,000 ``.cif`` files and generate millions of data points used as ML input data.
+Structure features include interatomic distances, information on atomic environments, and coordination numbers:
 
-The script was originally developed to determine the coordination number and geometry for each crystallographic site on complex structures [1]_. Then, we further included an interactive functionality for experimentalists and data scientists to generate structural features. These features have used as input data for ML models to predict crystal structures and their properties [2]_.
+- 94 binary structural features
+- 134 ternary structural features
+- 182 quaternary structural features
 
-Here is a list of publications using ``SAF`` towards materials analysis and data-driven materials synthesis:
+``SAF`` was originally developed to determine the coordination number and geometry for each crystallographic site in complex structures [1]_. Later, we included interactive functionality for experimentalists and data scientists to generate structural features. These features have been used as input data for ML models to predict crystal structures and their properties [2]_.
+
+In the above *Digital Discovery* paper (`DOI <https://doi.org/10.1039/D4DD00332B>`_), we describe the performance of `CAF <https://bobleesj.github.io/composition-analyzer-featurizer/>`_ in combination with SAF for generating compositional and structural numerical features for ML applications in crystal classification of binary compounds:
+
+.. image:: img/SAF-CAF-performance.png
+   :alt: PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF.
+
+.. note::
+   
+   **Figure 1:** PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF.
+
+.. image:: img/feature-extraction-diagram.png
+   :alt: Feature extraction diagram with SAF and CAF
+   :target: https://doi.org/10.1039/D4DD00332B
+
+.. note::
+
+   **Figure 2:** Diagram showing the workflow of combining compositional (CAF) and structural (SAF) features for ML applications.
+
+Publications using SAF
+======================
+
+Here is a list of publications using ``SAF`` for materials analysis and data-driven materials synthesis:
 
 .. [1] Y. Tyvanchuk, V. Babizhetskyy, S. Baran, A. Szytula,
    V. Smetana, S. Lee, A. O. Oliynyk, A. Mudring, The crystal and electronic
@@ -54,7 +78,7 @@ Here is a list of publications using ``SAF`` towards materials analysis and data
 Getting started
 ===============
 
-You don't have to write any code. Please visit :ref:`getting-started` to learn how to generate features.
+We have a command-line Python application. Please visit the :ref:`getting-started` page to learn how to generate features from a folder containing ``.cif`` files.
 
 Scope
 =====
@@ -68,8 +92,7 @@ The current version supports the processing of **binary**, **ternary**, and **qu
 
 .. note::
 
-   The Pauling CN 12 radii values for some gases (``N``, ``O``, ``F``, ``Cl``, ``Br`` and ``I``) as well as ``Tc`` and ``Sm`` were interpolated using Gaussian Process Regression. The CIF radii for the aforementioned gases were compiled averages of low-temperature structures from Persson's CIF database.
-
+   The Pauling CN 12 radii values for some gases (``N``, ``O``, ``F``, ``Cl``, ``Br``, and ``I``) as well as ``Tc`` and ``Sm`` were interpolated using Gaussian Process Regression. The CIF radii for the aforementioned gases were compiled as averages of low-temperature structures from Persson's CIF database.
 
 How to ask for help
 ===================
@@ -82,11 +105,11 @@ How you can contribute to SAF
 =============================
 
 - Did you find SAF helpful? You can show support by starring the `GitHub repository <https://github.com/bobleesj/structure-analyzer-featurizer>`_ and recommending it to colleagues.
-- Did you find any bugs? Please feel free to report it by creating a new issue so that we can fix it as soon as possible.-
+- Did you find any bugs? Please feel free to report them by creating a new issue so that we can fix them as soon as possible.
 
 .. seealso::
 
-   Do you want to learn how to use GitHub and develop Python package to reuse your code? Please feel free to reach out to Sasngjoon Bob Lee (bobleesj@gmail.edu). There are resources you can use to get started such as `scikit-package <https://scikit-package.github.io/scikit-package/>`_
+   Do you want to learn how to use GitHub and develop Python packages to reuse your code? Please feel free to reach out to Sangjoon Bob Lee (bobleesj@gmail.edu). There are resources you can use to get started, such as `scikit-package <https://scikit-package.github.io/scikit-package/>`_
 
 .. image:: img/scikit-package-logo-text.png
    :alt: scikit-package logo
@@ -98,18 +121,17 @@ How you can contribute to SAF
 Contributors
 ============
 
-- Anton Oliynyk - CUNY Hunger College
+- Anton Oliynyk - CUNY Hunter College
 - Arnab Dutta - IIT Kharagpur
 - Nikhil Kumar Barua - University of Waterloo
 - Nishant Yadav - IIT Kharagpur
 - Sangjoon Bob Lee - Columbia University
 - Siddha Sankalpa Sethi - IIT Kharagpur
 
-
 Acknowledgements
 ================
 
-`scikit-package <https://scikit-package.github.io/scikit-package/>`_ is used to accelerate maintaining and developng this Python package. `cifkit <https://bobleesj.github.io/cifkit/>`_ is used to determine the coordination number and environment of each crystallographic site from each ``.cif`` file.
+`scikit-package <https://scikit-package.github.io/scikit-package/>`_ is used to accelerate maintaining and developing this Python package. `cifkit <https://bobleesj.github.io/cifkit/>`_ is used to determine the coordination number and environment of each crystallographic site from each ``.cif`` file.
 
 .. toctree::
    :maxdepth: 2
@@ -127,3 +149,4 @@ Acknowledgements
    Package API <api/SAF>
    release
    license
+

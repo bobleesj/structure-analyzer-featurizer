@@ -69,7 +69,6 @@ This will install key packages such as ``cifkit`` and ``bobleesj.utils`` that ar
         compute_quaternary_features,
         compute_ternary_features,
     )
-
     try:
         if len(cif.unique_elements) == 2:
             features, uni_features = compute_binary_features(file_path)
