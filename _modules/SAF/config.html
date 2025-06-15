@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAF.config &mdash; Structure Analyzer/Featurizer (SAF) 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f539c95a"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=cca77546"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Structure Analyzer/Featurizer (SAF)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">GUIDES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features.html">Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/SAF.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Structure Analyzer/Featurizer (SAF)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">SAF.config</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for SAF.config</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="get_labels">
+<a class="viewcode-back" href="../../api/SAF.config.html#SAF.config.get_labels">[docs]</a>
+<span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_labels</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]:</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;Si&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Sc&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Fe&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ni&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ga&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ge&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Y&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ru&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Pd&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;In&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Sn&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Th&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;La&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ce&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Pr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Nd&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Sm&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Eu&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Gd&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Tb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Dy&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ho&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Er&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Tm&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Yb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Lu&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Os&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;Ir&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Pt&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;U&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Al&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Mo&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Hf&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Co&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ta&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ag&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Sb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;As&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Rh&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Au&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;B&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ba&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Be&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Bi&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;C&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ca&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Cd&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Cr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Cs&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Cu&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Hg&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;K&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Li&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Mg&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Mn&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Na&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Nb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;P&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Pb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Rb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Re&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;S&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Se&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Sr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Te&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ti&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Tl&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;V&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;W&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Zn&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Zr&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;R&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;Si&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Sc&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Fe&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Co&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ni&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ga&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ge&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Y&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ru&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Pd&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;In&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Sn&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Sb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;La&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ce&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Pr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Nd&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Sm&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Eu&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Gd&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Tb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Dy&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;U&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;Ho&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Er&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Tm&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Yb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Lu&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Os&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ir&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Pt&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Th&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Rh&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Al&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Mo&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Hf&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ta&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ag&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;As&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Au&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;B&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ba&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Be&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Bi&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;C&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;Ca&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Cd&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Cr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Cs&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Cu&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Hg&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;K&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Li&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Mg&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Mn&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Na&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Nb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;P&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Pb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Rb&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Re&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;S&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Se&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Sr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Te&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Ti&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Tl&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;V&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;W&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Zn&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Zr&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;In&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+        <span class="mi">4</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Tb&quot;</span><span class="p">,</span> <span class="s2">&quot;Ce&quot;</span><span class="p">,</span> <span class="s2">&quot;Pr&quot;</span><span class="p">,</span> <span class="s2">&quot;Nd&quot;</span><span class="p">,</span> <span class="s2">&quot;Pm&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Rh&quot;</span><span class="p">,</span> <span class="s2">&quot;Co&quot;</span><span class="p">,</span> <span class="s2">&quot;Ni&quot;</span><span class="p">,</span> <span class="s2">&quot;Mn&quot;</span><span class="p">,</span> <span class="s2">&quot;Cr&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;In&quot;</span><span class="p">,</span> <span class="s2">&quot;Zn&quot;</span><span class="p">,</span> <span class="s2">&quot;Ag&quot;</span><span class="p">,</span> <span class="s2">&quot;Au&quot;</span><span class="p">,</span> <span class="s2">&quot;Hg&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ge&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;Se&quot;</span><span class="p">,</span> <span class="s2">&quot;Te&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">}</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Sangjoon Lee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

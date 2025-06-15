@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structure Analyzer/Featurizer (SAF) &mdash; Structure Analyzer/Featurizer (SAF) 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f539c95a"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=cca77546"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started" href="getting-started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Structure Analyzer/Featurizer (SAF)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">GUIDES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/SAF.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Structure Analyzer/Featurizer (SAF)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Structure Analyzer/Featurizer (SAF)</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/bobleesj/structure-analyzer-featurizer/blob/main/doc/source/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="title">
+<h1>Structure Analyzer/Featurizer (SAF)<a class="headerlink" href="#title" title="Link to this heading"></a></h1>
+<a class="reference external image-reference" href="https://github.com/bobleesj/structure-analyzer-featurizer/pulls"><img alt="PR Welcome" src="https://img.shields.io/badge/PR-Welcome-29ab47ff" />
+</a>
+<a class="reference external image-reference" href="https://github.com/bobleesj/structure-analyzer-featurizer/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/bobleesj/structure-analyzer-featurizer" />
+</a>
+<a class="reference external image-reference" href="https://pypi.org/project/structure-analyzer-featurizer/"><img alt="PyPI" src="https://img.shields.io/pypi/v/structure-analyzer-featurizer" />
+</a>
+<img alt="Python Version" src="https://img.shields.io/pypi/pyversions/structure-analyzer-featurizer" />
+<div class="line-block">
+<div class="line">Software version 0.0.1</div>
+<div class="line">Last updated June 15, 2025.</div>
+</div>
+<p>Structure Analyzer/Featurizer (SAF) is a Python package to generate geometric features of interatomic distances, atomic environment information, and coordination numbers from a folder containing CIF (Crystallographic Information File) files.</p>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h2>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">SAF</span></code> in your scientific publication, please cite the following:</p>
+<ul class="simple">
+<li><p><em>Digital Discovery</em>. <a class="reference external" href="https://doi.org/10.1039/D4DD00332B">https://doi.org/10.1039/D4DD00332B</a></p></li>
+</ul>
+<p>as well as the <code class="docutils literal notranslate"><span class="pre">cifkit</span></code> package, which is the engine of <code class="docutils literal notranslate"><span class="pre">SAF</span></code> for coordination environment analysis:</p>
+<ul class="simple">
+<li><p><em>Journal of Open Source Software</em>. <a class="reference external" href="https://doi.org/10.21105/joss.07205">https://doi.org/10.21105/joss.07205</a></p></li>
+</ul>
+</section>
+<section id="publications-and-scientific-utility">
+<h2>Publications and scientific utility<a class="headerlink" href="#publications-and-scientific-utility" title="Link to this heading"></a></h2>
+<p>Structure features include interatomic distances, information on atomic environments, and coordination numbers:</p>
+<ul class="simple">
+<li><p>94 binary structural features</p></li>
+<li><p>134 ternary structural features</p></li>
+<li><p>182 quaternary structural features</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">SAF</span></code> was originally developed to determine the coordination number and geometry for each crystallographic site in complex structures <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. Later, we included interactive functionality for experimentalists and data scientists to generate structural features. These features have been used as input data for ML models to predict crystal structures and their properties <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<p>In the above <em>Digital Discovery</em> paper (<a class="reference external" href="https://doi.org/10.1039/D4DD00332B">DOI</a>), we describe the performance of <a class="reference external" href="https://bobleesj.github.io/composition-analyzer-featurizer/">CAF</a> in combination with SAF for generating compositional and structural numerical features for ML applications in crystal classification of binary compounds:</p>
+<img alt="PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF." src="_images/SAF-CAF-performance.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Figure 1:</strong> PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF.</p>
+</div>
+<a class="reference external image-reference" href="https://doi.org/10.1039/D4DD00332B"><img alt="Feature extraction diagram with SAF and CAF" src="_images/feature-extraction-diagram.png" />
+</a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Figure 2:</strong> Diagram showing the workflow of combining compositional (CAF) and structural (SAF) features for ML applications.</p>
+</div>
+</section>
+<section id="publications-using-saf">
+<h2>Publications using SAF<a class="headerlink" href="#publications-using-saf" title="Link to this heading"></a></h2>
+<p>Here is a list of publications using <code class="docutils literal notranslate"><span class="pre">SAF</span></code> for materials analysis and data-driven materials synthesis:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Y. Tyvanchuk, V. Babizhetskyy, S. Baran, A. Szytula,
+V. Smetana, S. Lee, A. O. Oliynyk, A. Mudring, The crystal and electronic
+structure of RE23Co6.7In20.3 (RE = Gd–Tm, Lu): A new structure type based on
+intergrowth of AlB2- and CsCl-type related slabs. <em>Journal of Alloys and
+Compounds</em>. <strong>4</strong>, 548-560 (2024).
+<a class="reference external" href="https://doi.org/10.1016/j.jallcom.2023.173241">doi:10.1016/j.jallcom.2023.173241</a></p>
+</aside>
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>S. S. Sethi, A. Dutta, E. I. Jaffal, N. Yadav, D. Shiryaev, B. Hoang, A. Machathi, S. Lee, K. Das, P. P. Jana, A. O. Oliynyk, Unsupervised Machine Learning Prediction of a Novel 1:3 Intermetallic Phase with the Synthesis of TbIr3 (PuNi3-type) as Experimental Validation. <em>Journal of the American Chemical Society</em>. <strong>147</strong>, 14739-14755 (2025).
+<a class="reference external" href="https://doi.org/10.1021/jacs.5c03510">doi.org/10.1021/jacs.5c03510</a></p>
+</aside>
+</aside>
+</section>
+<section id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<p>We have a command-line Python application. Please visit the <a class="reference internal" href="getting-started.html#getting-started"><span class="std std-ref">Getting started</span></a> page to learn how to generate features from a folder containing <code class="docutils literal notranslate"><span class="pre">.cif</span></code> files.</p>
+</section>
+<section id="scope">
+<h2>Scope<a class="headerlink" href="#scope" title="Link to this heading"></a></h2>
+<p>The current version supports the processing of <strong>binary</strong>, <strong>ternary</strong>, and <strong>quaternary</strong> <code class="docutils literal notranslate"><span class="pre">.cif</span></code> files containing the following elements: <code class="docutils literal notranslate"><span class="pre">Si</span></code> <code class="docutils literal notranslate"><span class="pre">Sc</span></code> <code class="docutils literal notranslate"><span class="pre">Fe</span></code> <code class="docutils literal notranslate"><span class="pre">Co</span></code> <code class="docutils literal notranslate"><span class="pre">Ni</span></code> <code class="docutils literal notranslate"><span class="pre">Ga</span></code> <code class="docutils literal notranslate"><span class="pre">Ge</span></code> <code class="docutils literal notranslate"><span class="pre">Y</span></code>
+<code class="docutils literal notranslate"><span class="pre">Ru</span></code> <code class="docutils literal notranslate"><span class="pre">Rh</span></code> <code class="docutils literal notranslate"><span class="pre">Pd</span></code> <code class="docutils literal notranslate"><span class="pre">In</span></code> <code class="docutils literal notranslate"><span class="pre">Sn</span></code> <code class="docutils literal notranslate"><span class="pre">Sb</span></code> <code class="docutils literal notranslate"><span class="pre">La</span></code> <code class="docutils literal notranslate"><span class="pre">Ce</span></code> <code class="docutils literal notranslate"><span class="pre">Pr</span></code> <code class="docutils literal notranslate"><span class="pre">Nd</span></code> <code class="docutils literal notranslate"><span class="pre">Sm</span></code> <code class="docutils literal notranslate"><span class="pre">Eu</span></code> <code class="docutils literal notranslate"><span class="pre">Gd</span></code> <code class="docutils literal notranslate"><span class="pre">Tb</span></code> <code class="docutils literal notranslate"><span class="pre">Dy</span></code> <code class="docutils literal notranslate"><span class="pre">Ho</span></code>
+<code class="docutils literal notranslate"><span class="pre">Er</span></code> <code class="docutils literal notranslate"><span class="pre">Tm</span></code> <code class="docutils literal notranslate"><span class="pre">Yb</span></code> <code class="docutils literal notranslate"><span class="pre">Lu</span></code> <code class="docutils literal notranslate"><span class="pre">Os</span></code> <code class="docutils literal notranslate"><span class="pre">Ir</span></code> <code class="docutils literal notranslate"><span class="pre">Pt</span></code> <code class="docutils literal notranslate"><span class="pre">Th</span></code> <code class="docutils literal notranslate"><span class="pre">U</span></code> <code class="docutils literal notranslate"><span class="pre">Al</span></code> <code class="docutils literal notranslate"><span class="pre">Mo</span></code> <code class="docutils literal notranslate"><span class="pre">Hf</span></code> <code class="docutils literal notranslate"><span class="pre">Ta</span></code>. <code class="docutils literal notranslate"><span class="pre">Ag</span></code> <code class="docutils literal notranslate"><span class="pre">As</span></code> <code class="docutils literal notranslate"><span class="pre">Au</span></code>
+<code class="docutils literal notranslate"><span class="pre">B</span></code> <code class="docutils literal notranslate"><span class="pre">Ba</span></code> <code class="docutils literal notranslate"><span class="pre">Be</span></code> <code class="docutils literal notranslate"><span class="pre">Bi</span></code> <code class="docutils literal notranslate"><span class="pre">C</span></code> <code class="docutils literal notranslate"><span class="pre">Ca</span></code> <code class="docutils literal notranslate"><span class="pre">Cd</span></code> <code class="docutils literal notranslate"><span class="pre">Cr</span></code> <code class="docutils literal notranslate"><span class="pre">Cs</span></code> <code class="docutils literal notranslate"><span class="pre">Cu</span></code> <code class="docutils literal notranslate"><span class="pre">Hg</span></code> <code class="docutils literal notranslate"><span class="pre">K</span></code> <code class="docutils literal notranslate"><span class="pre">Li</span></code> <code class="docutils literal notranslate"><span class="pre">Mg</span></code> <code class="docutils literal notranslate"><span class="pre">Mn</span></code> <code class="docutils literal notranslate"><span class="pre">Na</span></code>
+<code class="docutils literal notranslate"><span class="pre">Nb</span></code> <code class="docutils literal notranslate"><span class="pre">P</span></code> <code class="docutils literal notranslate"><span class="pre">Pb</span></code> <code class="docutils literal notranslate"><span class="pre">Rb</span></code> <code class="docutils literal notranslate"><span class="pre">Re</span></code> <code class="docutils literal notranslate"><span class="pre">S</span></code> <code class="docutils literal notranslate"><span class="pre">Se</span></code> <code class="docutils literal notranslate"><span class="pre">Sr</span></code> <code class="docutils literal notranslate"><span class="pre">Te</span></code> <code class="docutils literal notranslate"><span class="pre">Ti</span></code> <code class="docutils literal notranslate"><span class="pre">Tl</span></code> <code class="docutils literal notranslate"><span class="pre">V</span></code> <code class="docutils literal notranslate"><span class="pre">W</span></code> <code class="docutils literal notranslate"><span class="pre">Zn</span></code> <code class="docutils literal notranslate"><span class="pre">Zr</span></code> <code class="docutils literal notranslate"><span class="pre">Tc</span></code> <code class="docutils literal notranslate"><span class="pre">N</span></code>
+<code class="docutils literal notranslate"><span class="pre">O</span></code> <code class="docutils literal notranslate"><span class="pre">F</span></code> <code class="docutils literal notranslate"><span class="pre">Cl</span></code> <code class="docutils literal notranslate"><span class="pre">Br</span></code> <code class="docutils literal notranslate"><span class="pre">I</span></code> <code class="docutils literal notranslate"><span class="pre">Sm</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Pauling CN 12 radii values for some gases (<code class="docutils literal notranslate"><span class="pre">N</span></code>, <code class="docutils literal notranslate"><span class="pre">O</span></code>, <code class="docutils literal notranslate"><span class="pre">F</span></code>, <code class="docutils literal notranslate"><span class="pre">Cl</span></code>, <code class="docutils literal notranslate"><span class="pre">Br</span></code>, and <code class="docutils literal notranslate"><span class="pre">I</span></code>) as well as <code class="docutils literal notranslate"><span class="pre">Tc</span></code> and <code class="docutils literal notranslate"><span class="pre">Sm</span></code> were interpolated using Gaussian Process Regression. The CIF radii for the aforementioned gases were compiled as averages of low-temperature structures from Persson’s CIF database.</p>
+</div>
+</section>
+<section id="how-to-ask-for-help">
+<h2>How to ask for help<a class="headerlink" href="#how-to-ask-for-help" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Do you have any feature requests? Please feel free to open an issue on GitHub using the <code class="docutils literal notranslate"><span class="pre">Bug</span> <span class="pre">Report</span> <span class="pre">or</span> <span class="pre">Feature</span> <span class="pre">Request</span></code> template.</p></li>
+<li><p>Do you have any questions about running the code? Please feel free to reach out to Sangjoon Bob Lee at <a class="reference external" href="mailto:bobleesj&#37;&#52;&#48;stanford&#46;edu">bobleesj<span>&#64;</span>stanford<span>&#46;</span>edu</a>.</p></li>
+<li><p>Do you want to learn how to publish scientific software? <code class="docutils literal notranslate"><span class="pre">SAF</span></code> is developed and maintained using the Level 5 package standards provided in <a class="reference external" href="https://scikit-package.github.io/scikit-package/">scikit-package</a>.</p></li>
+</ul>
+</section>
+<section id="how-you-can-contribute-to-saf">
+<h2>How you can contribute to SAF<a class="headerlink" href="#how-you-can-contribute-to-saf" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Did you find SAF helpful? You can show support by starring the <a class="reference external" href="https://github.com/bobleesj/structure-analyzer-featurizer">GitHub repository</a> and recommending it to colleagues.</p></li>
+<li><p>Did you find any bugs? Please feel free to report them by creating a new issue so that we can fix them as soon as possible.</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Do you want to learn how to use GitHub and develop Python packages to reuse your code? Please feel free to reach out to Sangjoon Bob Lee (<a class="reference external" href="mailto:bobleesj&#37;&#52;&#48;gmail&#46;edu">bobleesj<span>&#64;</span>gmail<span>&#46;</span>edu</a>). There are resources you can use to get started, such as <a class="reference external" href="https://scikit-package.github.io/scikit-package/">scikit-package</a></p>
+</div>
+<a class="reference external image-reference" href="https://scikit-package.github.io/scikit-package"><img alt="scikit-package logo" class="align-center" src="_images/scikit-package-logo-text.png" style="width: 400px;" />
+</a>
+</section>
+<section id="contributors">
+<h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Anton Oliynyk - CUNY Hunter College</p></li>
+<li><p>Arnab Dutta - IIT Kharagpur</p></li>
+<li><p>Nikhil Kumar Barua - University of Waterloo</p></li>
+<li><p>Nishant Yadav - IIT Kharagpur</p></li>
+<li><p>Sangjoon Bob Lee - Columbia University</p></li>
+<li><p>Siddha Sankalpa Sethi - IIT Kharagpur</p></li>
+</ul>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://scikit-package.github.io/scikit-package/">scikit-package</a> is used to accelerate maintaining and developing this Python package. <a class="reference external" href="https://bobleesj.github.io/cifkit/">cifkit</a> is used to determine the coordination number and environment of each crystallographic site from each <code class="docutils literal notranslate"><span class="pre">.cif</span></code> file.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting-started.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Sangjoon Lee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
