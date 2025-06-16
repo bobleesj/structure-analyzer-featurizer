@@ -7,8 +7,8 @@ def get_min_distances_by_labels(
     elements: list[str],
     labels: list[str] = None,
 ) -> dict[str, float]:
-    """Get bond distances using symbolic labels (like RR, RX, MX) for arbitrary
-    elements.
+    """Get bond distances using symbolic labels (like RR, RX, MX) for
+    arbitrary elements.
 
     Parameters
     ----------

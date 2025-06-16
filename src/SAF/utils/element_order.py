@@ -4,7 +4,8 @@ from SAF.config import get_labels
 
 
 def get_binary_AB_elements(elements: list[str]) -> tuple[str, str]:
-    """Get A, B elements from a list of two elements using label groups."""
+    """Get A, B elements from a list of two elements using label
+    groups."""
     if len(elements) != 2:
         raise ValueError("Input must be a list of exactly two elements.")
 

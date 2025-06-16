@@ -4,8 +4,8 @@ from SAF.features.environment.util import count_first_second_min_dist, extract_b
 
 
 def get_nearest_connections_no_coords(connections, count=15):
-    """Return the first `count` connections for each site label, including only
-    the element label and distance.
+    """Return the first `count` connections for each site label,
+    including only the element label and distance.
 
     This simplifies inspection/debugging.
     """

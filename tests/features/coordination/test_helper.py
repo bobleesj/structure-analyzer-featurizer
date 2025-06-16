@@ -253,8 +253,8 @@ def RhSb2_min_max_avg_CN_metrics_from_sites():
 
 
 def test_find_min_max_avg_CN_metrics(RhSb2_CN_metrics_per_method, RhSb2_min_max_avg_CN_metrics_from_sites):
-    """Compute the min, max, and avg of the CN metrics from each site label
-    across 4 methods."""
+    """Compute the min, max, and avg of the CN metrics from each site
+    label across 4 methods."""
     result = _compute_min_max_avg_per_atomic_label(RhSb2_CN_metrics_per_method)
     for label in RhSb2_min_max_avg_CN_metrics_from_sites:
         for key, metric in RhSb2_min_max_avg_CN_metrics_from_sites[label].items():

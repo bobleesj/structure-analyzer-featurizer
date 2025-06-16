@@ -12,9 +12,9 @@
 # See LICENSE.rst for license information.
 #
 ##############################################################################
-"""Python package to generate geometric features of interatomic distances,
-atomic environment information, and coordination numbers from a folder
-containing .cif files."""
+"""Python package to generate geometric features of interatomic
+distances, atomic environment information, and coordination numbers from
+a folder containing .cif files."""
 
 # package version
 from SAF.version import __version__  # noqa

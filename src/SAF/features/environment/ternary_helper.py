@@ -4,8 +4,8 @@ from SAF.features.environment.util import _get_site_labels_per_element, count_fi
 
 
 def compute_homoatomic_dist_by_site_shortest_dist(connections, R_best_label, M_best_label, X_best_label):
-    """Compute the shortest homoatomic distances normalized by the shortest
-    distance encountered at the best site for each element."""
+    """Compute the shortest homoatomic distances normalized by the
+    shortest distance encountered at the best site for each element."""
     R = string_parser.get_atom_type_from_label(R_best_label)
     M = string_parser.get_atom_type_from_label(M_best_label)
     X = string_parser.get_atom_type_from_label(X_best_label)
@@ -42,8 +42,8 @@ def compute_homoatomic_dist_by_site_shortest_dist(connections, R_best_label, M_b
 
 def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, R, M, X):
     """Compute the average of the homoatomic distances normalized by the
-    shortest distance encountered at each site for two distinct element types
-    within a given set of connections."""
+    shortest distance encountered at each site for two distinct element
+    types within a given set of connections."""
     # Shortest distance per site label
     element_to_site_labels = _get_site_labels_per_element(connections)
     R_total_homoatomic_dist_by_shortest_dist = 0.0
@@ -74,7 +74,8 @@ def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, R, M, X):
 
 def get_R_and_M_and_X_count_in_best_label_per_element(connections, R, M, X):
     """Compute the occurrences of element types R, M, X at the shortest
-    distances within their respective best labeled site for each element.
+    distances within their respective best labeled site for each
+    element.
 
     The best site label is determined with the label with the shortest
     distance pair.
@@ -137,8 +138,9 @@ def get_R_and_M_and_X_count_in_best_label_per_element(connections, R, M, X):
 
 
 def get_avg_R_and_M_and_X_count_in_per_element(connections, R, M, X):
-    """Compute the occurrences of element types R, M, and X at the shortest
-    distances within their respective site for all site labels."""
+    """Compute the occurrences of element types R, M, and X at the
+    shortest distances within their respective site for all site
+    labels."""
     R_total_count_at_R_shortest_dist = 0
     R_total_count_at_M_shortest_dist = 0
     R_total_count_at_X_shortest_dist = 0

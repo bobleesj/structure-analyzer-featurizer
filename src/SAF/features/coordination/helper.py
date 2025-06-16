@@ -7,8 +7,9 @@ from SAF.utils.element_order import get_binary_AB_elements, get_quaternary_ABCD_
 
 
 def get_CN_metrics_per_method(cif: Cif):
-    """Find the best polyhedron for each label based on the minimum distance
-    between the reference atom to the average position of connected atoms."""
+    """Find the best polyhedron for each label based on the minimum
+    distance between the reference atom to the average position of
+    connected atoms."""
     max_gaps_per_label = cif.CN_max_gap_per_site
     connections = cif.connections
     site_data = {}
@@ -39,8 +40,8 @@ def get_CN_metrics_per_method(cif: Cif):
 
 
 def _compute_number_of_atoms_in_binary_CN(label_connections, CN_metrics, A, B):
-    """Compute the number of A, B atoms for each label, and 4 methods per
-    label."""
+    """Compute the number of A, B atoms for each label, and 4 methods
+    per label."""
     CN_atom_count_data = {}
     for site_label, method_data in CN_metrics.items():
         CN_atom_count_data[site_label] = {}
@@ -65,8 +66,8 @@ def _compute_number_of_atoms_in_binary_CN(label_connections, CN_metrics, A, B):
 
 
 def _compute_number_of_atoms_in_ternary_CN(label_connections, CN_metrics, R, M, X):
-    """Compute the number of R, M, X atoms for each label, and 4 methods per
-    label."""
+    """Compute the number of R, M, X atoms for each label, and 4 methods
+    per label."""
     CN_atom_count_data = {}
     for site_label, method_data in CN_metrics.items():
         CN_atom_count_data[site_label] = {}
@@ -95,8 +96,8 @@ def _compute_number_of_atoms_in_ternary_CN(label_connections, CN_metrics, R, M, 
 
 
 def _compute_number_of_atoms_in_quaternary_CN(label_connections, CN_metrics, A, B, C, D):
-    """Compute the number of A, B, C, D atoms for each label, and 4 methods per
-    label."""
+    """Compute the number of A, B, C, D atoms for each label, and 4
+    methods per label."""
     CN_atom_count_data = {}
     for site_label, method_data in CN_metrics.items():
         CN_atom_count_data[site_label] = {}
@@ -129,8 +130,8 @@ def _compute_number_of_atoms_in_quaternary_CN(label_connections, CN_metrics, A, 
 
 
 def _compute_min_max_avg_per_atomic_label(site_data):
-    """Calculate the minimum, maximum, and average of the 4 methods for each
-    atomic site label, e.g., "Sb1", "Sb2"."""
+    """Calculate the minimum, maximum, and average of the 4 methods for
+    each atomic site label, e.g., "Sb1", "Sb2"."""
     min_max_avg_per_site = {}
     # Iterate over each element (like Sb1, Th1, etc.)
     for label in site_data:
@@ -154,8 +155,8 @@ def _compute_min_max_avg_per_atomic_label(site_data):
 
 
 def _compute_global_avg_for_min_max_avg_metrics(min_max_avg_result):
-    """Calculate global averages of all minimums, maximums, and averages across
-    all labels from a pre-computed min-max-avg result.
+    """Calculate global averages of all minimums, maximums, and averages
+    across all labels from a pre-computed min-max-avg result.
 
     From the above function, we copmuted the min, max, and avg for each
     label, now we compute the global averages across all labels. This is

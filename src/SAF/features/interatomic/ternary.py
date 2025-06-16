@@ -11,7 +11,9 @@ def compute_features(cif: Cif, use_size_constraint: bool):
     R_CIF_rad = cif.radius_values[R]["CIF_radius"]
     M_CIF_rad = cif.radius_values[M]["CIF_radius"]
     X_CIF_rad = cif.radius_values[X]["CIF_radius"]
-    CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius([R, M, X], cif.shortest_bond_pair_distance, elements_ordered=False, use_size_constraint=use_size_constraint)
+    CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius(
+        [R, M, X], cif.shortest_bond_pair_distance, elements_ordered=False, use_size_constraint=use_size_constraint
+    )
     R_CIF_rad_refined = float(CIF_rad_refined[R])
     M_CIF_rad_refined = float(CIF_rad_refined[M])
     X_CIF_rad_refined = float(CIF_rad_refined[X])

@@ -20,7 +20,7 @@ First, let's clarify some terminology and concepts used in ``SAF``:
 
     b. The refined radius must preserve the size order of the original CIF radius values.
 
-    You can optionally turn off the (b) constraint by setting ``features, uni_features = compute_<composition>_features(file_path, use_size_constraint=False)`` in ``main.py`` the ``SAF`` application. 
+    You can optionally turn off the (b) constraint by setting ``features, uni_features = compute_<composition>_features(file_path, use_size_constraint=False)`` in ``main.py`` the ``SAF`` application.
 
   **Q. How are the coordination number (CN) features calculated?**
 

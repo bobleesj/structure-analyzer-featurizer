@@ -4,8 +4,8 @@ from SAF.features.environment.util import _get_site_labels_per_element, count_fi
 
 
 def compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_best_label, C_best_label, D_best_label):
-    """Compute the shortest homoatomic distances normalized by the shortest
-    distance encountered at the best site for each element."""
+    """Compute the shortest homoatomic distances normalized by the
+    shortest distance encountered at the best site for each element."""
     A = string_parser.get_atom_type_from_label(A_best_label)
     B = string_parser.get_atom_type_from_label(B_best_label)
     C = string_parser.get_atom_type_from_label(C_best_label)
@@ -50,8 +50,8 @@ def compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_b
 
 def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, A, B, C, D):
     """Compute the average of the homoatomic distances normalized by the
-    shortest distance encountered at each site for four distinct element types
-    within a given set of connections."""
+    shortest distance encountered at each site for four distinct element
+    types within a given set of connections."""
     element_to_site_labels = _get_site_labels_per_element(connections)
     A_total_homoatomic_dist_by_shortest_dist = 0.0
     B_total_homoatomic_dist_by_shortest_dist = 0.0
@@ -86,8 +86,9 @@ def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, A, B, C, D):
 
 
 def get_A_and_B_and_C_and_D_count_in_best_label_per_element(connections, A, B, C, D):
-    """Compute the occurrences of element types A, B, C, D at the shortest
-    distances within their respective best labeled site for each element.
+    """Compute the occurrences of element types A, B, C, D at the
+    shortest distances within their respective best labeled site for
+    each element.
 
     The best site label is determined with the label with the shortest
     distance pair.
@@ -183,8 +184,9 @@ def get_A_and_B_and_C_and_D_count_in_best_label_per_element(connections, A, B, C
 
 
 def get_avg_A_and_B_and_C_and_D_count_in_per_element(connections, A, B, C, D):
-    """Compute the occurrences of element types A, B, C, D at the shortest
-    distances within their respective site for all site labels."""
+    """Compute the occurrences of element types A, B, C, D at the
+    shortest distances within their respective site for all site
+    labels."""
     A_total_count_at_A_shortest_dist = 0
     A_total_count_at_B_shortest_dist = 0
     A_total_count_at_C_shortest_dist = 0
