@@ -18,7 +18,7 @@ If you use `SAF` in your scientific publication, please cite the software packag
 
 > _Digital Discovery_, https://doi.org/10.1039/D4DD00332B
 
-as well as the cifkit which is the engine of `SAF` for coordination environment analysis:
+as well as the `cifkit` which is the engine of `SAF` for coordination environment analysis:
 
 > _Journal of Open Source Software_, https://doi.org/10.21105/joss.07205
 
