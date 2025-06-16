@@ -5,12 +5,12 @@ from SAF.features.interatomic import helper
 from SAF.utils import bond, element_order, packing
 
 
-def compute_features(cif: Cif):
+def compute_features(cif: Cif, use_size_constraint: bool):
     elements = list(cif.unique_elements)
     A, B = element_order.get_binary_AB_elements(elements)
     A_CIF_rad = cif.radius_values[A]["CIF_radius"]
     B_CIF_rad = cif.radius_values[B]["CIF_radius"]
-    CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius([A, B], cif.shortest_bond_pair_distance, elements_ordered=False)
+    CIF_rad_refined, obj_value = radius_opt.get_refined_CIF_radius([A, B], cif.shortest_bond_pair_distance, elements_ordered=False, use_size_constraint=use_size_constraint)
     min_bond_dists = bond.get_min_distances_by_labels(cif.shortest_bond_pair_distance, [A, B], labels=["A", "B"])
     AA_dist = min_bond_dists["AA"]
     BB_dist = min_bond_dists["BB"]

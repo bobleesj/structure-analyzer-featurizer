@@ -138,7 +138,6 @@ def test_extract_shortest_dist_with_tol(ThSb_cif, binary_ThSb_cif_site_dist_info
     }
 
 
-@pytest.mark.fast
 def test_extract_avg_shortest_dist_with_tol_Th7Rh3(Th7Rh3_cif):
     result = extract_avg_shortest_dist_with_tol(Th7Rh3_cif.connections)
 
@@ -154,7 +153,6 @@ def test_extract_avg_shortest_dist_with_tol_Th7Rh3(Th7Rh3_cif):
     }
 
 
-@pytest.mark.fast
 def test_extract_avg_shortest_dist_with_tol(ThSb_cif):
     result = extract_avg_shortest_dist_with_tol(ThSb_cif.connections)
     assert result == {
@@ -169,7 +167,6 @@ def test_extract_avg_shortest_dist_with_tol(ThSb_cif):
     }
 
 
-@pytest.mark.fast
 def test_get_first_by_second_shortest_dist_ratio_ThSb(binary_ThSb_cif_site_dist_info, ThSb_cif):
     result = get_avg_second_by_first_shortest_dist_ratio(binary_ThSb_cif_site_dist_info, ThSb_cif.connections)
 
@@ -179,7 +176,6 @@ def test_get_first_by_second_shortest_dist_ratio_ThSb(binary_ThSb_cif_site_dist_
     }
 
 
-@pytest.mark.fast
 def test_get_first_by_second_shortest_dist_ratio_Th7Rh3(Th7Rh3_site_dist_info, Th7Rh3_cif):
     result = get_avg_second_by_first_shortest_dist_ratio(Th7Rh3_site_dist_info, Th7Rh3_cif.connections)
 
