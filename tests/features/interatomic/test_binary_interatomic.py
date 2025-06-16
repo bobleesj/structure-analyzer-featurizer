@@ -4,7 +4,7 @@ from SAF.features.interatomic.binary import compute_features
 
 
 def test_binary_test(ThSb_cif):
-    actual, _ = compute_features(ThSb_cif)
+    actual, _ = compute_features(ThSb_cif, use_size_constraint=True)
     expected = {
         "Entry": "ThSb",
         "Formula": "ThSb",

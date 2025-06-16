@@ -7,8 +7,8 @@ from cifkit.utils import string_parser
 def count_first_second_min_dist(
     all_labels_connections,
 ):
-    """Determine the shortest and second shortest distances from each site
-    label and their respective counts.
+    """Determine the shortest and second shortest distances from each
+    site label and their respective counts.
 
     Examples
     --------
@@ -51,8 +51,9 @@ def count_first_second_min_dist(
 
 
 def extract_best_labels(data):
-    """Extract the best label for each element based on the shortest distance,
-    and if there's a tie, use the second shortest distance as a tiebreaker.
+    """Extract the best label for each element based on the shortest
+    distance, and if there's a tie, use the second shortest distance as
+    a tiebreaker.
 
     Attributes
     ----------
@@ -148,8 +149,8 @@ def extract_best_labels(data):
 
 
 def extract_shortest_dist_with_tol(best_label_dist_info, connections, tol=0.05):
-    """Compute the count of distances within a specified tolerance of the
-    shortest distance of each site label."""
+    """Compute the count of distances within a specified tolerance of
+    the shortest distance of each site label."""
     best_site_result = {}
 
     # Find the shortest distance form the best site label
@@ -169,8 +170,8 @@ def extract_shortest_dist_with_tol(best_label_dist_info, connections, tol=0.05):
 
 
 def extract_avg_shortest_dist_with_tol(connection_data, tol=0.05):
-    """Compute the count of distances within a specified tolerance of the
-    shortest distance of each site label."""
+    """Compute the count of distances within a specified tolerance of
+    the shortest distance of each site label."""
     site_result = defaultdict(lambda: {"shortest_dist_count_within_tol": 0})
     for site_label, connections in connection_data.items():
         site_result[site_label] = {}

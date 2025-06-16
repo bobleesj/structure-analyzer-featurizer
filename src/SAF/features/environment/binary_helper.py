@@ -4,8 +4,8 @@ from SAF.features.environment.util import _get_site_labels_per_element, count_fi
 
 
 def compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_best_label):
-    """Compute the shortest homoatomic distances normalized by the shortest
-    distance encountered at the best site for each element."""
+    """Compute the shortest homoatomic distances normalized by the
+    shortest distance encountered at the best site for each element."""
     A = string_parser.get_atom_type_from_label(A_best_label)
     B = string_parser.get_atom_type_from_label(B_best_label)
     A_homoatomic_shortest_dist = float("inf")
@@ -38,8 +38,8 @@ def compute_homoatomic_dist_by_site_shortest_dist(connections, A_best_label, B_b
 
 def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, A, B):
     """Compute the average of the homoatomic distances normalized by the
-    shortest distance encountered at each site for two distinct element types
-    within a given set of connections."""
+    shortest distance encountered at each site for two distinct element
+    types within a given set of connections."""
     # Shortest distance per site label
     element_to_site_labels = _get_site_labels_per_element(connections)
     A_total_homoatomic_dist_by_shortest_dist = 0.0
@@ -68,7 +68,8 @@ def compute_avg_homoatomic_dist_by_site_shortest_dist(connections, A, B):
 
 def get_A_and_B_count_in_best_label_per_element(connections, A, B):
     """Compute the occurrences of element types A and B at the shortest
-    distances within their respective best labeled site for each element.
+    distances within their respective best labeled site for each
+    element.
 
     The best site label is determined with the label with the shortest
     distance pair.

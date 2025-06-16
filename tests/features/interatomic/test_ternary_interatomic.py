@@ -4,7 +4,7 @@ from SAF.features.interatomic.ternary import compute_features
 
 
 def test_compute_ternary_interatomic_feature(URhIn_cif):
-    actual, _ = compute_features(URhIn_cif)
+    actual, _ = compute_features(URhIn_cif, use_size_constraint=True)
     expected = {
         "Entry": "URhIn",
         "Formula": "URhIn",
