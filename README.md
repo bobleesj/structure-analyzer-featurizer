@@ -1,4 +1,4 @@
-# Composition Analyzer Featurizer (CAF)
+# Structure Analyzer Featurizer (SAF)
 
 ![PR](https://img.shields.io/badge/PR-Welcome-29ab47ff)
 ![PyPI](https://img.shields.io/pypi/v/structure-analyzer-featurizer)
@@ -9,7 +9,7 @@ Structure Analyzer/Featurizer (SAF) is a Python package to generate geometric fe
 Features:
 
 - Generate hundreds of numerical structural features for **binary**, **ternary**, and **quaternary** `.cif` files.
-- No coding required - command-line interactive app provided.
+- No coding required - command-line interactive [app](https://github.com/bobleesj/structure-analyzer-featurizer-app) provided.
 - Process hundreds to tens of thousands of .cif files.
 
 ## Publications
@@ -28,4 +28,4 @@ To learn more, please read the official documentation at https://bobleesj.github
 
 ## Acknowledgements
 
-`CAF` is built and maintained with [scikit-package](https://scikit-package.github.io/scikit-package/).
+`SAF` is built and maintained with [scikit-package](https://scikit-package.github.io/scikit-package/).

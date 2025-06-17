@@ -83,13 +83,13 @@ We have a command-line Python application. Please visit the :ref:`getting-starte
 Scope
 =====
 
-The current version supports the processing of **binary**, **ternary**, and **quaternary** ``.cif`` files containing the following elements: ``Si`` ``Sc`` ``Fe`` ``Co`` ``Ni`` ``Ga`` ``Ge`` ``Y``
-``Ru`` ``Rh`` ``Pd`` ``In`` ``Sn`` ``Sb`` ``La`` ``Ce`` ``Pr`` ``Nd`` ``Sm`` ``Eu`` ``Gd`` ``Tb`` ``Dy`` ``Ho``
-``Er`` ``Tm`` ``Yb`` ``Lu`` ``Os`` ``Ir`` ``Pt`` ``Th`` ``U`` ``Al`` ``Mo`` ``Hf`` ``Ta``. ``Ag`` ``As`` ``Au``
-``B`` ``Ba`` ``Be`` ``Bi`` ``C`` ``Ca`` ``Cd`` ``Cr`` ``Cs`` ``Cu`` ``Hg`` ``K`` ``Li`` ``Mg`` ``Mn`` ``Na``
-``Nb`` ``P`` ``Pb`` ``Rb`` ``Re`` ``S`` ``Se`` ``Sr`` ``Te`` ``Ti`` ``Tl`` ``V`` ``W`` ``Zn`` ``Zr`` ``Tc`` ``N``
-``O`` ``F`` ``Cl`` ``Br`` ``I`` ``Sm``.
+The current version supports the processing of **binary**, **ternary**, and **quaternary** ``.cif`` files containing the following elements:
 
+.. image:: img/SAF-supported-elements-table.png
+.. note::
+
+   **Figure 3:** Elements supported by SAF for generating structural features. 
+   
 .. note::
 
    The Pauling CN 12 radii values for some gases (``N``, ``O``, ``F``, ``Cl``, ``Br``, and ``I``) as well as ``Tc`` and ``Sm`` were interpolated using Gaussian Process Regression. The CIF radii for the aforementioned gases were compiled as averages of low-temperature structures from Persson's CIF database.
