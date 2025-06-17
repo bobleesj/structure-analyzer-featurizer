@@ -88,8 +88,8 @@ The current version supports the processing of **binary**, **ternary**, and **qu
 .. image:: img/SAF-supported-elements-table.png
 .. note::
 
-   **Figure 3:** Elements supported by SAF for generating structural features. 
-   
+   **Figure 3:** Elements supported by SAF for generating structural features.
+
 .. note::
 
    The Pauling CN 12 radii values for some gases (``N``, ``O``, ``F``, ``Cl``, ``Br``, and ``I``) as well as ``Tc`` and ``Sm`` were interpolated using Gaussian Process Regression. The CIF radii for the aforementioned gases were compiled as averages of low-temperature structures from Persson's CIF database.
