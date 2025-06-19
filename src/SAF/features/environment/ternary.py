@@ -18,7 +18,7 @@ from SAF.features.environment.util import (
 def compute_features(cif: Cif, elements):
     connections = cif.connections
     R, M, X = elements
-    
+
     (
         R_avg_homoatomic_dist_by_shortest_dist,
         M_avg_homoatomic_dist_by_shortest_dist,

@@ -5,11 +5,13 @@ from cifkit import Cif
 Binary
 """
 
+
 @pytest.fixture
 def ThSb_cif():
     cif = Cif("tests/cif/binary/ThSb.cif", supercell_size=2)
     cif.compute_connections()
     return cif
+
 
 @pytest.fixture
 def Th7Rh3_cif():
@@ -17,6 +19,7 @@ def Th7Rh3_cif():
     cif.compute_connections()
     cif.compute_CN()
     return cif
+
 
 @pytest.fixture
 def Dy2Co17_cif():
@@ -32,17 +35,21 @@ def RhSb2_cif():
     cif.compute_CN()
     return cif
 
+
 @pytest.fixture
 def RhSb_elements_tuple():
     return ("Rh", "Sb")
+
 
 @pytest.fixture
 def ThRh_elements_tuple():
     return ("Th", "Rh")
 
+
 @pytest.fixture
 def ThSb_elements_tuple():
     return ("Th", "Sb")
+
 
 """
 Ternary
@@ -56,9 +63,11 @@ def URhIn_cif():
     cif.compute_CN()
     return cif
 
+
 @pytest.fixture
 def URhIn_elements_tuple():
     return ("U", "Rh", "In")
+
 
 """
 Quaternary
@@ -72,6 +81,7 @@ def Tb4RhInGe4_cif():
     cif.compute_connections()
     cif.compute_CN()
     return cif
+
 
 @pytest.fixture
 def TbRhInGe_elements_tuple():
