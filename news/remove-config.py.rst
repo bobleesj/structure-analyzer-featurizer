@@ -12,7 +12,7 @@
 
 **Removed:**
 
-* <news item>
+* Remove ``config.py`` file used to sort labels of AB, RMX, and ABCD.
 
 **Fixed:**
 
