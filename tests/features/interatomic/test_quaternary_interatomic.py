@@ -4,8 +4,8 @@ import pytest
 from SAF.features.interatomic.quaternary import compute_features
 
 
-def test_compute_features(Tb4RhInGe4_cif):
-    actual, _ = compute_features(Tb4RhInGe4_cif, True)
+def test_compute_features(Tb4RhInGe4_cif, TbRhInGe_elements_tuple):
+    actual, _ = compute_features(Tb4RhInGe4_cif, True, TbRhInGe_elements_tuple)
     expected = {
         "Entry": "Tb4RhInGe4",
         "Formula": "Tb4RhInGe4",

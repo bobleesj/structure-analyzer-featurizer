@@ -14,6 +14,14 @@ def ThSb_cif():
 
 
 @pytest.fixture
+def Th7Rh3_cif():
+    cif = Cif("tests/cif/binary/Th7Rh3.cif", supercell_size=2)
+    cif.compute_connections()
+    cif.compute_CN()
+    return cif
+
+
+@pytest.fixture
 def Dy2Co17_cif():
     cif = Cif("tests/cif/binary/Dy2Co17.cif", supercell_size=2)
     cif.compute_connections()
@@ -29,11 +37,18 @@ def RhSb2_cif():
 
 
 @pytest.fixture
-def Th7Rh3_cif():
-    cif = Cif("tests/cif/binary/Th7Rh3.cif", supercell_size=2)
-    cif.compute_connections()
-    cif.compute_CN()
-    return cif
+def RhSb_elements_tuple():
+    return ("Rh", "Sb")
+
+
+@pytest.fixture
+def ThRh_elements_tuple():
+    return ("Th", "Rh")
+
+
+@pytest.fixture
+def ThSb_elements_tuple():
+    return ("Th", "Sb")
 
 
 """
@@ -49,6 +64,11 @@ def URhIn_cif():
     return cif
 
 
+@pytest.fixture
+def URhIn_elements_tuple():
+    return ("U", "Rh", "In")
+
+
 """
 Quaternary
 """
@@ -61,3 +81,8 @@ def Tb4RhInGe4_cif():
     cif.compute_connections()
     cif.compute_CN()
     return cif
+
+
+@pytest.fixture
+def TbRhInGe_elements_tuple():
+    return ("Tb", "Rh", "In", "Ge")

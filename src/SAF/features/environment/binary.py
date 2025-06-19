@@ -13,12 +13,11 @@ from SAF.features.environment.util import (
     extract_shortest_dist_with_tol,
     get_avg_second_by_first_shortest_dist_ratio,
 )
-from SAF.utils import element_order
 
 
-def compute_features(cif: Cif):
+def compute_features(cif: Cif, elements):
+    A, B = elements
     connections = cif.connections
-    A, B = element_order.get_binary_AB_elements(list(cif.unique_elements))
     (
         A_avg_homoatomic_dist_by_shortest_dist,
         B_avg_homoatomic_dist_by_shortest_dist,

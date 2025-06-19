@@ -3,8 +3,8 @@ import pytest
 from SAF.features.coordination.ternary import compute_features
 
 
-def test_features(URhIn_cif):
-    result = compute_features(URhIn_cif)
+def test_features(URhIn_cif, URhIn_elements_tuple):
+    result = compute_features(URhIn_cif, URhIn_elements_tuple)
     expected = {
         "CN_AVG_coordination_number": 11.5,
         "CN_AVG_R_atom_count": 4.5,

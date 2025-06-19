@@ -3,8 +3,8 @@ from cifkit import Cif
 from SAF.features.coordination.helper import get_CN_atom_count_data
 
 
-def compute_features(cif: Cif):
-    avg_CN_metrics, avg_CN_atom_count = get_CN_atom_count_data(cif)
+def compute_features(cif: Cif, elements):
+    avg_CN_metrics, avg_CN_atom_count = get_CN_atom_count_data(cif, elements)
     return {
         "CN_AVG_coordination_number": avg_CN_metrics["avg"]["number_of_vertices"],
         "CN_AVG_R_atom_count": avg_CN_atom_count["avg"]["R_count"],

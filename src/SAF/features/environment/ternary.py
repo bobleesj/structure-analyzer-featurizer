@@ -13,12 +13,12 @@ from SAF.features.environment.util import (
     extract_shortest_dist_with_tol,
     get_avg_second_by_first_shortest_dist_ratio,
 )
-from SAF.utils.element_order import get_ternary_RMX_elements
 
 
-def compute_features(cif: Cif):
+def compute_features(cif: Cif, elements):
     connections = cif.connections
-    R, M, X = get_ternary_RMX_elements(list(cif.unique_elements))
+    R, M, X = elements
+
     (
         R_avg_homoatomic_dist_by_shortest_dist,
         M_avg_homoatomic_dist_by_shortest_dist,

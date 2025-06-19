@@ -3,8 +3,8 @@ import pytest
 from SAF.features.coordination.quaternary import compute_features
 
 
-def test_features(Tb4RhInGe4_cif):
-    result = compute_features(Tb4RhInGe4_cif)
+def test_features(Tb4RhInGe4_cif, TbRhInGe_elements_tuple):
+    result = compute_features(Tb4RhInGe4_cif, TbRhInGe_elements_tuple)
     expected = {
         "CN_AVG_coordination_number": 13.068181818181818,
         "CN_AVG_A_atom_count": 6.9772727272727275,

@@ -2,12 +2,11 @@ from cifkit import Cif
 from cifkit.data import radius_optimization as radius_opt
 
 from SAF.features.interatomic import helper
-from SAF.utils import bond, element_order, packing
+from SAF.utils import bond, packing
 
 
-def compute_features(cif: Cif, use_size_constraint: bool):
-    elements = list(cif.unique_elements)
-    A, B, C, D = element_order.get_quaternary_ABCD_elements(elements)
+def compute_features(cif: Cif, use_size_constraint: bool, elements):
+    A, B, C, D = elements
     A_CIF_rad = cif.radius_values[A]["CIF_radius"]
     B_CIF_rad = cif.radius_values[B]["CIF_radius"]
     C_CIF_rad = cif.radius_values[C]["CIF_radius"]

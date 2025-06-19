@@ -13,12 +13,11 @@ from SAF.features.environment.util import (
     extract_shortest_dist_with_tol,
     get_avg_second_by_first_shortest_dist_ratio,
 )
-from SAF.utils.element_order import get_quaternary_ABCD_elements
 
 
-def compute_features(cif: Cif):
+def compute_features(cif: Cif, elements):
     connections = cif.connections
-    A, B, C, D = get_quaternary_ABCD_elements(list(cif.unique_elements))
+    A, B, C, D = elements
 
     (
         A_avg_homoatomic_dist_by_shortest_dist,

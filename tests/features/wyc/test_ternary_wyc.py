@@ -1,9 +1,9 @@
 from SAF.features.wyc.ternary import compute_features
 
 
-def test_compute_features_ThSb(URhIn_cif):
+def test_compute_features_ThSb(URhIn_cif, URhIn_elements_tuple):
     # Let R = U, M = Rh, X = In
-    wyk_actual, wyk_uni_actual = compute_features(URhIn_cif)
+    wyk_actual, wyk_uni_actual = compute_features(URhIn_cif, URhIn_elements_tuple)
     expected = {
         "WYK_R_lowest_wyckoff": 3,
         "WYK_M_lowest_wyckoff": 1,

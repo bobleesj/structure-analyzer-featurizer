@@ -1,8 +1,9 @@
 from SAF.features.wyc.binary import compute_features
 
 
-def test_compute_features_ThSb(ThSb_cif):
-    result, uni_result = compute_features(ThSb_cif)
+def test_compute_features_ThSb(ThSb_cif, ThSb_elements_tuple):
+    result, uni_result = compute_features(ThSb_cif, ThSb_elements_tuple)
+    # Let A be Th and B be Sb
     expected = {
         "WYK_A_lowest_wyckoff": 1,
         "WYK_B_lowest_wyckoff": 1,
@@ -19,8 +20,9 @@ def test_compute_features_ThSb(ThSb_cif):
     assert uni_result == uni_expected
 
 
-def test_compute_features_Th7Rh3(Th7Rh3_cif):
-    result, uni_result = compute_features(Th7Rh3_cif)
+def test_compute_features_Th7Rh3(Th7Rh3_cif, ThRh_elements_tuple):
+    result, uni_result = compute_features(Th7Rh3_cif, ThRh_elements_tuple)
+    # Let A be Th and B be Rh
     expected = {
         "WYK_A_lowest_wyckoff": 2,
         "WYK_B_lowest_wyckoff": 6,

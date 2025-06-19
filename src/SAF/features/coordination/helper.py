@@ -3,8 +3,6 @@ from cifkit.coordination.geometry import compute_polyhedron_metrics
 from cifkit.utils import string_parser
 from scipy.spatial import ConvexHull
 
-from SAF.utils.element_order import get_binary_AB_elements, get_quaternary_ABCD_elements, get_ternary_RMX_elements
-
 
 def get_CN_metrics_per_method(cif: Cif):
     """Find the best polyhedron for each label based on the minimum
@@ -182,19 +180,23 @@ def _compute_global_avg_for_min_max_avg_metrics(min_max_avg_result):
     return global_avg
 
 
-def get_CN_atom_count_data(cif: Cif):
-    # Compute geometrical features for the CN
+def get_CN_atom_count_data(cif: Cif, elements):
     CN_metrics = get_CN_metrics_per_method(cif)
-    # Compute min, max, and avg for each site label
     min_max_avg_CN_metrics = _compute_min_max_avg_per_atomic_label(CN_metrics)
     if len(cif.unique_elements) == 2:
-        A, B = get_binary_AB_elements(list(cif.unique_elements))
+        A = elements[0]
+        B = elements[1]
         CN_atom_count_data = _compute_number_of_atoms_in_binary_CN(cif.connections, CN_metrics, A, B)
     if len(cif.unique_elements) == 3:
-        R, M, X = get_ternary_RMX_elements(list(cif.unique_elements))
+        R = elements[0]
+        M = elements[1]
+        X = elements[2]
         CN_atom_count_data = _compute_number_of_atoms_in_ternary_CN(cif.connections, CN_metrics, R, M, X)
     if len(cif.unique_elements) == 4:
-        A, B, C, D = get_quaternary_ABCD_elements(list(cif.unique_elements))
+        A = elements[0]
+        B = elements[1]
+        C = elements[2]
+        D = elements[3]
         CN_atom_count_data = _compute_number_of_atoms_in_quaternary_CN(cif.connections, CN_metrics, A, B, C, D)
     # Compute the min, max, and avg for each label. Each label has 4 methods
     min_max_avg_CN_count = _compute_min_max_avg_per_atomic_label(CN_atom_count_data)
