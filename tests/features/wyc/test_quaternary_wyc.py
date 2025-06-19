@@ -1,9 +1,9 @@
 from SAF.features.wyc.quaternary import compute_features
 
 
-def test_compute_features_Th4RhInGe4(Tb4RhInGe4_cif):
+def test_compute_features_Th4RhInGe4(Tb4RhInGe4_cif, TbRhInGe_elements_tuple):
     # Let A = Tb, B = Rh, C = In, D = Ge
-    wyk_actual, wyk_uni_actual = compute_features(Tb4RhInGe4_cif)
+    wyk_actual, wyk_uni_actual = compute_features(Tb4RhInGe4_cif, TbRhInGe_elements_tuple)
     expected = {
         "WYK_A_lowest_wyckoff": 4,
         "WYK_B_lowest_wyckoff": 4,

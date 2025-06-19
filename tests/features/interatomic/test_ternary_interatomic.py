@@ -3,8 +3,8 @@ import pytest
 from SAF.features.interatomic.ternary import compute_features
 
 
-def test_compute_ternary_interatomic_feature(URhIn_cif):
-    actual, _ = compute_features(URhIn_cif, use_size_constraint=True)
+def test_compute_ternary_interatomic_feature(URhIn_cif, URhIn_elements_tuple):
+    actual, _ = compute_features(URhIn_cif, True, URhIn_elements_tuple)
     expected = {
         "Entry": "URhIn",
         "Formula": "URhIn",

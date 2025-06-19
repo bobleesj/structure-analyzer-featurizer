@@ -1,12 +1,10 @@
 from cifkit import Cif
 
 from SAF.features.wyc import helper
-from SAF.utils import element_order
 
 
-def compute_features(cif: Cif):
-    elements = list(cif.unique_elements)
-    A, B = element_order.get_binary_AB_elements(elements)
+def compute_features(cif: Cif, elements):
+    A, B = elements
     A_env, B_env = helper.get_binary_site_info(cif._loop_values, A, B)
     A_sites_total = A_env["sites"]
     B_sites_total = B_env["sites"]

@@ -1,12 +1,10 @@
 from cifkit import Cif
 
 from SAF.features.wyc import helper
-from SAF.utils import element_order
 
 
-def compute_features(cif: Cif):
-    elements = list(cif.unique_elements)
-    R, M, X = element_order.get_ternary_RMX_elements(elements)
+def compute_features(cif: Cif, elements):
+    R, M, X = elements
     R_env, M_env, X_env = helper.get_ternary_site_info(cif._loop_values, R, M, X)
     R_sites_total = R_env["sites"]
     M_sites_total = M_env["sites"]

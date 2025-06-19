@@ -6,7 +6,6 @@ from SAF.features.coordination.helper import (
     _compute_number_of_atoms_in_binary_CN,
     get_CN_metrics_per_method,
 )
-from SAF.utils.element_order import get_binary_AB_elements
 
 
 @pytest.fixture(scope="function")
@@ -306,9 +305,9 @@ def test_compute_global_averages(RhSb2_min_max_avg_CN_metrics_from_sites):
             assert result[category][metric] == pytest.approx(value, abs=0.005)
 
 
-def test_compute_number_of_atoms_in_CN(RhSb2_cif):
+def test_compute_number_of_atoms_in_CN(RhSb2_cif, RhSb_elements_tuple):
     CN_data = get_CN_metrics_per_method(RhSb2_cif)
-    A, B = get_binary_AB_elements(list(RhSb2_cif.unique_elements))
+    A, B = RhSb_elements_tuple
     result = _compute_number_of_atoms_in_binary_CN(RhSb2_cif.connections, CN_data, A, B)
     assert result == {
         "SbI": {

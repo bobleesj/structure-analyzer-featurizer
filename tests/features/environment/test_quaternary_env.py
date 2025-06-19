@@ -3,8 +3,8 @@ from deepdiff import DeepDiff
 from SAF.features.environment.quaternary import compute_features
 
 
-def test_compute_binary_env_features_ThSb(Tb4RhInGe4_cif):
-    actual = compute_features(Tb4RhInGe4_cif)
+def test_compute_binary_env_features_ThSb(Tb4RhInGe4_cif, TbRhInGe_elements_tuple):
+    actual = compute_features(Tb4RhInGe4_cif, TbRhInGe_elements_tuple)
     expected = {
         "ENV_A_shortest_dist_count": 1,
         "ENV_B_shortest_dist_count": 2,
