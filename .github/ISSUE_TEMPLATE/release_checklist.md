@@ -40,17 +40,6 @@ such as version information and details about the pre-release here:
 Please let the maintainer know that all checks are done and the package is ready
 for full release.
 
-### conda-forge release preparation checklist:
-
-<!-- After the maintainer releases the PyPI package, please check the following when creating a PR for conda-forge release.-->
-
-- [ ] Ensure that the full release has appeared on PyPI successfully.
-- [ ] New package dependencies listed in `conda.txt` and `test.txt` are added to
-      `meta.yaml` in the feedstock.
-- [ ] Close any open issues on the feedstock. Reach out to the maintainer if you
-      have questions.
-- [ ] Tag the maintainer for conda-forge release.
-
 ### Post-release checklist
 
 <!-- Before closing this issue, please complete the following: -->

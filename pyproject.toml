@@ -7,9 +7,14 @@ name = "structure-analyzer-featurizer"
 dynamic=['version', 'dependencies']
 authors = [
   { name="Sangjoon Lee", email="bobleesj@gmail.com" },
+  { name="Danila Shiryaev", email="danila.shiryaev44@myhunter.cuny.edu " },
+  { name="Emil Jaffal", email="ejaffal@gradcenter.cuny.edu" },
+  { name="Anton Oliynyk", email="bobleesj@gmail.com" },
 ]
 maintainers = [
   { name="Sangjoon Lee", email="bobleesj@gmail.com" },
+  { name="Danila Shiryaev", email="danila.shiryaev44@myhunter.cuny.edu " },
+  { name="Emil Jaffal", email="ejaffal@gradcenter.cuny.edu" },
 ]
 description = "Python package to generate geometric features of interatomic distances, atomic environment information, and coordination numbers from a folder containing .cif files."
 keywords = ['features', 'materials-infomatics', 'machine-learning', 'structure', 'materials']
