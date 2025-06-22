@@ -43,22 +43,24 @@ Structure features include interatomic distances, information on atomic environm
 
 ``SAF`` was originally developed to determine the coordination number and geometry for each crystallographic site in complex structures [1]_. Later, we included interactive functionality for experimentalists and data scientists to generate structural features. These features have been used as input data for ML models to predict crystal structures and their properties [2]_.
 
-In the above *Digital Discovery* paper (`DOI <https://doi.org/10.1039/D4DD00332B>`_), we describe the performance of `CAF <https://bobleesj.github.io/composition-analyzer-featurizer/>`_ in combination with SAF for generating compositional and structural numerical features for ML applications in crystal classification of binary compounds:
+In the above `Digital Discovery <https://doi.org/10.1039/D4DD00332B>`_ paper, we describe the performance of ``SAF`` in **combination with** ``CAF`` for generating compositional and structural numerical features for ML applications in **crystal classification of binary compounds**. The results are shown in Figures 1 and 2 below, we compare the performance of our developments (SAF and CAF) with existing feature generation methods such as JARVIS, MAGPIE, mat2vec, and OLED.
 
 .. image:: img/SAF-CAF-performance.png
    :alt: PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF.
 
 .. note::
-
    **Figure 1:** PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF.
 
-.. image:: img/feature-extraction-diagram.png
-   :alt: Feature extraction diagram with SAF and CAF
-   :target: https://doi.org/10.1039/D4DD00332B
+
+.. image:: img/SAF-CAF-binary-crystal-classification-performance.png
+   :alt: PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF.
 
 .. note::
+   **Figure 2:** SAF + CAF PLS-DA plot.
 
-   **Figure 2:** Diagram showing the workflow of combining compositional (CAF) and structural (SAF) features for ML applications.
+.. seealso::
+
+   What's the differecne between ``SAF`` and ``CAF``? ``SAF`` generates structural features based on crystal structures (CIF files), while ``CAF`` generates compositional features based on chemical formulas, whileYou can learn more about ``SAF`` in https://bobleesj.github.io/composition-analyzer-featurizer/.
 
 Publications using SAF
 ======================
@@ -86,9 +88,6 @@ Scope
 The current version supports the processing of **binary**, **ternary**, and **quaternary** ``.cif`` files containing the following elements:
 
 .. image:: img/SAF-supported-elements-table.png
-.. note::
-
-   **Figure 3:** Elements supported by SAF for generating structural features.
 
 .. note::
 

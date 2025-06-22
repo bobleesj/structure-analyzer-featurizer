@@ -81,6 +81,30 @@ This will install key packages such as ``cifkit`` and ``bobleesj.utils`` that ar
     except Exception as e:
         print(f"Error found for {file_path}. Reason: {e}")
 
-.. note::
 
-    If you have any problems with running the code, you can receive help by leaving an issue in the GitHub repository.
+How can I specify the elements for ``A``, ``B`` in binary, ``R``, ``M``, ``X`` in ternary, and ``A``, ``B``, ``C``, ``D`` in quaternary systems?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default, ``SAF`` automatically orders the elements from highest to lowest Mendeleev number. The Mendeleev number for each element is parsed from the ``bobleesj.utils`` `Python package <https://bobleesj.github.io/bobleesj.utils>`_. If you want to specify the order of the elements, you can provide a custom label mapping dictionary to the ``compute_binary_features``, ``compute_ternary_features``, or ``compute_quaternary_features`` functions, as shown below.
+
+.. code-block:: python
+
+    custom_labels = {
+        2: {"A": ["Fe", "Co"], "B": ["Si", "Ga"]},
+        3: {"R": ["Sc", "Y"], "M": ["Fe", "Co"], "X": ["Si", "Ga"]},
+        4: {"A": ["Sc", "Y"], "B": ["Fe", "Co"], "C": ["Si", "Ga"], "D": ["Gd", "Tb", "Dy"]},
+    }
+
+    file_path = "path/to/your/cif_file.cif"
+    compute_binary_features(file_path, custom_labels=custom_labels)
+
+Alternatively, you can provide a custom label mapping dictionary using this `template Excel file <https://github.com/bobleesj/bobleesj.utils/blob/main/tests/data/sort/test-custom-labels.xlsx>`_ and the ``Elements`` class from the ``bobleesj.utils.sorters.elements`` module:
+
+.. code-block:: python
+
+    from bobleesj.utils.sorters.elements import Elements
+
+    excel_file = "path/to/your/custom_labels.xlsx"
+    element_sorter = Elements(excel_path=excel_file)
+    custom_labels = element_sorter.label_mapping
+    compute_binary_features(file_path, custom_labels=custom_labels)
