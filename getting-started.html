@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting started &mdash; Structure Analyzer/Featurizer (SAF) 0.0.1 documentation</title>
+  <title>Getting started &mdash; Structure Analyzer/Featurizer (SAF) 0.0.1rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=f539c95a"></script>
+      <script src="_static/documentation_options.js?v=1ea0b0c9"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -49,7 +49,10 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#method-1-using-saf-application">Method 1. Using SAF Application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#method-2-import-saf-in-python-file-or-jupyter-notebook">Method 2. Import SAF in Python file or Jupyter notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#method-2-import-saf-in-python-file-or-jupyter-notebook">Method 2. Import SAF in Python file or Jupyter notebook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-specify-the-elements-for-a-b-in-binary-r-m-x-in-ternary-and-a-b-c-d-in-quaternary-systems">How can I specify the elements for <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code> in binary, <code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">M</span></code>, <code class="docutils literal notranslate"><span class="pre">X</span></code> in ternary, and <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span></code>, <code class="docutils literal notranslate"><span class="pre">D</span></code> in quaternary systems?</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
@@ -148,10 +151,29 @@ Would you like to process each folder above sequentially?
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error found for </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">. Reason: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you have any problems with running the code, you can receive help by leaving an issue in the GitHub repository.</p>
+<section id="how-can-i-specify-the-elements-for-a-b-in-binary-r-m-x-in-ternary-and-a-b-c-d-in-quaternary-systems">
+<h3>How can I specify the elements for <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code> in binary, <code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">M</span></code>, <code class="docutils literal notranslate"><span class="pre">X</span></code> in ternary, and <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span></code>, <code class="docutils literal notranslate"><span class="pre">D</span></code> in quaternary systems?<a class="headerlink" href="#how-can-i-specify-the-elements-for-a-b-in-binary-r-m-x-in-ternary-and-a-b-c-d-in-quaternary-systems" title="Link to this heading"></a></h3>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">SAF</span></code> automatically orders the elements from highest to lowest Mendeleev number. The Mendeleev number for each element is parsed from the <code class="docutils literal notranslate"><span class="pre">bobleesj.utils</span></code> <a class="reference external" href="https://bobleesj.github.io/bobleesj.utils">Python package</a>. If you want to specify the order of the elements, you can provide a custom label mapping dictionary to the <code class="docutils literal notranslate"><span class="pre">compute_binary_features</span></code>, <code class="docutils literal notranslate"><span class="pre">compute_ternary_features</span></code>, or <code class="docutils literal notranslate"><span class="pre">compute_quaternary_features</span></code> functions, as shown below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">custom_labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Fe&quot;</span><span class="p">,</span> <span class="s2">&quot;Co&quot;</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Si&quot;</span><span class="p">,</span> <span class="s2">&quot;Ga&quot;</span><span class="p">]},</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;R&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Sc&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">],</span> <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Fe&quot;</span><span class="p">,</span> <span class="s2">&quot;Co&quot;</span><span class="p">],</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Si&quot;</span><span class="p">,</span> <span class="s2">&quot;Ga&quot;</span><span class="p">]},</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Sc&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Fe&quot;</span><span class="p">,</span> <span class="s2">&quot;Co&quot;</span><span class="p">],</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Si&quot;</span><span class="p">,</span> <span class="s2">&quot;Ga&quot;</span><span class="p">],</span> <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Gd&quot;</span><span class="p">,</span> <span class="s2">&quot;Tb&quot;</span><span class="p">,</span> <span class="s2">&quot;Dy&quot;</span><span class="p">]},</span>
+<span class="p">}</span>
+
+<span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;path/to/your/cif_file.cif&quot;</span>
+<span class="n">compute_binary_features</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">custom_labels</span><span class="o">=</span><span class="n">custom_labels</span><span class="p">)</span>
+</pre></div>
 </div>
+<p>Alternatively, you can provide a custom label mapping dictionary using this <a class="reference external" href="https://github.com/bobleesj/bobleesj.utils/blob/main/tests/data/sort/test-custom-labels.xlsx">template Excel file</a> and the <code class="docutils literal notranslate"><span class="pre">ElementSorter</span></code> class from the <code class="docutils literal notranslate"><span class="pre">bobleesj.utils.sorters.element_sorter</span></code> module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">bobleesj.utils.sorters.element_sorter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ElementSorter</span>
+
+<span class="n">excel_file</span> <span class="o">=</span> <span class="s2">&quot;path/to/your/custom_labels.xlsx&quot;</span>
+<span class="n">element_sorter</span> <span class="o">=</span> <span class="n">ElementSorter</span><span class="p">(</span><span class="n">excel_path</span><span class="o">=</span><span class="n">excel_file</span><span class="p">)</span>
+<span class="n">custom_labels</span> <span class="o">=</span> <span class="n">element_sorter</span><span class="o">.</span><span class="n">label_mapping</span>
+<span class="n">compute_binary_features</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">custom_labels</span><span class="o">=</span><span class="n">custom_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 

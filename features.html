@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Features &mdash; Structure Analyzer/Featurizer (SAF) 0.0.1 documentation</title>
+  <title>Features &mdash; Structure Analyzer/Featurizer (SAF) 0.0.1rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=f539c95a"></script>
+      <script src="_static/documentation_options.js?v=1ea0b0c9"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -101,6 +101,7 @@
 <li><p>For ternary compounds, the shortest distances between R–M and M–X are used as target distances. For quaternary compounds, the shortest distances between A-B, B-C, C-D are used as target distances.</p></li>
 <li><p>The refined radius must preserve the size order of the original CIF radius values.</p></li>
 </ol>
+<p>You can optionally turn off the (b) constraint by setting <code class="docutils literal notranslate"><span class="pre">features,</span> <span class="pre">uni_features</span> <span class="pre">=</span> <span class="pre">compute_&lt;composition&gt;_features(file_path,</span> <span class="pre">use_size_constraint=False)</span></code> in <code class="docutils literal notranslate"><span class="pre">main.py</span></code> the <code class="docutils literal notranslate"><span class="pre">SAF</span></code> application.</p>
 </div></blockquote>
 <p><strong>Q. How are the coordination number (CN) features calculated?</strong></p>
 <p>The coordination number (CN) features are calculated based on the polyhedra formed by atoms in the crystal structure, using four different methods:</p>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Structure Analyzer/Featurizer (SAF) &mdash; Structure Analyzer/Featurizer (SAF) 0.0.1 documentation</title>
+  <title>Structure Analyzer/Featurizer (SAF) &mdash; Structure Analyzer/Featurizer (SAF) 0.0.1rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=f539c95a"></script>
+      <script src="_static/documentation_options.js?v=1ea0b0c9"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -90,8 +90,8 @@
 </a>
 <img alt="Python Version" src="https://img.shields.io/pypi/pyversions/structure-analyzer-featurizer" />
 <div class="line-block">
-<div class="line">Software version 0.0.1</div>
-<div class="line">Last updated June 15, 2025.</div>
+<div class="line">Software version 0.0.1rc0</div>
+<div class="line">Last updated June 23, 2025.</div>
 </div>
 <p>Structure Analyzer/Featurizer (SAF) is a Python package to generate geometric features of interatomic distances, atomic environment information, and coordination numbers from a folder containing CIF (Crystallographic Information File) files.</p>
 <section id="citation">
@@ -114,17 +114,20 @@
 <li><p>182 quaternary structural features</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">SAF</span></code> was originally developed to determine the coordination number and geometry for each crystallographic site in complex structures <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. Later, we included interactive functionality for experimentalists and data scientists to generate structural features. These features have been used as input data for ML models to predict crystal structures and their properties <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
-<p>In the above <em>Digital Discovery</em> paper (<a class="reference external" href="https://doi.org/10.1039/D4DD00332B">DOI</a>), we describe the performance of <a class="reference external" href="https://bobleesj.github.io/composition-analyzer-featurizer/">CAF</a> in combination with SAF for generating compositional and structural numerical features for ML applications in crystal classification of binary compounds:</p>
+<p>In the above <a class="reference external" href="https://doi.org/10.1039/D4DD00332B">Digital Discovery</a> paper, we describe the performance of <code class="docutils literal notranslate"><span class="pre">SAF</span></code> in <strong>combination with</strong> <code class="docutils literal notranslate"><span class="pre">CAF</span></code> for generating compositional and structural numerical features for ML applications in <strong>crystal classification of binary compounds</strong>. The results are shown in Figures 1 and 2 below, we compare the performance of our developments (SAF and CAF) with existing feature generation methods such as JARVIS, MAGPIE, mat2vec, and OLED.</p>
 <img alt="PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF." src="_images/SAF-CAF-performance.png" />
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Figure 1:</strong> PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF.</p>
 </div>
-<a class="reference external image-reference" href="https://doi.org/10.1039/D4DD00332B"><img alt="Feature extraction diagram with SAF and CAF" src="_images/feature-extraction-diagram.png" />
-</a>
+<img alt="PLS-DA latent value plot using the first two latent value dimensions: (a) JARVIS, (b) MAGPIE, (c) mat2vec, (d) OLED (all sets of features were generated with CBFV), and our developments – (e) CAF and (f) SAF." src="_images/SAF-CAF-binary-crystal-classification-performance.png" />
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><strong>Figure 2:</strong> Diagram showing the workflow of combining compositional (CAF) and structural (SAF) features for ML applications.</p>
+<p><strong>Figure 2:</strong> SAF + CAF PLS-DA plot.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>What’s the differecne between <code class="docutils literal notranslate"><span class="pre">SAF</span></code> and <code class="docutils literal notranslate"><span class="pre">CAF</span></code>? <code class="docutils literal notranslate"><span class="pre">SAF</span></code> generates structural features based on crystal structures (CIF files), while <code class="docutils literal notranslate"><span class="pre">CAF</span></code> generates compositional features based on chemical formulas, whileYou can learn more about <code class="docutils literal notranslate"><span class="pre">SAF</span></code> in <a class="reference external" href="https://bobleesj.github.io/composition-analyzer-featurizer/">https://bobleesj.github.io/composition-analyzer-featurizer/</a>.</p>
 </div>
 </section>
 <section id="publications-using-saf">
@@ -153,12 +156,8 @@ Compounds</em>. <strong>4</strong>, 548-560 (2024).
 </section>
 <section id="scope">
 <h2>Scope<a class="headerlink" href="#scope" title="Link to this heading"></a></h2>
-<p>The current version supports the processing of <strong>binary</strong>, <strong>ternary</strong>, and <strong>quaternary</strong> <code class="docutils literal notranslate"><span class="pre">.cif</span></code> files containing the following elements: <code class="docutils literal notranslate"><span class="pre">Si</span></code> <code class="docutils literal notranslate"><span class="pre">Sc</span></code> <code class="docutils literal notranslate"><span class="pre">Fe</span></code> <code class="docutils literal notranslate"><span class="pre">Co</span></code> <code class="docutils literal notranslate"><span class="pre">Ni</span></code> <code class="docutils literal notranslate"><span class="pre">Ga</span></code> <code class="docutils literal notranslate"><span class="pre">Ge</span></code> <code class="docutils literal notranslate"><span class="pre">Y</span></code>
-<code class="docutils literal notranslate"><span class="pre">Ru</span></code> <code class="docutils literal notranslate"><span class="pre">Rh</span></code> <code class="docutils literal notranslate"><span class="pre">Pd</span></code> <code class="docutils literal notranslate"><span class="pre">In</span></code> <code class="docutils literal notranslate"><span class="pre">Sn</span></code> <code class="docutils literal notranslate"><span class="pre">Sb</span></code> <code class="docutils literal notranslate"><span class="pre">La</span></code> <code class="docutils literal notranslate"><span class="pre">Ce</span></code> <code class="docutils literal notranslate"><span class="pre">Pr</span></code> <code class="docutils literal notranslate"><span class="pre">Nd</span></code> <code class="docutils literal notranslate"><span class="pre">Sm</span></code> <code class="docutils literal notranslate"><span class="pre">Eu</span></code> <code class="docutils literal notranslate"><span class="pre">Gd</span></code> <code class="docutils literal notranslate"><span class="pre">Tb</span></code> <code class="docutils literal notranslate"><span class="pre">Dy</span></code> <code class="docutils literal notranslate"><span class="pre">Ho</span></code>
-<code class="docutils literal notranslate"><span class="pre">Er</span></code> <code class="docutils literal notranslate"><span class="pre">Tm</span></code> <code class="docutils literal notranslate"><span class="pre">Yb</span></code> <code class="docutils literal notranslate"><span class="pre">Lu</span></code> <code class="docutils literal notranslate"><span class="pre">Os</span></code> <code class="docutils literal notranslate"><span class="pre">Ir</span></code> <code class="docutils literal notranslate"><span class="pre">Pt</span></code> <code class="docutils literal notranslate"><span class="pre">Th</span></code> <code class="docutils literal notranslate"><span class="pre">U</span></code> <code class="docutils literal notranslate"><span class="pre">Al</span></code> <code class="docutils literal notranslate"><span class="pre">Mo</span></code> <code class="docutils literal notranslate"><span class="pre">Hf</span></code> <code class="docutils literal notranslate"><span class="pre">Ta</span></code>. <code class="docutils literal notranslate"><span class="pre">Ag</span></code> <code class="docutils literal notranslate"><span class="pre">As</span></code> <code class="docutils literal notranslate"><span class="pre">Au</span></code>
-<code class="docutils literal notranslate"><span class="pre">B</span></code> <code class="docutils literal notranslate"><span class="pre">Ba</span></code> <code class="docutils literal notranslate"><span class="pre">Be</span></code> <code class="docutils literal notranslate"><span class="pre">Bi</span></code> <code class="docutils literal notranslate"><span class="pre">C</span></code> <code class="docutils literal notranslate"><span class="pre">Ca</span></code> <code class="docutils literal notranslate"><span class="pre">Cd</span></code> <code class="docutils literal notranslate"><span class="pre">Cr</span></code> <code class="docutils literal notranslate"><span class="pre">Cs</span></code> <code class="docutils literal notranslate"><span class="pre">Cu</span></code> <code class="docutils literal notranslate"><span class="pre">Hg</span></code> <code class="docutils literal notranslate"><span class="pre">K</span></code> <code class="docutils literal notranslate"><span class="pre">Li</span></code> <code class="docutils literal notranslate"><span class="pre">Mg</span></code> <code class="docutils literal notranslate"><span class="pre">Mn</span></code> <code class="docutils literal notranslate"><span class="pre">Na</span></code>
-<code class="docutils literal notranslate"><span class="pre">Nb</span></code> <code class="docutils literal notranslate"><span class="pre">P</span></code> <code class="docutils literal notranslate"><span class="pre">Pb</span></code> <code class="docutils literal notranslate"><span class="pre">Rb</span></code> <code class="docutils literal notranslate"><span class="pre">Re</span></code> <code class="docutils literal notranslate"><span class="pre">S</span></code> <code class="docutils literal notranslate"><span class="pre">Se</span></code> <code class="docutils literal notranslate"><span class="pre">Sr</span></code> <code class="docutils literal notranslate"><span class="pre">Te</span></code> <code class="docutils literal notranslate"><span class="pre">Ti</span></code> <code class="docutils literal notranslate"><span class="pre">Tl</span></code> <code class="docutils literal notranslate"><span class="pre">V</span></code> <code class="docutils literal notranslate"><span class="pre">W</span></code> <code class="docutils literal notranslate"><span class="pre">Zn</span></code> <code class="docutils literal notranslate"><span class="pre">Zr</span></code> <code class="docutils literal notranslate"><span class="pre">Tc</span></code> <code class="docutils literal notranslate"><span class="pre">N</span></code>
-<code class="docutils literal notranslate"><span class="pre">O</span></code> <code class="docutils literal notranslate"><span class="pre">F</span></code> <code class="docutils literal notranslate"><span class="pre">Cl</span></code> <code class="docutils literal notranslate"><span class="pre">Br</span></code> <code class="docutils literal notranslate"><span class="pre">I</span></code> <code class="docutils literal notranslate"><span class="pre">Sm</span></code>.</p>
+<p>The current version supports the processing of <strong>binary</strong>, <strong>ternary</strong>, and <strong>quaternary</strong> <code class="docutils literal notranslate"><span class="pre">.cif</span></code> files containing the following elements:</p>
+<img alt="_images/SAF-supported-elements-table.png" src="_images/SAF-supported-elements-table.png" />
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The Pauling CN 12 radii values for some gases (<code class="docutils literal notranslate"><span class="pre">N</span></code>, <code class="docutils literal notranslate"><span class="pre">O</span></code>, <code class="docutils literal notranslate"><span class="pre">F</span></code>, <code class="docutils literal notranslate"><span class="pre">Cl</span></code>, <code class="docutils literal notranslate"><span class="pre">Br</span></code>, and <code class="docutils literal notranslate"><span class="pre">I</span></code>) as well as <code class="docutils literal notranslate"><span class="pre">Tc</span></code> and <code class="docutils literal notranslate"><span class="pre">Sm</span></code> were interpolated using Gaussian Process Regression. The CIF radii for the aforementioned gases were compiled as averages of low-temperature structures from Persson’s CIF database.</p>
@@ -168,7 +167,7 @@ Compounds</em>. <strong>4</strong>, 548-560 (2024).
 <h2>How to ask for help<a class="headerlink" href="#how-to-ask-for-help" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Do you have any feature requests? Please feel free to open an issue on GitHub using the <code class="docutils literal notranslate"><span class="pre">Bug</span> <span class="pre">Report</span> <span class="pre">or</span> <span class="pre">Feature</span> <span class="pre">Request</span></code> template.</p></li>
-<li><p>Do you have any questions about running the code? Please feel free to reach out to Sangjoon Bob Lee at <a class="reference external" href="mailto:bobleesj&#37;&#52;&#48;stanford&#46;edu">bobleesj<span>&#64;</span>stanford<span>&#46;</span>edu</a>.</p></li>
+<li><p>Do you have any questions about running the code? Please feel free to reach out to Sangjoon Bob Lee at <a class="reference external" href="mailto:bobleesj&#37;&#52;&#48;gmail&#46;com">bobleesj<span>&#64;</span>gmail<span>&#46;</span>com</a>.</p></li>
 <li><p>Do you want to learn how to publish scientific software? <code class="docutils literal notranslate"><span class="pre">SAF</span></code> is developed and maintained using the Level 5 package standards provided in <a class="reference external" href="https://scikit-package.github.io/scikit-package/">scikit-package</a>.</p></li>
 </ul>
 </section>
