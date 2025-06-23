@@ -14,7 +14,7 @@ Features:
 
 ## Publications
 
-If you use `SAF` in your scientific publication, please cite the software packages:
+If you use `SAF` in your scientific publication, please cite the following paper describing `SAF`:
 
 > _Digital Discovery_, https://doi.org/10.1039/D4DD00332B
 
