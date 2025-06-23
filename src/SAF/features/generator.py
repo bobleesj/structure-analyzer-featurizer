@@ -1,4 +1,4 @@
-from bobleesj.utils.sorters.elements import Elements
+from bobleesj.utils.sorters.element_sorter import ElementSorter
 from cifkit import Cif
 
 from SAF.features.coordination import binary as CN_binary
@@ -20,7 +20,7 @@ def _generate_features(
 ):
     cif = Cif(file_path, supercell_size=supercell_size, compute_CN=True)
     elements = list(cif.unique_elements)
-    element_sorter = Elements(label_mapping=custom_labels)
+    element_sorter = ElementSorter(label_mapping=custom_labels)
     if custom_labels:
         elements_sorted = element_sorter.sort(elements, method="custom")
     else:

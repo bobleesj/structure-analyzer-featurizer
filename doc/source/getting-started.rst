@@ -98,13 +98,13 @@ By default, ``SAF`` automatically orders the elements from highest to lowest Men
     file_path = "path/to/your/cif_file.cif"
     compute_binary_features(file_path, custom_labels=custom_labels)
 
-Alternatively, you can provide a custom label mapping dictionary using this `template Excel file <https://github.com/bobleesj/bobleesj.utils/blob/main/tests/data/sort/test-custom-labels.xlsx>`_ and the ``Elements`` class from the ``bobleesj.utils.sorters.elements`` module:
+Alternatively, you can provide a custom label mapping dictionary using this `template Excel file <https://github.com/bobleesj/bobleesj.utils/blob/main/tests/data/sort/test-custom-labels.xlsx>`_ and the ``ElementSorter`` class from the ``bobleesj.utils.sorters.element_sorter`` module:
 
 .. code-block:: python
 
-    from bobleesj.utils.sorters.elements import Elements
+    from bobleesj.utils.sorters.element_sorter import ElementSorter
 
     excel_file = "path/to/your/custom_labels.xlsx"
-    element_sorter = Elements(excel_path=excel_file)
+    element_sorter = ElementSorter(excel_path=excel_file)
     custom_labels = element_sorter.label_mapping
     compute_binary_features(file_path, custom_labels=custom_labels)
