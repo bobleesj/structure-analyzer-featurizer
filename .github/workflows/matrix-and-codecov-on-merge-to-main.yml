@@ -12,10 +12,10 @@ on:
 
 jobs:
   matrix-coverage:
-    uses: scikit-package/release-scripts/.github/workflows/_matrix-and-codecov-on-merge-to-main.yml@v0
+    uses: scikit-package/release-scripts/.github/workflows/_matrix-no-codecov-on-merge-to-main.yml@v0
     with:
       project: structure-analyzer-featurizer
       c_extension: false
       headless: false
-    secrets:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      run: |
+        pip install 'cifkit>=1.2.0'
