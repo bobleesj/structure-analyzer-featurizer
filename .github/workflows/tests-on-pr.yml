@@ -6,10 +6,11 @@ on:
 
 jobs:
   tests-on-pr:
-    uses: scikit-package/release-scripts/.github/workflows/_tests-on-pr.yml@v0
+    uses: scikit-package/release-scripts/.github/workflows/_tests-on-pr-no-codecov.yml@v0
     with:
       project: structure-analyzer-featurizer
       c_extension: false
       headless: false
-    secrets:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      # cifkit>=1.2.0 is on PyPI; conda-forge may lag. Install from PyPI for CI.
+      run: |
+        pip install 'cifkit>=1.2.0'
