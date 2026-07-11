@@ -11,5 +11,8 @@ jobs:
       project: structure-analyzer-featurizer
       c_extension: false
       headless: false
+      # cifkit>=1.2.0 is on PyPI but not yet on conda-forge (latest there is 1.1.1).
+      run: |
+        pip install 'cifkit>=1.2.0'
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
