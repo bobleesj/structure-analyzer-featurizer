@@ -59,7 +59,7 @@ You might be interested in generating compositional features without using the S
 
    pip install structure-analyzer-featurizer
 
-This will install key packages such as ``cifkit`` and ``bobleesj.utils`` that are required to run the SAF package. Then, you can generate features by calling the function provided in the SAF package directly.
+This will install key packages such as ``cifkit`` that are required to run the SAF package. Then, you can generate features by calling the function provided in the SAF package directly.
 
 .. code-block:: python
 
@@ -85,7 +85,7 @@ This will install key packages such as ``cifkit`` and ``bobleesj.utils`` that ar
 How can I specify the elements for ``A``, ``B`` in binary, ``R``, ``M``, ``X`` in ternary, and ``A``, ``B``, ``C``, ``D`` in quaternary systems?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, ``SAF`` automatically orders the elements from highest to lowest Mendeleev number. The Mendeleev number for each element is parsed from the ``bobleesj.utils`` `Python package <https://bobleesj.github.io/bobleesj.utils>`_. If you want to specify the order of the elements, you can provide a custom label mapping dictionary to the ``compute_binary_features``, ``compute_ternary_features``, or ``compute_quaternary_features`` functions, as shown below.
+By default, ``SAF`` automatically orders the elements from highest to lowest Mendeleev number. The Mendeleev number for each element is parsed from the ``cifkit`` `Python package <https://bobleesj.github.io/cifkit>`_. If you want to specify the order of the elements, you can provide a custom label mapping dictionary to the ``compute_binary_features``, ``compute_ternary_features``, or ``compute_quaternary_features`` functions, as shown below.
 
 .. code-block:: python
 
@@ -98,11 +98,11 @@ By default, ``SAF`` automatically orders the elements from highest to lowest Men
     file_path = "path/to/your/cif_file.cif"
     compute_binary_features(file_path, custom_labels=custom_labels)
 
-Alternatively, you can provide a custom label mapping dictionary using this `template Excel file <https://github.com/bobleesj/bobleesj.utils/blob/main/tests/data/sort/test-custom-labels.xlsx>`_ and the ``ElementSorter`` class from the ``bobleesj.utils.sorters.element_sorter`` module:
+Alternatively, you can provide a custom label mapping dictionary using this `template Excel file <https://github.com/bobleesj/cifkit/blob/main/tests/data/sort/test-custom-labels.xlsx>`_ and the ``ElementSorter`` class from the ``cifkit.sorters.element_sorter`` module:
 
 .. code-block:: python
 
-    from bobleesj.utils.sorters.element_sorter import ElementSorter
+    from cifkit.sorters.element_sorter import ElementSorter
 
     excel_file = "path/to/your/custom_labels.xlsx"
     element_sorter = ElementSorter(excel_path=excel_file)

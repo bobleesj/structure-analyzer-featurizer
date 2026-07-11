@@ -11,6 +11,6 @@ jobs:
       project: structure-analyzer-featurizer
       c_extension: false
       headless: false
-      # cifkit>=1.2.0 is on PyPI; conda-forge may lag. Install from PyPI for CI.
+      # cifkit>=1.2.0 is on PyPI (primary install path); install for CI.
       run: |
         pip install 'cifkit>=1.2.0'

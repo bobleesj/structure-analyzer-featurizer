@@ -1,5 +1,3 @@
-bobleesj.utils
-cifkit
 click
 matplotlib-base
 numpy

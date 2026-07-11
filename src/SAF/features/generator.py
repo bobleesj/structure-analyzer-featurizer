@@ -1,4 +1,4 @@
-from bobleesj.utils.sorters.element_sorter import ElementSorter
+from cifkit.sorters.element_sorter import ElementSorter
 from cifkit import Cif
 
 from SAF.features.coordination import binary as CN_binary

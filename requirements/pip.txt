@@ -1,5 +1,4 @@
-bobleesj.utils
-cifkit
+cifkit>=1.2.0
 click
 matplotlib
 numpy
