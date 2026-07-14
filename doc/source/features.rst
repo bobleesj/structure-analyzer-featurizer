@@ -177,16 +177,16 @@ Binary
     - Average number of atoms that are at the shortest distance from atom B (case if multiple sites present)
   * - 42
     - ENV_A_shortest_tol_dist_count
-    - Number of atoms that are at the shortest distance from atom A (with some distance tolerance applied, default 5%)
+    - Number of atoms within a **relative** distance tolerance of the shortest A–neighbor distance: ``dist <= shortest_dist * (1 + tol)``. Default ``tol=0.05`` is +5% of the shortest distance (dimensionless; **not** 0.05 Å). Distances themselves are in Å.
   * - 43
     - ENV_B_shortest_tol_dist_count
-    - Number of atoms that are at the shortest distance from atom B (with some distance tolerance applied, default 5%)
+    - Number of atoms within a **relative** distance tolerance of the shortest B–neighbor distance: ``dist <= shortest_dist * (1 + tol)``. Default ``tol=0.05`` is +5% of the shortest distance (dimensionless; **not** 0.05 Å). Distances themselves are in Å.
   * - 44
     - ENV_A_avg_shortest_dist_within_tol_count
-    - Average number of atoms that are at the shortest distance from atom A (case if multiple sites present, with some distance tolerance applied, default 5%)
+    - Average over A sites of the neighbor count within relative tolerance of each site's shortest distance (``dist <= shortest_dist * (1 + tol)``; default ``tol=0.05`` = +5%, not Å).
   * - 45
     - ENV_B_avg_shortest_dist_within_tol_count
-    - Average number of atoms that are at the shortest distance from atom B (case if multiple sites present, with some distance tolerance applied, default 5%)
+    - Average over B sites of the neighbor count within relative tolerance of each site's shortest distance (``dist <= shortest_dist * (1 + tol)``; default ``tol=0.05`` = +5%, not Å).
   * - 46
     - ENV_A_second_by_first_shortest_dist
     - 2nd shortest distance/1st shorted distance for atom A, measures distortion of polyhedron

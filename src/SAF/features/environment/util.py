@@ -149,8 +149,33 @@ def extract_best_labels(data):
 
 
 def extract_shortest_dist_with_tol(best_label_dist_info, connections, tol=0.05):
-    """Compute the count of distances within a specified tolerance of
-    the shortest distance of each site label."""
+    """Count neighbors within a relative tolerance of each best site's
+    shortest distance.
+
+    Distances in ``connections`` are in angstroms (Å). ``tol`` is **not**
+    an absolute length in Å; it is a dimensionless relative fraction of
+    the shortest distance. Neighbors with
+
+    ``dist <= shortest_dist * (1 + tol)``
+
+    are counted. The default ``tol=0.05`` means +5% of the shortest
+    distance (e.g. shortest 2.0 Å → cutoff 2.10 Å, not 2.05 Å).
+
+    Parameters
+    ----------
+    best_label_dist_info : dict
+        Output of :func:`extract_best_labels`.
+    connections : dict
+        Site-label → list of connection tuples ``(label, dist_Å, ...)``.
+    tol : float, optional
+        Relative tolerance as a fraction of the shortest distance
+        (default ``0.05`` = 5%). Not in angstroms.
+
+    Returns
+    -------
+    dict
+        Per-element dict with ``shortest_dist_count_within_tol``.
+    """
     best_site_result = {}
 
     # Find the shortest distance form the best site label
@@ -158,6 +183,7 @@ def extract_shortest_dist_with_tol(best_label_dist_info, connections, tol=0.05):
         best_site_shortest_dist_count_within_tol = 0
         best_site_min_dist = best_label_dist_info[element]["best_label_details"]["shortest_dist"]
         best_site_label = best_label_dist_info[element]["best_label"]
+        # Relative cutoff: shortest_dist * (1 + tol), not shortest_dist + tol
         best_site_min_dist_with_tol = best_site_min_dist * (1 + tol)
         for connection in connections[best_site_label]:
             _, dist, _, _ = connection
@@ -170,13 +196,39 @@ def extract_shortest_dist_with_tol(best_label_dist_info, connections, tol=0.05):
 
 
 def extract_avg_shortest_dist_with_tol(connection_data, tol=0.05):
-    """Compute the count of distances within a specified tolerance of
-    the shortest distance of each site label."""
+    """Average, per element, the neighbor count within a relative
+    tolerance of each site's shortest distance.
+
+    Distances in ``connection_data`` are in angstroms (Å). ``tol`` is
+    **not** an absolute length in Å; it is a dimensionless relative
+    fraction. For each site label, neighbors with
+
+    ``dist <= shortest_dist * (1 + tol)``
+
+    are counted, then averaged over sites of the same element. The
+    default ``tol=0.05`` means +5% of that site's shortest distance.
+
+    Parameters
+    ----------
+    connection_data : dict
+        Site-label → list of connection tuples ``(label, dist_Å, ...)``.
+        Connections are assumed sorted by increasing distance.
+    tol : float, optional
+        Relative tolerance as a fraction of the shortest distance
+        (default ``0.05`` = 5%). Not in angstroms.
+
+    Returns
+    -------
+    dict
+        Per-element totals and averages of
+        ``shortest_dist_count_within_tol``.
+    """
     site_result = defaultdict(lambda: {"shortest_dist_count_within_tol": 0})
     for site_label, connections in connection_data.items():
         site_result[site_label] = {}
         count_within_tol = 0
         min_dist_per_site_label = connections[0][1]
+        # Relative cutoff: shortest_dist * (1 + tol), not shortest_dist + tol
         site_min_dist_with_tol = min_dist_per_site_label * (1 + tol)
         for connection in connections:
             dist = connection[1]
